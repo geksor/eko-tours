@@ -1,17 +1,17 @@
 <?php
 
 use yii\helpers\Html;
-use backend\widgets\grid\GridView;
+use yii\grid\GridView;
 use yii\widgets\Pjax;
 /* @var $this yii\web\View */
-/* @var $searchModel common\models\StageSearch */
+/* @var $searchModel common\models\TimetableItemSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 /* @var $title */
 
 $this->title = $title;
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="stage-index">
+<div class="timetable-item-index">
 
     <div class="box box-primary">
         <div class="box-body">
@@ -19,8 +19,8 @@ $this->params['breadcrumbs'][] = $this->title;
             <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
             <p>
-                <?= Html::a('<i class="fa fa-reply" aria-hidden="true"></i>', ['month/view', 'id' => $searchModel->month_id], ['class' => 'btn btn-default']) ?>
-                <?= Html::a(Yii::t('app', 'Create Stage'), ['create', 'month_id' => $searchModel->month_id], ['class' => 'btn btn-success']) ?>
+                <?= Html::a('<i class="fa fa-reply" aria-hidden="true"></i>', ['timetable-day/view', 'id' => $searchModel->timetable_day_id], ['class' => 'btn btn-default']) ?>
+                <?= Html::a(Yii::t('app', 'Create Timetable Item'), ['create', 'day_id' => $searchModel->timetable_day_id], ['class' => 'btn btn-success']) ?>
             </p>
 
             <?= GridView::widget([
@@ -30,12 +30,16 @@ $this->params['breadcrumbs'][] = $this->title;
                     ['class' => 'yii\grid\SerialColumn'],
 
                     'id',
-        //            'month_id',
-                    'start_date:date',
-                    'end_date:date',
-                    'places_beads',
-                    'places_lavender',
-                    'price:decimal',
+//                    'timetable_day_id:datetime',
+                    [
+                        'attribute' => 'start_time',
+                        'format' => ['time', 'hh:mm']
+                    ],
+                    [
+                        'attribute' => 'end_time',
+                        'format' => ['time', 'hh:mm']
+                    ],
+                    'text:ntext',
                     [
                         'attribute' => 'publish',
                         'label' => 'Состояние',

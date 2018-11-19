@@ -50,6 +50,15 @@ class ImgUploadBehavior extends Behavior
     /**
      * @return string
      */
+    public function getImageIsSet()
+    {
+        $image = $this->propImage;
+        return ($this->owner->$image) ? true : false;
+    }
+
+    /**
+     * @return string
+     */
     public function getImage()
     {
         $image = $this->propImage;

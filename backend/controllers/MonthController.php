@@ -155,4 +155,26 @@ class MonthController extends Controller
 
         throw new NotFoundHttpException(Yii::t('app', 'The requested page does not exist.'));
     }
+
+    /**
+     * @param $id
+     * @param $publish
+     * @return \yii\web\Response
+     * @throws NotFoundHttpException
+     */
+    public function actionPublish($id, $publish)
+    {
+        if (Yii::$app->request->isAjax){
+
+            $model = $this->findModel($id);
+
+            $model->publish = (integer) $publish;
+
+            if ($model->save()){
+                return $this->redirect(Yii::$app->request->referrer);
+            }
+        }
+        return $this->redirect(Yii::$app->request->referrer);
+    }
+
 }

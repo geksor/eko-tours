@@ -2,18 +2,18 @@
 
 namespace backend\controllers;
 
-use common\models\Month;
+use common\models\TimetableDay;
 use Yii;
-use common\models\Stage;
-use common\models\StageSearch;
+use common\models\TimetableItem;
+use common\models\TimetableItemSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * StageController implements the CRUD actions for Stage model.
+ * TimetableItemController implements the CRUD actions for TimetableItem model.
  */
-class StageController extends Controller
+class TimetableItemController extends Controller
 {
     /**
      * {@inheritdoc}
@@ -31,17 +31,17 @@ class StageController extends Controller
     }
 
     /**
-     * Lists all Stage models.
+     * Lists all TimetableItem models.
      * @return mixed
      */
-    public function actionIndex($month_id)
+    public function actionIndex($day_id)
     {
-        $searchModel = new StageSearch();
-        $searchModel->month_id = $month_id;
+        $searchModel = new TimetableItemSearch();
+        $searchModel->timetable_day_id = $day_id;
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-        $monthModel = Month::findOne($month_id);
-        $title = $monthModel?Yii::$app->formatter->asDate($monthModel->title, 'php:F Y'):'';
-        $title = 'Потоки ' . $title;
+        $dayModel = TimetableDay::findOne($day_id);
+        $title = $dayModel?$dayModel->tour->title.' день '.$dayModel->day_number:'';
+        $title = 'События для: ' . $title;
 
 
         return $this->render('index', [
@@ -52,7 +52,7 @@ class StageController extends Controller
     }
 
     /**
-     * Displays a single Stage model.
+     * Displays a single TimetableItem model.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -65,14 +65,14 @@ class StageController extends Controller
     }
 
     /**
-     * Creates a new Stage model.
+     * Creates a new TimetableItem model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate($month_id)
+    public function actionCreate($day_id)
     {
-        $model = new Stage();
-        $model->month_id = $month_id;
+        $model = new TimetableItem();
+        $model->timetable_day_id = $day_id;
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -84,7 +84,7 @@ class StageController extends Controller
     }
 
     /**
-     * Updates an existing Stage model.
+     * Updates an existing TimetableItem model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -93,6 +93,12 @@ class StageController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+//        if($model->start_time) {
+//            $model->start_time = null;
+//        }
+//        if($model->end_time) {
+//            $model->end_time = null;
+//        }
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -104,7 +110,7 @@ class StageController extends Controller
     }
 
     /**
-     * Deletes an existing Stage model.
+     * Deletes an existing TimetableItem model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -118,15 +124,15 @@ class StageController extends Controller
     }
 
     /**
-     * Finds the Stage model based on its primary key value.
+     * Finds the TimetableItem model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Stage the loaded model
+     * @return TimetableItem the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Stage::findOne($id)) !== null) {
+        if (($model = TimetableItem::findOne($id)) !== null) {
             return $model;
         }
 

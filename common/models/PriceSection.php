@@ -2,6 +2,7 @@
 
 namespace common\models;
 
+use common\behaviors\ImgUploadBehavior;
 use Yii;
 
 /**
@@ -10,6 +11,7 @@ use Yii;
  * @property int $id
  * @property string $title
  * @property string $image
+ * @property int $rank
  *
  * @property PriceItem[] $priceItems
  * @property TourPriceSection[] $tourPriceSections
@@ -31,6 +33,7 @@ class PriceSection extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [['rank'], 'integer'],
             [['title', 'image'], 'string', 'max' => 255],
         ];
     }
@@ -44,6 +47,19 @@ class PriceSection extends \yii\db\ActiveRecord
             'id' => 'ID',
             'title' => 'Title',
             'image' => 'Image',
+            'rank' => 'Rank',
+        ];
+    }
+
+    public function behaviors()
+    {
+        return [
+            'ImgUploadBehavior' => [
+                'class' => ImgUploadBehavior::className(),
+                'noImage' => 'no_image.png',
+                'folder' => '/uploads/images/price-section',
+                'propImage' => 'image',
+            ],
         ];
     }
 

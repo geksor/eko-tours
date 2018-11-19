@@ -4,20 +4,20 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
-/* @var $model common\models\Stage */
+/* @var $model common\models\TimetableDay */
 
-$this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Stages'), 'url' => ['index', 'month_id' => $model->month_id]];
+$this->title = $model->tour->title." день $model->day_number";
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Timetable Days'), 'url' => ['index', 'tour_id' => $model->tour_id]];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
-<div class="stage-view">
+<div class="timetable-day-view">
 
     <div class="box box-primary">
         <div class="box-body">
 
             <p>
-                <?= Html::a('<i class="fa fa-reply" aria-hidden="true"></i>', ['index', 'month_id' => $model->month_id], ['class' => 'btn btn-default']) ?>
+                <?= Html::a('<i class="fa fa-reply" aria-hidden="true"></i>', ['index', 'tour_id' => $model->tour_id], ['class' => 'btn btn-default']) ?>
                 <?= Html::a(Yii::t('app', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
                 <?= Html::a(Yii::t('app', 'Delete'), ['delete', 'id' => $model->id], [
                     'class' => 'btn btn-danger',
@@ -26,6 +26,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         'method' => 'post',
                     ],
                 ]) ?>
+                <?= Html::a('События дня', ['timetable-item/index', 'day_id' => $model->id], ['class' => 'btn btn-default']) ?>
             </p>
 
             <?= DetailView::widget([
@@ -33,26 +34,13 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attributes' => [
                     'id',
                     [
-                        'attribute' => 'month_id',
-                        'format' => ['date', 'php:M Y'],
+                        'attribute' => 'tour_id',
                         'value' => function ($data){
-                            /* @var $data \common\models\Stage */
-                            return $data->month->title;
+                            /* @var $data \common\models\TimetableDay */
+                            return $data->tour->title;
                         }
                     ],
-                    [
-                        'attribute' => 'start_date',
-                        'format' => ['date', 'dd.M.yyyy'],
-                    ],
-                    [
-                        'attribute' => 'end_date',
-                        'format' => ['date', 'dd.M.yyyy'],
-                    ],
-
-                    'places_beads',
-                    'places_lavender',
-                    'price:decimal',
-                    'publish',
+                    'day_number',
                 ],
             ]) ?>
 

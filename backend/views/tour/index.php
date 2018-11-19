@@ -61,7 +61,14 @@ $this->params['breadcrumbs'][] = $this->title;
                                 ['class' => 'btn btn-success col-xs-12']);
                         }
                     ],
-                    'hot',
+                    [
+                        'attribute' => 'hot',
+                        'format' => 'raw',
+                        'value' => function ($data){
+                            /* @var $data \common\models\Tour */
+                            return $data->hot?'да':'нет';
+                        }
+                    ],
 
                     ['class' => 'yii\grid\ActionColumn'],
                 ],

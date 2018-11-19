@@ -2,18 +2,18 @@
 
 namespace backend\controllers;
 
-use common\models\Month;
+use backend\actions\SetImage;
 use Yii;
-use common\models\Stage;
-use common\models\StageSearch;
+use common\models\PriceSection;
+use common\models\PriceSectionSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * StageController implements the CRUD actions for Stage model.
+ * PriceSectionController implements the CRUD actions for PriceSection model.
  */
-class StageController extends Controller
+class PriceSectionController extends Controller
 {
     /**
      * {@inheritdoc}
@@ -30,29 +30,38 @@ class StageController extends Controller
         ];
     }
 
+    public function actions()
+    {
+        return [
+            'set-image' => [
+                'class' => SetImage::className(),
+                'folder' => 'price-section',
+                'propImage' => 'image',
+                'title' => 'Раздел цены',
+                'width' => 750,
+                'height' => 450,
+            ],
+        ];
+    }
+
+
     /**
-     * Lists all Stage models.
+     * Lists all PriceSection models.
      * @return mixed
      */
-    public function actionIndex($month_id)
+    public function actionIndex()
     {
-        $searchModel = new StageSearch();
-        $searchModel->month_id = $month_id;
+        $searchModel = new PriceSectionSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-        $monthModel = Month::findOne($month_id);
-        $title = $monthModel?Yii::$app->formatter->asDate($monthModel->title, 'php:F Y'):'';
-        $title = 'Потоки ' . $title;
-
 
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
-            'title' => $title,
         ]);
     }
 
     /**
-     * Displays a single Stage model.
+     * Displays a single PriceSection model.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -65,14 +74,13 @@ class StageController extends Controller
     }
 
     /**
-     * Creates a new Stage model.
+     * Creates a new PriceSection model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate($month_id)
+    public function actionCreate()
     {
-        $model = new Stage();
-        $model->month_id = $month_id;
+        $model = new PriceSection();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -84,7 +92,7 @@ class StageController extends Controller
     }
 
     /**
-     * Updates an existing Stage model.
+     * Updates an existing PriceSection model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -104,7 +112,7 @@ class StageController extends Controller
     }
 
     /**
-     * Deletes an existing Stage model.
+     * Deletes an existing PriceSection model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -118,37 +126,39 @@ class StageController extends Controller
     }
 
     /**
-     * Finds the Stage model based on its primary key value.
+     * Finds the PriceSection model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Stage the loaded model
+     * @return PriceSection the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($id)
+    public function findModel($id)
     {
-        if (($model = Stage::findOne($id)) !== null) {
+        if (($model = PriceSection::findOne($id)) !== null) {
             return $model;
         }
 
-        throw new NotFoundHttpException(Yii::t('app', 'The requested page does not exist.'));
+        throw new NotFoundHttpException('The requested page does not exist.');
     }
 
     /**
      * @param $id
-     * @param $publish
+     * @param $rank
      * @return \yii\web\Response
      * @throws NotFoundHttpException
      */
-    public function actionPublish($id, $publish)
+    public function actionRank($id, $rank)
     {
         if (Yii::$app->request->isAjax){
 
             $model = $this->findModel($id);
 
-            $model->publish = (integer) $publish;
+            if ($model){
+                $model->rank = (integer) $rank;
 
-            if ($model->save()){
-                return $this->redirect(Yii::$app->request->referrer);
+                if ($model->save()){
+                    return $this->redirect(Yii::$app->request->referrer);
+                }
             }
         }
         return $this->redirect(Yii::$app->request->referrer);

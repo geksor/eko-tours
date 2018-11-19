@@ -10,6 +10,7 @@ use Yii;
  * @property int $id
  * @property int $price_section_id
  * @property string $text
+ * @property int $rank
  *
  * @property PriceSection $priceSection
  * @property TourPriceItem[] $tourPriceItems
@@ -32,7 +33,7 @@ class PriceItem extends \yii\db\ActiveRecord
     {
         return [
             [['price_section_id'], 'required'],
-            [['price_section_id'], 'integer'],
+            [['price_section_id', 'rank'], 'integer'],
             [['text'], 'string'],
             [['price_section_id'], 'exist', 'skipOnError' => true, 'targetClass' => PriceSection::className(), 'targetAttribute' => ['price_section_id' => 'id']],
         ];
@@ -47,6 +48,7 @@ class PriceItem extends \yii\db\ActiveRecord
             'id' => 'ID',
             'price_section_id' => 'Price Section ID',
             'text' => 'Text',
+            'rank' => 'Rank',
         ];
     }
 

@@ -40,15 +40,22 @@
                         'icon' => 'shopping-basket',
                         'url' => '#',
                         'items' => [
-                            ['label' => 'Туры', 'icon' => 'th', 'url' => ['/tour'], "active" => Yii::$app->controller->id === 'tour',],
-                            ['label' => 'Товары', 'icon' => 'archive', 'url' => ['/product'], "active" => Yii::$app->controller->id === 'product',],
                             [
-                                'label' => 'Атрибуты',
+                                'label' => 'Туры',
+                                'icon' => 'th',
+                                'url' => ['/tour'],
+                                "active" => Yii::$app->controller->id === 'tour'
+                                    || Yii::$app->controller->id === 'month'
+                                    || Yii::$app->controller->id === 'stage'
+                                    || Yii::$app->controller->id === 'timetable-day'
+                                    || Yii::$app->controller->id === 'timetable-item',
+                            ],
+                            [
+                                'label' => 'Раздел цены',
                                 'icon' => 'tags',
-                                'url' => ['/attributes'],
-                                "active" => Yii::$app->controller->id === 'attributes'
-                                    || Yii::$app->controller->id === 'attr-list'
-                                    || Yii::$app->controller->id === 'attr-color',
+                                'url' => ['/price-section'],
+                                "active" => Yii::$app->controller->id === 'price-section'
+                                    || Yii::$app->controller->id === 'price-item',
                             ],
                         ],
                     ],
