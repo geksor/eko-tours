@@ -42,7 +42,7 @@
                         'items' => [
                             [
                                 'label' => 'Туры',
-                                'icon' => 'th',
+                                'icon' => 'globe',
                                 'url' => ['/tour'],
                                 "active" => Yii::$app->controller->id === 'tour'
                                     || Yii::$app->controller->id === 'month'
@@ -52,10 +52,30 @@
                             ],
                             [
                                 'label' => 'Раздел цены',
-                                'icon' => 'tags',
+                                'icon' => 'ruble-sign',
                                 'url' => ['/price-section'],
                                 "active" => Yii::$app->controller->id === 'price-section'
                                     || Yii::$app->controller->id === 'price-item',
+                            ],
+                            [
+                                'label' => 'Раздел размещение',
+                                'icon' => 'h-square',
+                                'url' => '#',
+                                'items' => [
+                                   [
+                                       'label' => 'Гостевые дома',
+                                       'icon' => 'bed',
+                                       'url' => ['/accom'],
+                                       "active" => Yii::$app->controller->id === 'accom'
+                                           || Yii::$app->controller->id === 'room',
+                                   ],
+                                   [
+                                       'label' => 'Свойства номеров',
+                                       'icon' => 'tags',
+                                       'url' => ['/attribute'],
+                                       "active" => Yii::$app->controller->id === 'attribute',
+                                   ],
+                                ],
                             ],
                         ],
                     ],
