@@ -14,7 +14,7 @@
                         'url' => '#',
                         'items' => [
                             ['label' => 'Обратный звонок', 'icon' => 'phone-square', 'url' => ['/call-back'], "active" => Yii::$app->controller->id === 'call-back',],
-                            ['label' => 'Отзывы', 'icon' => 'comments', 'url' => ['/comment'], "active" => Yii::$app->controller->id === 'comment',],
+                            ['label' => 'Отзывы', 'icon' => 'comments', 'url' => ['/reviews'], "active" => Yii::$app->controller->id === 'reviews',],
                         ],
                     ],
                     [
@@ -77,6 +77,13 @@
                                    ],
                                 ],
                             ],
+                            [
+                                'label' => 'Важно знать',
+                                'icon' => 'exclamation',
+                                'url' => ['/know'],
+                                "active" => Yii::$app->controller->id === 'know',
+                            ],
+
                         ],
                     ],
                 ],

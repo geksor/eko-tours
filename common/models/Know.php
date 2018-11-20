@@ -2,7 +2,9 @@
 
 namespace common\models;
 
+use Imagine\Image\ImageInterface;
 use Yii;
+use zxbodya\yii2\galleryManager\GalleryBehavior;
 
 /**
  * This is the model class for table "know".

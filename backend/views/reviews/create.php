@@ -4,13 +4,13 @@ use yii\helpers\Html;
 
 
 /* @var $this yii\web\View */
-/* @var $model common\models\Know */
+/* @var $model common\models\Reviews */
 
-$this->title = 'Create Know';
-$this->params['breadcrumbs'][] = ['label' => 'Knows', 'url' => ['index']];
+$this->title = 'Create Reviews';
+$this->params['breadcrumbs'][] = ['label' => 'Reviews', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="know-create">
+<div class="reviews-create">
 
     <div class="box box-primary">
         <div class="box-body">
