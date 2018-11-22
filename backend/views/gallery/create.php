@@ -12,10 +12,12 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="gallery-create">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <?= $this->render('_form', [
-        'model' => $model,
-    ]) ?>
+    <div class="box box-primary">
+        <div class="box-body">
+            <?= $this->render('_form', [
+                'model' => $model,
+            ]) ?>
+        </div>
+    </div>
 
 </div>

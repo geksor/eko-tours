@@ -2,6 +2,10 @@
 namespace backend\controllers;
 
 use backend\models\WebVisitor;
+use common\models\CommPage;
+use common\models\Contact;
+use common\models\HomePage;
+use common\models\TimetablePage;
 use nox\components\http\userAgent\UserAgentParser;
 use Yii;
 use yii\web\Controller;
@@ -28,7 +32,14 @@ class SiteController extends Controller
                         'allow' => true,
                     ],
                     [
-                        'actions' => ['logout', 'index'],
+                        'actions' => [
+                            'logout',
+                            'index',
+                            'contact',
+                            'home-page',
+                            'comm-page',
+                            'timetable-page',
+                        ],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -127,5 +138,81 @@ class SiteController extends Controller
         Yii::$app->user->logout();
 
         return $this->goHome();
+    }
+
+    /**
+     * @return string|\yii\web\Response
+     */
+    public function actionContact()
+    {
+        $model = new Contact();
+
+        if ($model->load(Yii::$app->params)) {
+            if (Yii::$app->request->post()) {
+                $model->save(Yii::$app->request->post('Contact'));
+                return $this->redirect(['contact']);
+            }
+        }
+
+        return $this->render('contact', [
+            'model' => $model,
+        ]);
+    }
+
+    /**
+     * @return string|\yii\web\Response
+     */
+    public function actionHomePage()
+    {
+        $model = new HomePage();
+
+        if ($model->load(Yii::$app->params)) {
+            if (Yii::$app->request->post()) {
+                $model->save(Yii::$app->request->post('HomePage'));
+                return $this->redirect(['home-page']);
+            }
+        }
+
+        return $this->render('home-page', [
+            'model' => $model,
+        ]);
+    }
+
+    /**
+     * @return string|\yii\web\Response
+     */
+    public function actionCommPage()
+    {
+        $model = new CommPage();
+
+        if ($model->load(Yii::$app->params)) {
+            if (Yii::$app->request->post()) {
+                $model->save(Yii::$app->request->post('CommPage'));
+                return $this->redirect(['comm-page']);
+            }
+        }
+
+        return $this->render('comm-page', [
+            'model' => $model,
+        ]);
+    }
+
+    /**
+     * @return string|\yii\web\Response
+     */
+    public function actionTimetablePage()
+    {
+        $model = new TimetablePage();
+
+        if ($model->load(Yii::$app->params)) {
+            if (Yii::$app->request->post()) {
+                $model->save(Yii::$app->request->post('TimetablePage'));
+                return $this->redirect(['timetable-page']);
+            }
+        }
+
+        return $this->render('timetable-page', [
+            'model' => $model,
+        ]);
     }
 }
