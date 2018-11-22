@@ -6,7 +6,7 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model common\models\Booking */
 
-$this->title = $model->id;
+$this->title = 'Запись ID: '.$model->id;
 $this->params['breadcrumbs'][] = ['label' => 'Bookings', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
@@ -49,10 +49,9 @@ $this->params['breadcrumbs'][] = $this->title;
                     ],
                     [
                         'attribute' => 'stage_id',
-                        'format' => 'date',
                         'value' => function ($data){
                             /* @var $data \common\models\Booking */
-                            return 'c'.$data->stage->start_date.'по'.$data->stage->end_date;
+                            return 'c '.Yii::$app->formatter->asDate($data->stage->start_date).' по '.Yii::$app->formatter->asDate($data->stage->end_date);
                         }
                     ],
                     'places_count_beads',

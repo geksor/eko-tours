@@ -45,10 +45,9 @@ $this->params['breadcrumbs'][] = $this->title;
                     ],
                     [
                         'attribute' => 'stage_id',
-                        'format' => 'date',
                         'value' => function ($data){
                             /* @var $data \common\models\Booking */
-                            return $data->stage->start_date;
+                            return 'c '.Yii::$app->formatter->asDate($data->stage->start_date).' по '.Yii::$app->formatter->asDate($data->stage->end_date);
                         }
                     ],
 //                    'places_count_beads',
