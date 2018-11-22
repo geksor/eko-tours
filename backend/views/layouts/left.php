@@ -9,6 +9,12 @@
                 'items' => [
                     ['label' => 'Меню админпанели', 'options' => ['class' => 'header']],
                     [
+                        'label' => 'Запись',
+                        'icon' => 'suitcase',
+                        'url' => ['/booking'],
+                        "active" => Yii::$app->controller->id === 'booking',
+                    ],
+                    [
                         'label' => 'Обратная связь',
                         'icon' => 'reply',
                         'url' => '#',

@@ -3,9 +3,11 @@
 namespace backend\controllers;
 
 use common\models\Accom;
+use common\models\Attribute;
 use Yii;
 use common\models\Room;
 use common\models\RoomSearch;
+use yii\helpers\ArrayHelper;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -192,5 +194,32 @@ class RoomController extends Controller
         }
         return $this->redirect(Yii::$app->request->referrer);
     }
+
+    /**
+     * @param $id
+     * @return string|\yii\web\Response
+     * @throws NotFoundHttpException
+     */
+    public function actionAttr($id)
+    {
+        $model = $this->findModel($id);
+        $attributes = $this->getAttributes();
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            $model->saveRoomAttr($model->attrs);
+            return $this->redirect(['attr', 'id' => $model->id]);
+        }
+
+        return $this->render('attr', [
+            'model' => $model,
+            'attributes' => $attributes,
+        ]);
+    }
+
+    public function getAttributes()
+    {
+        return ArrayHelper::map(Attribute::find()->all(), 'id', 'title');
+    }
+
 
 }

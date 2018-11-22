@@ -54,13 +54,54 @@ $this->params['breadcrumbs'][] = $this->title;
 //                    'text:ntext',
                     'create_at:datetime',
                     'done_at:datetime',
-                    'rank',
-                    'publish',
+                    [
+                        'attribute' => 'rank',
+                        'format' => 'raw',
+                        'value' => function ($data){
+                            /* @var $data \common\models\Accom */
+                            return Html::input('number', 'rank' ,$data->rank, ['class' => 'form-control', 'id' => $data->id]);
+                        }
+
+                    ],
+                    [
+                        'attribute' => 'publish',
+                        'label' => 'Состояние',
+                        'filter'=>[0=>"Не опубликованные",1=>"Опубликованные"],
+                        'filterInputOptions' => ['prompt' => 'Все', 'class' => 'form-control form-control-sm'],
+                        'headerOptions' => ['width' => '170'],
+                        'format' => 'raw',
+                        'value' => function ($data){
+                            /* @var $data \common\models\Accom */
+                            if ($data->publish){
+                                return Html::a('Снять с публикации',
+                                    ['publish', 'id' => $data->id, 'publish' => false],
+                                    ['class' => 'btn btn-default col-xs-12']);
+                            }
+                            return Html::a('Опубликовать',
+                                ['publish', 'id' => $data->id, 'publish' => true],
+                                ['class' => 'btn btn-success col-xs-12']);
+                        }
+                    ],
                     //'from_widget',
 
                     ['class' => 'yii\grid\ActionColumn'],
                 ],
             ]); ?>
+            <?
+            $js = <<< JS
+            $('[name = rank]').keypress(function(e){
+                if(e.keyCode==13){
+                    $.ajax({
+                        type: "GET",
+                        url: "/admin/reviews/rank",
+                        data: 'id='+ $(this).attr('id') +'&rank='+ $(this).val(),
+                    })
+                }
+            });
+JS;
+
+            $this->registerJs($js, $position = yii\web\View::POS_END, $key = null);
+            ?>
             <?php Pjax::end(); ?>
         </div>
     </div>

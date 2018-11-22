@@ -13,7 +13,10 @@ use kartik\datetime\DateTimePicker;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'tour_id')->textInput() ?>
+    <?= $form->field($model, 'tour_id')->dropDownList(
+        \yii\helpers\ArrayHelper::map(\common\models\Tour::find()->asArray()->all(), 'id', 'title'),
+        [ 'prompt' => 'Общий отзыв', ]
+    ) ?>
 
     <?= $form->field($model, 'user_name')->textInput(['maxlength' => true]) ?>
 

@@ -4,6 +4,7 @@ namespace common\models;
 
 use Imagine\Image\ImageInterface;
 use Yii;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Inflector;
 use zxbodya\yii2\galleryManager\GalleryBehavior;
 
@@ -20,6 +21,7 @@ use zxbodya\yii2\galleryManager\GalleryBehavior;
  * @property int $rank
  * @property int $publish
  * @property int $hot
+ * @property array $tourPrice
  *
  * @property Booking[] $bookings
  * @property Month[] $months
@@ -34,12 +36,19 @@ use zxbodya\yii2\galleryManager\GalleryBehavior;
  */
 class Tour extends \yii\db\ActiveRecord
 {
+    public $tourPrice = [];
     /**
      * {@inheritdoc}
      */
     public static function tableName()
     {
         return 'tour';
+    }
+
+    public function afterFind()
+    {
+        $this->tourPrice = $this->getSelectedPrice();
+        parent::afterFind();
     }
 
     /**
@@ -49,6 +58,7 @@ class Tour extends \yii\db\ActiveRecord
     {
         return [
             [['title'], 'required'],
+            [['tourPrice'], 'safe'],
             [['description', 'meta_description'], 'string'],
             [['rank', 'publish', 'hot'], 'integer'],
             [['title', 'alias', 'short_description', 'meta_title'], 'string', 'max' => 255],
@@ -188,6 +198,46 @@ class Tour extends \yii\db\ActiveRecord
     public function getPriceSections()
     {
         return $this->hasMany(PriceSection::className(), ['id' => 'price_section_id'])->viaTable('tour_price_section', ['tour_id' => 'id']);
+    }
+
+    /**
+     * @return array
+     */
+    public function getSelectedPrice()
+    {
+        $selectedAttributes = $this->getPriceSections()->select('id')->asArray()->all();
+        return ArrayHelper::getColumn($selectedAttributes, 'id');
+    }
+
+    /**
+     * @param $priceSections array ([0 => $priceSections_id, 1 => $priceSections_id, ...])
+     */
+    public function saveTourPrice($priceSections)
+    {
+        TourPriceSection::deleteAll(['tour_id' => $this->id]);
+        if (is_array($priceSections))
+        {
+            foreach ($priceSections as $priceSec_id)
+            {
+                $section = PriceSection::findOne($priceSec_id);
+                $this->link('priceSections', $section);
+            }
+        }
+    }
+
+    /**
+     * @param $item_id
+     * @param $value
+     */
+    public function saveTourPriceItem($item_id, $value)
+    {
+        if ($link = TourPriceItem::findOne(['price_item_id' => $item_id])){
+            $link->value = $value;
+            $link->save(false);
+        }else{
+            $priceItem = PriceItem::findOne($item_id);
+            $this->link('priceItems', $priceItem, ['value' => $value]);
+        }
     }
 
     /**

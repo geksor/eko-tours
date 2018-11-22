@@ -75,4 +75,9 @@ class PriceItem extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Tour::className(), ['id' => 'tour_id'])->viaTable('tour_price_item', ['price_item_id' => 'id']);
     }
+
+    public function getValue($tour_id)
+    {
+        return TourPriceItem::find()->where(['price_item_id' => $this->id, 'tour_id' => $tour_id])->one()->value;
+    }
 }

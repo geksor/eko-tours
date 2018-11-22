@@ -2,7 +2,7 @@
 namespace backend\widgets;
 
 use common\models\CallBack;
-use common\models\Comment;
+use common\models\Reviews;
 use yii\base\Widget;
 
 class CountNewItemWidget extends Widget
@@ -26,19 +26,19 @@ class CountNewItemWidget extends Widget
             ->andWhere(['<', 'created_at', $startDay])
             ->count();
 
-        $reviewToday = Comment::find()
+        $reviewToday = Reviews::find()
             ->where(['viewed' => 0])
-            ->andWhere(['>', 'created_at', $startDay])
-            ->andWhere(['<', 'created_at', $endDay])
+            ->andWhere(['>', 'create_at', $startDay])
+            ->andWhere(['<', 'create_at', $endDay])
             ->count();
-        $reviewNotSuccessToday = Comment::find()
+        $reviewNotSuccessToday = Reviews::find()
             ->where(['viewed' => 1])
-            ->andWhere(['>', 'created_at', $startDay])
-            ->andWhere(['<', 'created_at', $endDay])
+            ->andWhere(['>', 'create_at', $startDay])
+            ->andWhere(['<', 'create_at', $endDay])
             ->count();
-        $reviewOver = Comment::find()
+        $reviewOver = Reviews::find()
             ->where(['viewed' => [0,1]])
-            ->andWhere(['<', 'created_at', $startDay])
+            ->andWhere(['<', 'create_at', $startDay])
             ->count();
 
         return $this->render('countNewItemWidget',[

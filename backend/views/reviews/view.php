@@ -2,11 +2,12 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
+use yii\widgets\Pjax;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Reviews */
 
-$this->title = $model->id;
+$this->title = "Отзыв от: $model->user_name";
 $this->params['breadcrumbs'][] = ['label' => 'Reviews', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
@@ -15,35 +16,48 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <div class="box box-primary">
         <div class="box-body">
-
+            <?php Pjax::begin(); ?>
             <p>
                 <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-                <?= Html::a('Delete', ['delete', 'id' => $model->id], [
+                              <?= Html::a('Delete', ['delete', 'id' => $model->id], [
                     'class' => 'btn btn-danger',
                     'data' => [
                         'confirm' => 'Are you sure you want to delete this item?',
                         'method' => 'post',
                     ],
                 ]) ?>
+                <? if ($model->publish) {?>
+                    <?= Html::a('Снять с публикации', ['publish', 'id' => $model->id, 'publish' => false], ['class' => 'btn btn-default']) ?>
+                <?}else{?>
+                    <?= Html::a('Опубликовать', ['publish', 'id' => $model->id, 'publish' => true], ['class' => 'btn btn-default']) ?>
+                <?}?>
             </p>
 
             <?= DetailView::widget([
                 'model' => $model,
                 'attributes' => [
                     'id',
-                    'tour_id',
+                    [
+                        'attribute' => 'tour_id',
+                        'value' => function ($data){
+                            /* @var $data \common\models\Reviews */
+                            if ($data->tour_id){
+                                return $data->tour->title;
+                            }
+                                return 'Общий отзыв';
+                        }
+                    ],
                     'user_name',
                     'phone',
                     'text:ntext',
-                    'create_at',
-                    'done_at',
-                    'publish',
-                    'from_widget',
+                    'create_at:datetime',
+                    'done_at:datetime',
+                    'publish:boolean',
+                    'from_widget:boolean',
                     'rank',
-                    'viewed',
                 ],
             ]) ?>
-
+            <?php Pjax::end(); ?>
         </div>
     </div>
 

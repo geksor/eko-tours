@@ -13,6 +13,7 @@ use Yii;
  * @property int $is_consult
  * @property int $created_at
  * @property int $done_at
+ * @property int $viewed
  */
 class CallBack extends \yii\db\ActiveRecord
 {
@@ -30,7 +31,7 @@ class CallBack extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['is_consult', 'created_at', 'done_at'], 'integer'],
+            [['is_consult', 'created_at', 'done_at', 'viewed'], 'integer'],
             [['user_name', 'phone'], 'string', 'max' => 255],
         ];
     }
@@ -47,6 +48,7 @@ class CallBack extends \yii\db\ActiveRecord
             'is_consult' => 'Is Consult',
             'created_at' => 'Created At',
             'done_at' => 'Done At',
+            'viewed' => 'Viewed',
         ];
     }
 }

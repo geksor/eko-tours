@@ -4,6 +4,7 @@ namespace common\models;
 
 use Imagine\Image\ImageInterface;
 use Yii;
+use yii\helpers\ArrayHelper;
 use zxbodya\yii2\galleryManager\GalleryBehavior;
 
 /**
@@ -14,6 +15,7 @@ use zxbodya\yii2\galleryManager\GalleryBehavior;
  * @property string $title
  * @property int $rank
  * @property int $publish
+ * @property array $attrs
  *
  * @property Accom $accom
  * @property RoomAttribute[] $roomAttributes
@@ -21,6 +23,7 @@ use zxbodya\yii2\galleryManager\GalleryBehavior;
  */
 class Room extends \yii\db\ActiveRecord
 {
+    public $attrs = [];
     /**
      * {@inheritdoc}
      */
@@ -29,6 +32,13 @@ class Room extends \yii\db\ActiveRecord
         return 'room';
     }
 
+    public function afterFind()
+    {
+        $this->attrs = $this->getSelectedAttr();
+        parent::afterFind();
+    }
+
+
     /**
      * {@inheritdoc}
      */
@@ -36,6 +46,7 @@ class Room extends \yii\db\ActiveRecord
     {
         return [
             [['accom_id', 'title'], 'required'],
+            [['attrs'], 'safe'],
             [['accom_id', 'rank', 'publish'], 'integer'],
             [['title'], 'string', 'max' => 255],
             [['accom_id'], 'exist', 'skipOnError' => true, 'targetClass' => Accom::className(), 'targetAttribute' => ['accom_id' => 'id']],
@@ -114,4 +125,30 @@ class Room extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Attribute::className(), ['id' => 'attribute_id'])->viaTable('room_attribute', ['room_id' => 'id']);
     }
+
+    /**
+     * @param $attrs array ([0 => $attrs_id, 1 => s, ...])
+     */
+    public function saveRoomAttr($attrs)
+    {
+        RoomAttribute::deleteAll(['room_id' => $this->id]);
+        if (is_array($attrs))
+        {
+            foreach ($attrs as $attr_id)
+            {
+                $attrModel = Attribute::findOne($attr_id);
+                $this->link('attributes0', $attrModel);
+            }
+        }
+    }
+
+    /**
+     * @return array
+     */
+    public function getSelectedAttr()
+    {
+        $selectedAttributes = $this->getAttributes0()->select('id')->asArray()->all();
+        return ArrayHelper::getColumn($selectedAttributes, 'id');
+    }
+
 }

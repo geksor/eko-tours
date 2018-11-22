@@ -2,9 +2,12 @@
 
 namespace backend\controllers;
 
+use common\models\PriceSection;
 use Yii;
 use common\models\Tour;
 use common\models\TourSearch;
+use yii\helpers\ArrayHelper;
+use yii\helpers\VarDumper;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -181,6 +184,67 @@ class TourController extends Controller
 
             if ($model->save()){
                 return $this->redirect(Yii::$app->request->referrer);
+            }
+        }
+        return $this->redirect(Yii::$app->request->referrer);
+    }
+
+    /**
+     * @param $id
+     * @return string|\yii\web\Response
+     * @throws NotFoundHttpException
+     */
+    public function actionPrice($id)
+    {
+        $model = $this->findModel($id);
+        $priceSections = $this->getPriceSections();
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            $model->saveTourPrice($model->tourPrice);
+            return $this->redirect(['price', 'id' => $model->id]);
+        }
+
+        return $this->render('price', [
+            'model' => $model,
+            'priceSections' => $priceSections,
+        ]);
+    }
+
+    /**
+     * @param $id
+     * @return string|\yii\web\Response
+     * @throws NotFoundHttpException
+     */
+    public function actionPriceItem($id)
+    {
+        $model = $this->findModel($id);
+        $priceSections = PriceSection::find()
+            ->where(['id' => $model->tourPrice])
+            ->with('priceItems')
+            ->all();
+
+
+        return $this->render('price-item', [
+            'model' => $model,
+            'priceSections' => $priceSections,
+        ]);
+    }
+
+    public function getPriceSections()
+    {
+        return ArrayHelper::map(PriceSection::find()->all(), 'id', 'title');
+    }
+
+    public function actionPriceValue($id, $value, $tour_id)
+    {
+        if (Yii::$app->request->isAjax){
+
+            $model = Tour::findOne(['id' => $tour_id]);
+
+            if ($model){
+
+                $model->saveTourPriceItem($id, $value);
+
             }
         }
         return $this->redirect(Yii::$app->request->referrer);
