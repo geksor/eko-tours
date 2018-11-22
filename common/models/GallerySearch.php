@@ -4,12 +4,12 @@ namespace common\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use common\models\Stage;
+use common\models\Gallery;
 
 /**
- * StageSearch represents the model behind the search form of `common\models\Stage`.
+ * GallerySearch represents the model behind the search form of `common\models\Gallery`.
  */
-class StageSearch extends Stage
+class GallerySearch extends Gallery
 {
     /**
      * {@inheritdoc}
@@ -17,7 +17,8 @@ class StageSearch extends Stage
     public function rules()
     {
         return [
-            [['id', 'month_id', 'start_date', 'end_date', 'places_beads', 'places_lavender', 'price', 'publish', 'deleted'], 'integer'],
+            [['id'], 'integer'],
+            [['title'], 'safe'],
         ];
     }
 
@@ -39,7 +40,7 @@ class StageSearch extends Stage
      */
     public function search($params)
     {
-        $query = Stage::find();
+        $query = Gallery::find();
 
         // add conditions that should always apply here
 
@@ -58,15 +59,9 @@ class StageSearch extends Stage
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'month_id' => $this->month_id,
-            'start_date' => $this->start_date,
-            'end_date' => $this->end_date,
-            'places_beads' => $this->places_beads,
-            'places_lavender' => $this->places_lavender,
-            'price' => $this->price,
-            'publish' => $this->publish,
-            'deleted' => 0,
         ]);
+
+        $query->andFilterWhere(['like', 'title', $this->title]);
 
         return $dataProvider;
     }

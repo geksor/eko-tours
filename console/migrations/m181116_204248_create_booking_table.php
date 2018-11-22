@@ -28,6 +28,10 @@ class m181116_204248_create_booking_table extends Migration
             'total_price' => $this->integer(),
             'customer_name' => $this->string()->notNull(),
             'customer_phone' => $this->string()->notNull(),
+            'confirm' => $this->integer()->defaultValue(0),
+            'created_at' => $this->integer(),
+            'done_at' => $this->integer(),
+            'viewed' => $this->integer(),
         ]);
 
         // creates index for column `tour_id`
@@ -44,7 +48,7 @@ class m181116_204248_create_booking_table extends Migration
             'tour_id',
             'tour',
             'id',
-            'CASCADE'
+            'RESTRICT'
         );
 
         // creates index for column `month_id`
@@ -61,7 +65,7 @@ class m181116_204248_create_booking_table extends Migration
             'month_id',
             'month',
             'id',
-            'CASCADE'
+            'RESTRICT'
         );
 
         // creates index for column `stage_id`
@@ -78,7 +82,7 @@ class m181116_204248_create_booking_table extends Migration
             'stage_id',
             'stage',
             'id',
-            'CASCADE'
+            'RESTRICT'
         );
     }
 

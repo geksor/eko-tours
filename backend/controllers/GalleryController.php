@@ -2,18 +2,18 @@
 
 namespace backend\controllers;
 
-use common\models\Month;
 use Yii;
-use common\models\Stage;
-use common\models\StageSearch;
+use common\models\Gallery;
+use common\models\GallerySearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use zxbodya\yii2\galleryManager\GalleryManagerAction;
 
 /**
- * StageController implements the CRUD actions for Stage model.
+ * GalleryController implements the CRUD actions for Gallery model.
  */
-class StageController extends Controller
+class GalleryController extends Controller
 {
     /**
      * {@inheritdoc}
@@ -31,28 +31,38 @@ class StageController extends Controller
     }
 
     /**
-     * Lists all Stage models.
+     * @return array
+     */
+    public function actions()
+    {
+        return [
+            'galleryApi' => [
+                'class' => GalleryManagerAction::className(),
+                // mappings between type names and model classes (should be the same as in behaviour)
+                'types' => [
+                    'gallery' => Gallery::className(),
+                ]
+            ],
+        ];
+    }
+
+    /**
+     * Lists all Gallery models.
      * @return mixed
      */
-    public function actionIndex($month_id)
+    public function actionIndex()
     {
-        $searchModel = new StageSearch();
-        $searchModel->month_id = $month_id;
+        $searchModel = new GallerySearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-        $monthModel = Month::findOne($month_id);
-        $title = $monthModel?Yii::$app->formatter->asDate($monthModel->title, 'php:F Y'):'';
-        $title = 'Потоки ' . $title;
-
 
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
-            'title' => $title,
         ]);
     }
 
     /**
-     * Displays a single Stage model.
+     * Displays a single Gallery model.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -65,14 +75,13 @@ class StageController extends Controller
     }
 
     /**
-     * Creates a new Stage model.
+     * Creates a new Gallery model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate($month_id)
+    public function actionCreate()
     {
-        $model = new Stage();
-        $model->month_id = $month_id;
+        $model = new Gallery();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -84,7 +93,7 @@ class StageController extends Controller
     }
 
     /**
-     * Updates an existing Stage model.
+     * Updates an existing Gallery model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -104,7 +113,7 @@ class StageController extends Controller
     }
 
     /**
-     * Deletes an existing Stage model.
+     * Deletes an existing Gallery model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -112,52 +121,24 @@ class StageController extends Controller
      */
     public function actionDelete($id)
     {
-        $model = $this->findModel($id);
-        $redirect_id = $model->month_id;
-        if ($model->bookings){
-            $model->deleted = 1;
-            $model->save(false);
-        }else{
-            $model->delete();
-        }
-        return $this->redirect(['index', 'month_id' => $redirect_id]);
+        $this->findModel($id)->delete();
+
+        return $this->redirect(['index']);
     }
 
     /**
-     * Finds the Stage model based on its primary key value.
+     * Finds the Gallery model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Stage the loaded model
+     * @return Gallery the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Stage::findOne($id)) !== null) {
+        if (($model = Gallery::findOne($id)) !== null) {
             return $model;
         }
 
-        throw new NotFoundHttpException(Yii::t('app', 'The requested page does not exist.'));
+        throw new NotFoundHttpException('The requested page does not exist.');
     }
-
-    /**
-     * @param $id
-     * @param $publish
-     * @return \yii\web\Response
-     * @throws NotFoundHttpException
-     */
-    public function actionPublish($id, $publish)
-    {
-        if (Yii::$app->request->isAjax){
-
-            $model = $this->findModel($id);
-
-            $model->publish = (integer) $publish;
-
-            if ($model->save()){
-                return $this->redirect(Yii::$app->request->referrer);
-            }
-        }
-        return $this->redirect(Yii::$app->request->referrer);
-    }
-
 }

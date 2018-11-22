@@ -17,7 +17,7 @@ class MonthSearch extends Month
     public function rules()
     {
         return [
-            [['id', 'tour_id', 'title', 'publish'], 'integer'],
+            [['id', 'tour_id', 'title', 'publish', 'deleted'], 'integer'],
             [['image'], 'safe'],
         ];
     }
@@ -62,6 +62,7 @@ class MonthSearch extends Month
             'tour_id' => $this->tour_id,
             'title' => $this->title,
             'publish' => $this->publish,
+            'deleted' => 0,
         ]);
 
         $query->andFilterWhere(['like', 'image', $this->image]);

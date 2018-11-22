@@ -38,6 +38,14 @@ use yii\widgets\ActiveForm;
 
     <?php // echo $form->field($model, 'customer_phone') ?>
 
+    <?php // echo $form->field($model, 'confirm') ?>
+
+    <?php // echo $form->field($model, 'created_at') ?>
+
+    <?php // echo $form->field($model, 'done_at') ?>
+
+    <?php // echo $form->field($model, 'viewed') ?>
+
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>
         <?= Html::resetButton('Reset', ['class' => 'btn btn-default']) ?>

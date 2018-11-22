@@ -125,7 +125,13 @@ class TourController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        $model = $this->findModel($id);
+        if ($model->bookings){
+            $model->deleted = 1;
+            $model->save(false);
+        }else{
+            $model->delete();
+        }
 
         return $this->redirect(['index']);
     }

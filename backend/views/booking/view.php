@@ -51,15 +51,21 @@ $this->params['breadcrumbs'][] = $this->title;
                         'attribute' => 'stage_id',
                         'value' => function ($data){
                             /* @var $data \common\models\Booking */
-                            return 'c '.Yii::$app->formatter->asDate($data->stage->start_date).' по '.Yii::$app->formatter->asDate($data->stage->end_date);
+                            if ($data->stage){
+                                return 'c '.Yii::$app->formatter->asDate($data->stage->start_date).' по '.Yii::$app->formatter->asDate($data->stage->end_date);
+                            }
+                            return null;
                         }
                     ],
+                    'created_at:datetime',
+                    'done_at:datetime',
                     'places_count_beads',
                     'places_count_lavender',
                     'user_places_count',
-                    'total_price',
+                    'total_price:decimal',
                     'customer_name',
                     'customer_phone',
+                    'confirm:boolean'
                 ],
             ]) ?>
 

@@ -17,7 +17,7 @@ class BookingSearch extends Booking
     public function rules()
     {
         return [
-            [['id', 'tour_id', 'month_id', 'stage_id', 'places_count_beads', 'places_count_lavender', 'user_places_count', 'total_price'], 'integer'],
+            [['id', 'tour_id', 'month_id', 'stage_id', 'places_count_beads', 'places_count_lavender', 'user_places_count', 'total_price', 'confirm', 'created_at', 'done_at', 'viewed'], 'integer'],
             [['customer_name', 'customer_phone'], 'safe'],
         ];
     }
@@ -40,7 +40,7 @@ class BookingSearch extends Booking
      */
     public function search($params)
     {
-        $query = Booking::find();
+        $query = Booking::find()->orderBy(['viewed' => SORT_ASC, 'created_at' => SORT_ASC]);
 
         // add conditions that should always apply here
 
@@ -66,6 +66,10 @@ class BookingSearch extends Booking
             'places_count_lavender' => $this->places_count_lavender,
             'user_places_count' => $this->user_places_count,
             'total_price' => $this->total_price,
+            'confirm' => $this->confirm,
+            'created_at' => $this->created_at,
+            'done_at' => $this->done_at,
+            'viewed' => $this->viewed,
         ]);
 
         $query->andFilterWhere(['like', 'customer_name', $this->customer_name])

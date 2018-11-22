@@ -15,6 +15,7 @@ use Yii;
  * @property int $places_lavender
  * @property int $price
  * @property int $publish
+ * @property int $deleted
  *
  * @property Booking[] $bookings
  * @property Month $month
@@ -37,7 +38,7 @@ class Stage extends \yii\db\ActiveRecord
         return [
             [['month_id'], 'required'],
             [['start_date', 'end_date',], 'safe'],
-            [['month_id', 'places_beads', 'places_lavender', 'price', 'publish'], 'integer'],
+            [['month_id', 'places_beads', 'places_lavender', 'price', 'publish', 'deleted'], 'integer'],
             [['month_id'], 'exist', 'skipOnError' => true, 'targetClass' => Month::className(), 'targetAttribute' => ['month_id' => 'id']],
         ];
     }
@@ -56,6 +57,7 @@ class Stage extends \yii\db\ActiveRecord
             'places_lavender' => 'Places Lavender',
             'price' => 'Price',
             'publish' => 'Publish',
+            'deleted' => 'Deleted',
         ];
     }
 

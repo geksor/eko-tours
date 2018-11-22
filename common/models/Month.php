@@ -13,6 +13,7 @@ use Yii;
  * @property int $title
  * @property string $image
  * @property int $publish
+ * @property int $deleted
  *
  * @property Booking[] $bookings
  * @property Tour $tour
@@ -35,7 +36,7 @@ class Month extends \yii\db\ActiveRecord
     {
         return [
             [['tour_id'], 'required'],
-            [['tour_id',  'publish'], 'integer'],
+            [['tour_id',  'publish', 'deleted'], 'integer'],
             [['image'], 'string', 'max' => 255],
             [['title'], 'safe'],
             [['tour_id'], 'exist', 'skipOnError' => true, 'targetClass' => Tour::className(), 'targetAttribute' => ['tour_id' => 'id']],
@@ -53,6 +54,7 @@ class Month extends \yii\db\ActiveRecord
             'title' => 'Title',
             'image' => 'Image',
             'publish' => 'Publish',
+            'deleted' => 'Deleted',
         ];
     }
 
