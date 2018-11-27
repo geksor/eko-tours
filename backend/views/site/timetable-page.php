@@ -6,7 +6,7 @@ use mihaildev\ckeditor\CKEditor;
 
 
 /* @var $this yii\web\View */
-/* @var $model \common\models\HomePage */
+/* @var $model \common\models\TimetablePage */
 
 $this->title = 'Страница Расписание';
 $this->params['breadcrumbs'][] = $this->title;

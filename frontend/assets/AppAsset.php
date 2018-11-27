@@ -12,12 +12,22 @@ class AppAsset extends AssetBundle
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
-        'css/site.css',
+        'public/css/jquery-ui.css',
+        'public/css/style.css',
+        'public/css/mobile.css',
+        'public/css/jquery.fancybox.min.css',
+        'public/css/owl.carousel.min.css',
     ];
     public $js = [
+        'public/js/slideout.js',
+        'public/js/owl.carousel.min.js',
+        'public/js/jquery.fancybox.min.js',
+        'public/js/modernizr.custom.js',
+        'public/js/classie.js',
+        'public/js/modalEffects.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',
-        'yii\bootstrap\BootstrapAsset',
+        'yii\jui\JuiAsset',
     ];
 }

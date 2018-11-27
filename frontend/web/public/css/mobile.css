@@ -1,0 +1,319 @@
+@media (min-width: 1px) and (max-width: 1250px) {
+    .requisites {
+        padding: 20px;
+    }
+}
+@media (min-width: 1px) and (max-width: 979px) {
+    .head_menu{
+        display: none;
+    }
+    .bron_click{
+        width: 98%;
+        font-size: 14px;
+        padding: 10px;
+    }
+    .bron_click_in{
+        flex-flow: column;
+    }
+    .pages .tour {
+        width: 48%;
+        margin: 1%;
+    }
+    .contact{
+        width: 100%;
+        padding: 10px;
+    }
+    .contact_map{
+        width: 100%;
+        height: 300px;
+    }
+    .requisites {
+        padding: 20px;
+        width: 98%;
+    }
+    .requisites_in {
+        flex-flow: column;
+    }
+    .all_1 {
+        width: 98%;
+        margin: 1%;
+        flex-flow: column;
+        justify-content: space-between;
+        display: flex;
+    }
+    .head_ok_1{
+        width: 98%;
+        justify-content: initial;
+        margin: 1%;
+    }
+    .bars {
+        display: inline-block;
+        overflow: hidden;
+        float: right;
+    }
+    .bars a {
+        float: right;
+        padding: 20px 0px 20px 20px
+    }
+    .bars img {
+        height: 26px;
+        display: block;
+    }
+}
+@media (min-width: 1px) and (max-width: 750px) {
+    .requisites {
+        padding: 1%;
+        width: 98%;
+        font-size: 10px;
+    }
+    .pages .tour {
+        width: 98%;
+        margin: 1%;
+    }
+    .pages_cont{
+        font-size: 10px;
+        line-height: 12px;
+    }
+    .nav img {
+        max-width: 100px;
+    }
+    .soc img {
+        margin: 0 3px;
+        max-width: 25px;
+    }
+    .head_name {
+        padding: 10px 0px;
+    }
+    .head_cont {
+        padding: 10px 0px;
+    }
+    .head_but {
+        margin-top: 20px;
+    }
+    .head_name h1 {
+        font: 36px/40px 'merriweatherregular';
+    }
+    .head_ok_1 p{
+        font-size: 10px;
+    }
+    .head_ok_1 img{
+        margin-right: 10px;
+        width: 25px;
+    }
+    .phone {
+        font-size: 18px;
+        margin-left: 10px;
+    }
+    .hotel .thumbs .caption .title {
+        margin-top: 10px;
+    }
+    .tour_in_img{
+        width: 100%;
+    }
+    .tour_in_des {
+        width: 100%;
+    }
+    .price_tour_img{
+        display: none;
+    }
+    .raspisanie {
+        width: 100% !important;
+    }
+    .price_tour {
+        width: 100%;
+    }
+    .raspisanie_day {
+        flex-flow: column;
+        text-align: center;
+        width: 49%;
+        padding: 5px 0;
+        display: inline-block;
+    }
+    .day_in {
+        flex: 1;
+        padding: 5px 0px;
+        width: 100%;
+    }
+    .h4 {
+        font: 16px/18px 'merriweatherbold';
+    }
+    .md-content .h4 {
+        font: 16px/18px 'merriweatherbold';
+    }
+    .form_text{
+        padding: 5px;
+        margin: 10px 0;
+    }
+    .form_area{
+        padding: 10px;
+    }
+    .ui-tabs .ui-tabs-panel {
+        padding: 10px 0;
+    }
+    .price_tour li p{
+        width: 70%;
+        font-size: 12px;
+    }
+    .price_tour li strong{
+        width: 30%;
+        font-size: 12px;
+        text-align: right;
+    }
+    .price_tour li {
+        font-size: 12px;
+        margin-bottom: 5px;
+    }
+    .wid{
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+    .apart_des {
+        flex-flow: column;
+    }
+    .ui-tabs .ui-tabs-nav .ui-tabs-anchor {
+        float: left;
+        padding: 5px;
+        text-decoration: none;
+        width: 100%;
+        font-size: 11px;
+    }
+    .tour_in_des h1 {
+        font: 16px/20px 'merriweatherregular';
+        padding: 5px 0;
+        font-weight: bold;
+    }
+    .tour_in_des p {
+        padding: 5px 0px;
+        font-size: 10px;
+        line-height: 14px;
+    }
+    .h3 {
+        font: 16px/20px 'merriweatherbold';
+        padding: 10px 0px;
+    }
+    .program_tour span {
+        font-size: 10px;
+        min-width: 100px;
+    }
+    .program_tour p {
+        font-size: 10px;
+        line-height: 14px;
+        padding: 10px 0;
+    }
+    .apart_des {
+        flex-flow: column;
+        font-size: 10px;
+        line-height: 14px;
+    }
+    .apart_in .owl-nav {
+        top: -33px !important;
+    }
+}
+@media (min-width: 1px) and (max-width: 450px) {
+    .head_name h1 {
+        font: 26px/30px 'merriweatherregular';
+    }
+    .header {
+        padding-bottom: 20px;
+    }
+    .header_pages {
+        padding-bottom: 0px;
+    }
+    .soc svg {
+        display: none;
+    }
+    .nav img, .header_pages .nav img{
+        max-width: 80px;
+    }
+    .h2 {
+        font: 18px/28px 'merriweatherregular';
+        padding: 10px 0px;
+    }
+    .all_2 h3 {
+        font: 18px/28px 'merriweatherregular';
+        color: #fff;
+        margin-bottom: 10px;
+    }
+    .all {
+        padding: 10px 0px;
+    }
+    .all_1 p{
+        font-size: 10px;
+        line-height: 12px;
+        margin-bottom: 10px;
+    }
+    .all_2 {
+        padding: 10px;
+    }
+    .all_2 ul li {
+        line-height: 10px;
+        font-size: 9px;
+    }
+    .tour_h3 {
+        text-align: center;
+        color: #fff;
+        font: 16px/20px 'Montserrat';
+    }
+    .h2_inst {
+        font: 16px/20px 'merriweatherregular';
+        padding: 10px 0px;
+    }
+    .h2_inst img {
+        margin-right: 10px;
+        max-width: 25px;
+    }
+    .info_read, .info_bron{
+        padding: 5px;
+        font-size: 12px;
+    }
+    .owl-nav {
+        top: -39px;
+    }
+    .owl-nav button {
+        font-size: 20px !important;
+        color: #94b428 !important;
+        border: 1px solid #94b428 !important;
+        line-height: 40px !important;
+        width: 20px !important;
+        height: 20px !important;
+        margin: 5px !important;
+        border-radius: 4px !important;
+    }
+    .owl-nav button span {
+        margin-top: -1px;
+    }
+    .hotels {
+        margin-top: 10px;
+        padding-bottom: 10px;
+    }
+    .reviews {
+        margin-top: 10px;
+        padding-bottom: 10px;
+    }
+    .review h3 {
+        font: 14px/18px 'merriweatherregular';
+    }
+    .date {
+        font-size: 10px;
+        padding: 5px 0;
+    }
+    .review_p {
+        font-size: 10px;
+    }
+    .review_read {
+        margin: 10px auto;
+    }
+    .zabron {
+        margin-top: 10px;
+        padding-bottom: 10px;
+    }
+    .zabron_read {
+        margin: 10px auto 0;
+    }
+    .breads {
+        width: 100%;
+        padding: 5px;
+        font-size: 10px;
+    }
+}

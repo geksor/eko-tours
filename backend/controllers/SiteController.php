@@ -2,10 +2,12 @@
 namespace backend\controllers;
 
 use backend\models\WebVisitor;
+use common\models\AboutPage;
 use common\models\CommPage;
 use common\models\Contact;
 use common\models\HomePage;
 use common\models\TimetablePage;
+use common\models\TouristPage;
 use nox\components\http\userAgent\UserAgentParser;
 use Yii;
 use yii\web\Controller;
@@ -39,6 +41,8 @@ class SiteController extends Controller
                             'home-page',
                             'comm-page',
                             'timetable-page',
+                            'about-page',
+                            'tourist-page',
                         ],
                         'allow' => true,
                         'roles' => ['@'],
@@ -212,6 +216,44 @@ class SiteController extends Controller
         }
 
         return $this->render('timetable-page', [
+            'model' => $model,
+        ]);
+    }
+
+    /**
+     * @return string|\yii\web\Response
+     */
+    public function actionAboutPage()
+    {
+        $model = new AboutPage();
+
+        if ($model->load(Yii::$app->params)) {
+            if (Yii::$app->request->post()) {
+                $model->save(Yii::$app->request->post('AboutPage'));
+                return $this->redirect(['about-page']);
+            }
+        }
+
+        return $this->render('about-page', [
+            'model' => $model,
+        ]);
+    }
+
+    /**
+     * @return string|\yii\web\Response
+     */
+    public function actionTouristPage()
+    {
+        $model = new TouristPage();
+
+        if ($model->load(Yii::$app->params)) {
+            if (Yii::$app->request->post()) {
+                $model->save(Yii::$app->request->post('TouristPage'));
+                return $this->redirect(['tourist-page']);
+            }
+        }
+
+        return $this->render('tourist-page', [
             'model' => $model,
         ]);
     }

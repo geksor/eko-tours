@@ -2,52 +2,170 @@
 
 /* @var $this yii\web\View */
 
-$this->title = 'My Yii Application';
+$this->title = 'Главная';
 ?>
-<div class="site-index">
-
-    <div class="jumbotron">
-        <h1>Congratulations!</h1>
-
-        <p class="lead">You have successfully created your Yii-powered application.</p>
-
-        <p><a class="btn btn-lg btn-success" href="http://www.yiiframework.com">Get started with Yii</a></p>
-    </div>
-
-    <div class="body-content">
-
-        <div class="row">
-            <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/doc/">Yii Documentation &raquo;</a></p>
-            </div>
-            <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/forum/">Yii Forum &raquo;</a></p>
-            </div>
-            <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/extensions/">Yii Extensions &raquo;</a></p>
+<div class="all">
+    <div class="all cont">
+        <div class="all_1">
+            <p><strong>Адыгея</strong> - это горы удовольствий для тех, кто не любит изображать морскую звезду на пляже. Республика, которая открывает список регионов страны, действительно может стать номером один на российской карте экстремального туризма. Здесь можно сплавиться по бурным рекам, спуститься в пещеры, забраться на вершины, опробовать дельтаплан или квадроцикл, пройти по ущельям пешим или конным маршрутом — в общем, для тех, кому нужен адреналин, в Адыгее найдется подходящая высота, глубина и скорость. Впрочем, даже если вы не прожженный экстремал и настроены скорее на созерцание, удивительная красота здешней дикой природы и богатая история этого края подарят вам множество ярких впечатлений.</p>
+            <div class="all_img">
+                <img src="/public/img/all.jpg" alt="Адыгея отдых">
+                <img src="/public/img/all_1.jpg" alt="Адыгея отдых">
+                <img src="/public/img/all_2.jpg" alt="Адыгея отдых">
             </div>
         </div>
-
+        <div class="all_1 all_2">
+            <ul>
+                <h3>Всё включено:</h3>
+                <li>Трансфер: г. Краснодар <span>→</span> п. Каменномостский <span>→</span> г. Краснодар;</li>
+                <li>Входные билеты на экскурсии;</li>
+                <li>Услуги гидов;</li>
+                <li>Проживание;</li>
+                <li>3-х разовое питание от наших поваров.</li>
+                <li>Собственный транспорт для трансферов и выездов по маршрутам тура.</li>
+                <li>Заключаем договор реализации туристского продукта.</li>
+            </ul>
+        </div>
     </div>
+</div>
+<div class="cont" id = "tours">
+    <h2 class = "h2">Наши туры</h2>
+    <div class="tours">
+        <div class="slider1 owl-carousel owl-theme">
+            <section class="item tour">
+                <div class="thumbs">
+                    <img src="/public/img/tour_4.jpg" alt="Квартира 4 комнатная">
+                    <div class="fire">
+                        <div class="fire_tour">Горящий тур</div>
+                        <div class="fire_all">Мест отслость: 2</div>
+                    </div>
+                    <h3 class = "aa tour_h3">«Новогодний»<br>4 дня от 26 300 руб./чел.</h3>
+                    <div class="caption">
+                        <p class="title tour_h3">«Новогодний»<br>4 дня от от 26 300 руб./чел.</p>
+                        <p class="title_1"><a href="/pages.php" class="info_read">Подробнее</a></p>
+                        <p class="title_2"><a href="/pages.php" class="info_bron">Забронировать</a></p>
+                    </div>
+                </div>
+            </section>
+            <section class="item tour">
+                <div class="thumbs">
+                    <div class="fire">
+                        <div class="fire_all">Мест отслость: 5</div>
+                    </div>
+                    <img src="/public/img/tour_1.jpg" alt="Квартира 4 комнатная">
+                    <h3 class = "aa tour_h3">«Драйв»<br>7 дней от 23 700 руб./чел.</h3>
+                    <div class="caption">
+                        <p class="title tour_h3">«Драйв»<br>7 дней от 23 700 руб./чел.</p>
+                        <p class="title_1"><a href="/pages.php" class="info_read">Подробнее</a></p>
+                        <p class="title_2"><a href="/pages.php" class="info_bron">Забронировать</a></p>
+                    </div>
+                </div>
+            </section>
+            <section class="item tour">
+                <div class="thumbs">
+                    <img src="/public/img/tour_2.jpg" alt="Квартира 4 комнатная">
+                    <div class="fire">
+                        <div class="fire_all">Мест отслость: 5</div>
+                    </div>
+                    <h3 class = "aa tour_h3">«Экскурсионный»<br>7 дней от 21 200 руб./чел.</h3>
+                    <div class="caption">
+                        <p class="title tour_h3">«Экскурсионный»<br>7 дней от 21 200 руб./чел.</p>
+                        <p class="title_1"><a href="/pages.php" class="info_read">Подробнее</a></p>
+                        <p class="title_2"><a href="/pages.php" class="info_bron">Забронировать</a></p>
+                    </div>
+                </div>
+            </section>
+            <section class="item tour">
+                <div class="thumbs">
+                    <img src="/public/img/tour_3.jpg" alt="Квартира 4 комнатная">
+                    <div class="fire">
+                        <div class="fire_all">Мест отслость: 5</div>
+                    </div>
+                    <h3 class = "aa tour_h3">«Водная Ривьера»<br>7 дней от 24 000 руб./чел.</h3>
+                    <div class="caption">
+                        <p class="title tour_h3">«Водная Ривьера»<br>7 дней от 24 000 руб./чел.</p>
+                        <p class="title_1"><a href="/pages.php" class="info_read">Подробнее</a></p>
+                        <p class="title_2"><a href="/pages.php" class="info_bron">Забронировать</a></p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+<div class="hotels">
+    <div class="cont">
+        <h2 class = "h2">Размещение</h2>
+        <div class="tours">
+            <div class="slider2 owl-carousel owl-theme">
+                <section class="item hotel">
+                    <div class="thumbs">
+                        <img src="/public/img/hotel_1.jpg" alt="Квартира 4 комнатная">
+                        <h3 class = "aa tour_h3">Гостевой дом «Рябиновые бусы»</h3>
+                        <div class="caption">
+                            <p class="title tour_h3">Гостевой дом «Рябиновые бусы»</p>
+                            <p class="title_1"><a href="/hotel.php" class="info_read">Подробнее</a></p>
+                        </div>
+                    </div>
+                </section>
+                <section class="item hotel">
+                    <div class="thumbs">
+                        <img src="/public/img/hotel_2.jpg" alt="Квартира 4 комнатная">
+                        <h3 class = "aa tour_h3">Гостевой дом «Горная лаванда»</h3>
+                        <div class="caption">
+                            <p class="title tour_h3">Гостевой дом «Горная лаванда»</p>
+                            <p class="title_1"><a href="/hotel.php" class="info_read">Подробнее</a></p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="cont">
+    <div class = "h2_inst">
+        <img src="/public/img/insta.png" alt="eko_tours_adigea">
+        <p>/eko_tours_adigea</p>
+    </div>
+    <div class="tours">
+        <div class="slider3 owl-carousel owl-theme">
+<!--            --><?//include 'public/inwidget/template.php'?>
+        </div>
+    </div>
+</div>
+<div class="reviews">
+    <div class = "cont">
+        <h2 class = "h2">Отзывы наших гостей</h2>
+        <div class="slider4 owl-carousel owl-theme">
+            <div class="review item">
+                <h3>Наташа Попова</h3>
+                <p class = "date">30 октября 2018 года</p>
+                <p class="review_p">
+                    Благодарю всю команду Эко-тур за потрясающую проведенную неделю) экскурсии все очень хорошо продуманные, все места до того красивые, что хочется смотреть как на картину. Персонал очень дружелюбный) Кухня вся очень вкусная и как дома, а самое главное большие порции ;) Территория ухоженная и потрясающе красивая. Слов мало, эту всю красоту надо увидеть своими глазами, поэтому даже не раздумывайте и обязательно поезжайте в это потрясающее место. А я скажу, что обязательно вернусь туда еще...
+                </p>
+            </div>
+            <div class="review item">
+                <h3>Юлия М.</h3>
+                <p class = "date">30 октября 2018 года</p>
+                <p class="review_p">В Адыгею приехали отдыхать впервые. Тур "Водная Ривьера" нашли через Интернет. Сначала очень переживали, все ли будет нормально, ведь все документы и оплаты оформляли по электронной почте. Но все оказалось просто отлично. Отдых проводили с 07 по 13 октября. Попали в настоящую золотую осень. Погода была великолепная. Очень порадовало радушие хозяев базы отдыха "Рябиновые бусы", где мы разместились. Обстановка там очень домашняя. Кормили очень вкусно. А какие места в горах, доступные не всем туристам, показал нам инструктор Михаил! Такого мы от тура точно не ожидали. В общем, впечатлений набрались на год вперёд! Большое спасибо ребятам за такую организацию отдыха! За неделю конечно же не все успели посмотреть, так что надеемся приехать ещё! Ещё раз спасибо!</p>
+            </div>
+            <div class="review item">
+                <h3>Татьяна Ц.</h3>
+                <p class = "date">16 октября 2018 года</p>
+                <p class="review_p">Неделя, проведенная в Адыгее, запомнится не только прекрасной погодой, яркими красками октября, кавказскими красотами, но и чудесной атмосферой, созданной организаторами тура. Отдельное спасибо нашему прекрасному инструктору Михаилу и Виктору, который постарался сделать наш отдых действительно комфортным. В "Рябиновых бусах" стоит побывать обязательно. Ролик, размещенный на сайте гостевого дома, не дает даже малейшего представления об этом райском уголке, созданном руками увлеченных людей. А вокруг - горы, пещеры, водопады, река... и колоритный Свято-Михайло-Афонский монастырь. Не насмотреться. В дополнение - искреннее спасибо! И удачи! Татьяна Цветковская.</p>
+            </div>
+            <div class="review item">
+                <h3>Зайцев Евгений</h3>
+                <p class = "date">19 августа 2018 года</p>
+                <p class="review_p">Тур в Адыгею - мой первый опыт оформления заявки по Интернету. Следуя инструкциям администрации всё получилось. В Краснодар мой поезд пришёл в шесть утра и меня уже встречала пара симпатичных молодых людей с машиной. Погода была солнечная, а дороги отличные. Часов в 9 были на месте - гостевой дом "Рябиновые Бусы".Встретили меня самым радушным образом. Гостевой дом оказался целым подворьем с красивыми деревянными постройками и чистым, красиво оформленным двором. Всё как сайте и даже краше. По программе тура я оказался один Разместили меня одного в двухместном номере.Всё показали и рассказали. Кроме меня , в это время гостило ещё несколько семейств с детьми. Очень по душе пришлось внимательное и доброжелательное отношение хозяев к гостям своим. Питание было по домашнему. Меню на будущий день оговаривалось с каждым из гостей. Блюда предложенные мне были очень вкусными. Единственная проблема была, иной раз, не хватало сил справиться с ними. Сразу видно,что готовят их мастера с любовью к своему делу и своим гостям. Оказавшись,по случаю, на кухне я был изумлён видом кастрюль и другого инвентаря.Всё блестит как на магазинных полках! Летом в горах Кавказа я оказался первый раз.Поразило обилие и плотность лесов.Дивные виды русла рек, водопадов, ущелий, плато. А такой красоты цветущего разнотравья ,как на плато Лаго-Наки, я ещё не видел. И,самое замечательное здесь - это внимательные, доброжелательные люди. Желаю всем, кто ещё не был в этих местах,обязательно сюда добраться. Не пожалеете!</p>
+            </div>
+        </div>
+    </div>
+    <a class="md-trigger review_read" data-modal="modal-2">Написать отзыв</a>
+</div>
+<div class = "cont zabron">
+    <h2 class = "h2">Забронировать тур в один клик</h2>
+    <a class="md-trigger zabron_read" data-modal="modal-1">Поехали!</a>
+</div>
+<div id="map" class="map">
+    <script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A6bde0f1ff50cfc67e00ae84402c8d7a0cada3ab3835f0a4b09dd06ea0e50c545&amp;width=100%25&amp;height=400&amp;lang=ru_RU&amp;scroll=true"></script>
 </div>

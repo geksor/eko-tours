@@ -38,6 +38,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <?= $form->field($model, 'inn') ?>
             <?= $form->field($model, 'kpp') ?>
             <?= $form->field($model, 'ogrn') ?>
+            <?= $form->field($model, 'field') ?>
 
             <h2>Соцсети</h2>
 
