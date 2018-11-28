@@ -1,13 +1,24 @@
 <?php
 
 /* @var $this yii\web\View */
+/* @var $model \common\models\HomePage */
 
-$this->title = 'Главная';
+$this->title = $model->title;
+$this->registerMetaTag([
+    'name' => 'title',
+    'content' => $model->meta_title,
+]);
+$this->registerMetaTag([
+    'name' => 'description',
+    'content' => $model->meta_description,
+]);
 ?>
 <div class="all">
     <div class="all cont">
         <div class="all_1">
-            <p><strong>Адыгея</strong> - это горы удовольствий для тех, кто не любит изображать морскую звезду на пляже. Республика, которая открывает список регионов страны, действительно может стать номером один на российской карте экстремального туризма. Здесь можно сплавиться по бурным рекам, спуститься в пещеры, забраться на вершины, опробовать дельтаплан или квадроцикл, пройти по ущельям пешим или конным маршрутом — в общем, для тех, кому нужен адреналин, в Адыгее найдется подходящая высота, глубина и скорость. Впрочем, даже если вы не прожженный экстремал и настроены скорее на созерцание, удивительная красота здешней дикой природы и богатая история этого края подарят вам множество ярких впечатлений.</p>
+            <p>
+                <?= $model->text ?>
+            </p>
             <div class="all_img">
                 <img src="/public/img/all.jpg" alt="Адыгея отдых">
                 <img src="/public/img/all_1.jpg" alt="Адыгея отдых">
@@ -15,83 +26,12 @@ $this->title = 'Главная';
             </div>
         </div>
         <div class="all_1 all_2">
-            <ul>
-                <h3>Всё включено:</h3>
-                <li>Трансфер: г. Краснодар <span>→</span> п. Каменномостский <span>→</span> г. Краснодар;</li>
-                <li>Входные билеты на экскурсии;</li>
-                <li>Услуги гидов;</li>
-                <li>Проживание;</li>
-                <li>3-х разовое питание от наших поваров.</li>
-                <li>Собственный транспорт для трансферов и выездов по маршрутам тура.</li>
-                <li>Заключаем договор реализации туристского продукта.</li>
-            </ul>
+            <h3><?= $model->rightBlock_title ?></h3>
+            <?= $model->rightBlock_text ?>
         </div>
     </div>
 </div>
-<div class="cont" id = "tours">
-    <h2 class = "h2">Наши туры</h2>
-    <div class="tours">
-        <div class="slider1 owl-carousel owl-theme">
-            <section class="item tour">
-                <div class="thumbs">
-                    <img src="/public/img/tour_4.jpg" alt="Квартира 4 комнатная">
-                    <div class="fire">
-                        <div class="fire_tour">Горящий тур</div>
-                        <div class="fire_all">Мест отслость: 2</div>
-                    </div>
-                    <h3 class = "aa tour_h3">«Новогодний»<br>4 дня от 26 300 руб./чел.</h3>
-                    <div class="caption">
-                        <p class="title tour_h3">«Новогодний»<br>4 дня от от 26 300 руб./чел.</p>
-                        <p class="title_1"><a href="/pages.php" class="info_read">Подробнее</a></p>
-                        <p class="title_2"><a href="/pages.php" class="info_bron">Забронировать</a></p>
-                    </div>
-                </div>
-            </section>
-            <section class="item tour">
-                <div class="thumbs">
-                    <div class="fire">
-                        <div class="fire_all">Мест отслость: 5</div>
-                    </div>
-                    <img src="/public/img/tour_1.jpg" alt="Квартира 4 комнатная">
-                    <h3 class = "aa tour_h3">«Драйв»<br>7 дней от 23 700 руб./чел.</h3>
-                    <div class="caption">
-                        <p class="title tour_h3">«Драйв»<br>7 дней от 23 700 руб./чел.</p>
-                        <p class="title_1"><a href="/pages.php" class="info_read">Подробнее</a></p>
-                        <p class="title_2"><a href="/pages.php" class="info_bron">Забронировать</a></p>
-                    </div>
-                </div>
-            </section>
-            <section class="item tour">
-                <div class="thumbs">
-                    <img src="/public/img/tour_2.jpg" alt="Квартира 4 комнатная">
-                    <div class="fire">
-                        <div class="fire_all">Мест отслость: 5</div>
-                    </div>
-                    <h3 class = "aa tour_h3">«Экскурсионный»<br>7 дней от 21 200 руб./чел.</h3>
-                    <div class="caption">
-                        <p class="title tour_h3">«Экскурсионный»<br>7 дней от 21 200 руб./чел.</p>
-                        <p class="title_1"><a href="/pages.php" class="info_read">Подробнее</a></p>
-                        <p class="title_2"><a href="/pages.php" class="info_bron">Забронировать</a></p>
-                    </div>
-                </div>
-            </section>
-            <section class="item tour">
-                <div class="thumbs">
-                    <img src="/public/img/tour_3.jpg" alt="Квартира 4 комнатная">
-                    <div class="fire">
-                        <div class="fire_all">Мест отслость: 5</div>
-                    </div>
-                    <h3 class = "aa tour_h3">«Водная Ривьера»<br>7 дней от 24 000 руб./чел.</h3>
-                    <div class="caption">
-                        <p class="title tour_h3">«Водная Ривьера»<br>7 дней от 24 000 руб./чел.</p>
-                        <p class="title_1"><a href="/pages.php" class="info_read">Подробнее</a></p>
-                        <p class="title_2"><a href="/pages.php" class="info_bron">Забронировать</a></p>
-                    </div>
-                </div>
-            </section>
-        </div>
-    </div>
-</div>
+<?= \frontend\widgets\ToursHomeWidget::widget() ?>
 <div class="hotels">
     <div class="cont">
         <h2 class = "h2">Размещение</h2>

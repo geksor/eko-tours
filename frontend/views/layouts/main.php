@@ -33,13 +33,30 @@ AppAsset::register($this);
 
     <?= $this->render('header') ?>
 
-    <main class="content" data-slideout-ignore>
+    <main class="content<? if (Yii::$app->request->url !== Yii::$app->homeUrl) {?> cont <?}?>" data-slideout-ignore>
+
+        <? if (Yii::$app->request->url !== Yii::$app->homeUrl) {?>
+
+            <div class="breads">
+                <?= Breadcrumbs::widget(
+                    [
+                        'itemTemplate' => '<li>{link}</li>',
+                        'activeItemTemplate' => '<li>{link}</li>',
+                        'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+                    ]
+                ) ?>
+            </div>
+
+        <?}?>
+
         <?= $content ?>
     </main>
 
 </div>
 
 <?= $this->render('slideowt-menu') ?>
+
+<?= $this->render('footer') ?>
 
 <?= $this->render('forms') ?>
 
@@ -139,22 +156,7 @@ $('#buttonUp').click(function () {
             });
     };
     
-    $('.slider1').owlCarousel({
-        loop:true,
-        margin:10,
-        nav:true,
-        responsive:{
-            0:{
-                items:1
-            },
-            500:{
-                items:2
-            },
-            1000:{
-                items:3
-            }
-        }
-    });
+    
     $('.slider2').owlCarousel({
         loop:true,
         margin:10,
