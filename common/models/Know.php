@@ -38,6 +38,7 @@ class Know extends \yii\db\ActiveRecord
             [['text'], 'string'],
             [['image_count', 'rank'], 'integer'],
             [['title'], 'string', 'max' => 255],
+            [['rank'], 'default', 'value' => 1],
         ];
     }
 

@@ -27,6 +27,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         'method' => 'post',
                     ],
                 ]) ?>
+                <?= Html::a('Выбрать основную картинку', ['set-image', 'id' => $model->id], ['class' => 'btn btn-default']) ?>
                 <? if (!$model->is_gallery) {?>
                     <?= Html::a('Номера', ['room/index', 'accom_id' => $model->id], ['class' => 'btn btn-default']) ?>
                 <?}?>
@@ -60,6 +61,14 @@ $this->params['breadcrumbs'][] = $this->title;
                                 return 'Да';
                             }
                             return 'Нет';
+                        }
+                    ],
+                    [
+                        'attribute' => 'image',
+                        'format' => 'raw',
+                        'value' => function ($data){
+                            /* @var $data \common\models\Accom */
+                            return Html::img($data->getThumbImage(), ['style' => 'max-width: 200px;']);
                         }
                     ],
                 ],

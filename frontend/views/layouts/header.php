@@ -10,7 +10,7 @@
             <a href="/"><img src="/public/img/logo.svg" alt="Эко Тур"></a>
             <ul class="head_menu">
                 <li><a href ="/tours">ТУРЫ</a></li>
-                <li><a href ="/hotel">РАЗМЕЩЕНИЕ</a></li>
+                <li><a href ="/accom">РАЗМЕЩЕНИЕ</a></li>
                 <li><a href ="/about">О НАС</a></li>
                 <li><a href ="/contact">КОНТАКТЫ</a></li>
             </ul>

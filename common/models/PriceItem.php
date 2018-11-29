@@ -36,6 +36,7 @@ class PriceItem extends \yii\db\ActiveRecord
             [['price_section_id', 'rank'], 'integer'],
             [['text'], 'string'],
             [['price_section_id'], 'exist', 'skipOnError' => true, 'targetClass' => PriceSection::className(), 'targetAttribute' => ['price_section_id' => 'id']],
+            [['rank'], 'default', 'value' => 1],
         ];
     }
 

@@ -40,8 +40,8 @@ class ImageUpload extends Model
             [
                 'image',
                 'image',
-                'extensions' => ['jpg', 'jpeg', 'png', 'gif'],
-                'mimeTypes' => ['image/jpeg', 'image/pjpeg', 'image/png', 'image/gif'],
+                'extensions' => ['jpg', 'jpeg', 'png', 'gif', 'svg'],
+                'mimeTypes' => ['image/jpeg', 'image/pjpeg', 'image/png', 'image/gif', 'image/svg'],
             ],
             [['crop_info', 'directory'], 'safe'],
         ];

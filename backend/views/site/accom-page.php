@@ -6,9 +6,9 @@ use mihaildev\ckeditor\CKEditor;
 
 
 /* @var $this yii\web\View */
-/* @var $model \common\models\TouristPage */
+/* @var $model \common\models\AccomPage */
 
-$this->title = 'Страница Туристам';
+$this->title = 'Страница Размещение';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="timetable-params">

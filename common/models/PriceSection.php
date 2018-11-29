@@ -35,6 +35,7 @@ class PriceSection extends \yii\db\ActiveRecord
         return [
             [['rank'], 'integer'],
             [['title', 'image'], 'string', 'max' => 255],
+            [['rank'], 'default', 'value' => 1],
         ];
     }
 

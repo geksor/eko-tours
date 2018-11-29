@@ -43,6 +43,7 @@ class Reviews extends \yii\db\ActiveRecord
             [['create_at', 'done_at',], 'safe'],
             [['user_name', 'phone'], 'string', 'max' => 255],
             [['tour_id'], 'exist', 'skipOnError' => true, 'targetClass' => Tour::className(), 'targetAttribute' => ['tour_id' => 'id']],
+            [['rank'], 'default', 'value' => 1],
         ];
     }
 

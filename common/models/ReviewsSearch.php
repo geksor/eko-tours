@@ -40,7 +40,7 @@ class ReviewsSearch extends Reviews
      */
     public function search($params)
     {
-        $query = Reviews::find()->orderBy(['viewed' => SORT_ASC, 'created_at' => SORT_ASC]);
+        $query = Reviews::find()->orderBy(['viewed' => SORT_ASC, 'create_at' => SORT_ASC]);
 
         // add conditions that should always apply here
 

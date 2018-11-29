@@ -2,6 +2,7 @@
 
 namespace common\models;
 
+use common\behaviors\ImgUploadBehavior;
 use Imagine\Image\ImageInterface;
 use Yii;
 use zxbodya\yii2\galleryManager\GalleryBehavior;
@@ -16,6 +17,7 @@ use zxbodya\yii2\galleryManager\GalleryBehavior;
  * @property int $rank
  * @property int $publish
  * @property int $is_gallery
+ * @property string $image
  *
  * @property Room[] $rooms
  */
@@ -38,7 +40,8 @@ class Accom extends \yii\db\ActiveRecord
             [['title'], 'required'],
             [['description'], 'string'],
             [['rank', 'publish', 'is_gallery'], 'integer'],
-            [['title', 'video_link'], 'string', 'max' => 255],
+            [['title', 'video_link', 'image',], 'string', 'max' => 255],
+            [['rank'], 'default', 'value' => 1],
         ];
     }
 
@@ -49,12 +52,13 @@ class Accom extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'title' => 'Title',
-            'description' => 'Description',
-            'video_link' => 'Video Link',
-            'rank' => 'Rank',
-            'publish' => 'Publish',
-            'is_gallery' => 'Is Gallery',
+            'title' => 'Название',
+            'description' => 'Описание',
+            'video_link' => 'Ссылка на видео',
+            'rank' => 'Порядок вывода',
+            'publish' => 'Публикация',
+            'is_gallery' => 'В виде галереи',
+            'image' => 'Изображение',
         ];
     }
 
@@ -89,6 +93,12 @@ class Accom extends \yii\db\ActiveRecord
                             ->resize($dstSize);
                     },
                 ]
+            ],
+            'ImgUploadBehavior' => [
+                'class' => ImgUploadBehavior::className(),
+                'noImage' => 'no_image.png',
+                'folder' => '/uploads/images/accoms',
+                'propImage' => 'image',
             ],
         ];
     }

@@ -35,6 +35,18 @@ if (!is_file($touristFile)){
 }
 $touristPage = json_decode(file_get_contents($touristFile), true);
 
+$toursFile = __DIR__. '/tours-page.json';
+if (!is_file($toursFile)){
+    file_put_contents($toursFile, '{}');
+}
+$toursPage = json_decode(file_get_contents($toursFile), true);
+
+$accomFile = __DIR__. '/accom-page.json';
+if (!is_file($accomFile)){
+    file_put_contents($accomFile, '{}');
+}
+$accomPage = json_decode(file_get_contents($accomFile), true);
+
 return [
     'adminEmail' => 'admin@example.com',
     'supportEmail' => 'support@example.com',
@@ -45,4 +57,6 @@ return [
     'TimetablePage' => $timetablePage,
     'AboutPage' => $aboutPage,
     'TouristPage' => $touristPage,
+    'ToursPage' => $toursPage,
+    'AccomPage' => $accomPage,
 ];

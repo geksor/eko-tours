@@ -3,11 +3,13 @@ namespace backend\controllers;
 
 use backend\models\WebVisitor;
 use common\models\AboutPage;
+use common\models\AccomPage;
 use common\models\CommPage;
 use common\models\Contact;
 use common\models\HomePage;
 use common\models\TimetablePage;
 use common\models\TouristPage;
+use common\models\ToursPage;
 use nox\components\http\userAgent\UserAgentParser;
 use Yii;
 use yii\web\Controller;
@@ -43,6 +45,8 @@ class SiteController extends Controller
                             'timetable-page',
                             'about-page',
                             'tourist-page',
+                            'tours-page',
+                            'accom-page',
                         ],
                         'allow' => true,
                         'roles' => ['@'],
@@ -254,6 +258,44 @@ class SiteController extends Controller
         }
 
         return $this->render('tourist-page', [
+            'model' => $model,
+        ]);
+    }
+
+    /**
+     * @return string|\yii\web\Response
+     */
+    public function actionToursPage()
+    {
+        $model = new ToursPage();
+
+        if ($model->load(Yii::$app->params)) {
+            if (Yii::$app->request->post()) {
+                $model->save(Yii::$app->request->post('ToursPage'));
+                return $this->redirect(['tours-page']);
+            }
+        }
+
+        return $this->render('tours-page', [
+            'model' => $model,
+        ]);
+    }
+
+    /**
+     * @return string|\yii\web\Response
+     */
+    public function actionAccomPage()
+    {
+        $model = new AccomPage();
+
+        if ($model->load(Yii::$app->params)) {
+            if (Yii::$app->request->post()) {
+                $model->save(Yii::$app->request->post('AccomPage'));
+                return $this->redirect(['accom-page']);
+            }
+        }
+
+        return $this->render('accom-page', [
             'model' => $model,
         ]);
     }

@@ -1,4 +1,4 @@
-<?php
++<?php
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
@@ -15,7 +15,7 @@ use mihaildev\ckeditor\CKEditor;
 
     <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'alias')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'min_price')->textInput() ?>
 
     <?= $form->field($model, 'short_description')->textInput(['maxlength' => true]) ?>
 

@@ -2,6 +2,7 @@
 
 namespace backend\controllers;
 
+use backend\actions\SetImage;
 use Yii;
 use common\models\Accom;
 use common\models\AccomSearch;
@@ -42,6 +43,14 @@ class AccomController extends Controller
                 'types' => [
                     'accom' => Accom::className(),
                 ]
+            ],
+            'set-image' => [
+                'class' => SetImage::className(),
+                'folder' => 'accoms',
+                'propImage' => 'image',
+                'title' => 'Изображение гостиницы',
+                'width' => 750,
+                'height' => 450,
             ],
         ];
     }
@@ -133,7 +142,7 @@ class AccomController extends Controller
      * @return Accom the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($id)
+    public function findModel($id)
     {
         if (($model = Accom::findOne($id)) !== null) {
             return $model;

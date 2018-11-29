@@ -50,6 +50,7 @@ class Room extends \yii\db\ActiveRecord
             [['accom_id', 'rank', 'publish'], 'integer'],
             [['title'], 'string', 'max' => 255],
             [['accom_id'], 'exist', 'skipOnError' => true, 'targetClass' => Accom::className(), 'targetAttribute' => ['accom_id' => 'id']],
+            [['rank'], 'default', 'value' => 1],
         ];
     }
 

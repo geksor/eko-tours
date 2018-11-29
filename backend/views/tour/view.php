@@ -38,6 +38,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attributes' => [
                     'id',
                     'title',
+                    'min_price:decimal',
                     'alias',
                     'short_description',
                     [

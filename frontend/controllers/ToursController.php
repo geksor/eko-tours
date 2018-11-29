@@ -4,6 +4,7 @@ namespace frontend\controllers;
 use common\models\AboutPage;
 use common\models\Contact;
 use common\models\HomePage;
+use common\models\Tour;
 use Yii;
 use yii\base\InvalidParamException;
 use yii\web\BadRequestHttpException;
@@ -19,7 +20,7 @@ use frontend\models\ContactForm;
 /**
  * Site controller
  */
-class SiteController extends Controller
+class ToursController extends Controller
 {
     /**
      * {@inheritdoc}
@@ -75,45 +76,10 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        $model = new HomePage();
-        $model->load(Yii::$app->params);
+        $models = Tour::find()->where(['publish' => 1, 'deleted' => 0])->orderBy(['rank' => SORT_ASC])->all();
 
         return $this->render('index', [
-            'model' => $model,
-        ]);
-    }
-
-    /**
-     * Displays contact page.
-     *
-     * @return mixed
-     */
-    public function actionContact()
-    {
-        $model = new Contact();
-        $model->load(Yii::$app->params);
-
-        return $this->render('contact', [
-            'model' => $model,
-        ]);
-    }
-
-    /**
-     * Displays about page.
-     *
-     * @return mixed
-     */
-    public function actionAbout()
-    {
-        $model = new AboutPage();
-        $model->load(Yii::$app->params);
-
-        $contactModel = new Contact();
-        $contactModel->load(Yii::$app->params);
-
-        return $this->render('about', [
-            'model' => $model,
-            'contactModel' => $contactModel,
+            'models' => $models,
         ]);
     }
 }

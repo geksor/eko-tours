@@ -30,6 +30,8 @@
                         'items' => [
                             ['label' => 'Галлереи', 'icon' => 'images', 'url' => ['/gallery'], "active" => Yii::$app->controller->id === 'gallery',],
                             ['label' => 'Домашняя страница', 'icon' => 'home', 'url' => ['/site/home-page']],
+                            ['label' => 'Страница Туры', 'icon' => 'ticket-alt', 'url' => ['/site/tours-page']],
+                            ['label' => 'Страница Размещение', 'icon' => 'ticket-alt', 'url' => ['/site/accom-page']],
                             ['label' => 'Контакты', 'icon' => 'address-card', 'url' => ['/site/contact']],
                             ['label' => 'Страница размещение', 'icon' => 'bed', 'url' => ['site/comm-page']],
                             ['label' => 'Страница расписание', 'icon' => 'clock', 'url' => ['site/timetable-page']],

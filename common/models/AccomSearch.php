@@ -18,7 +18,7 @@ class AccomSearch extends Accom
     {
         return [
             [['id', 'rank', 'publish', 'is_gallery'], 'integer'],
-            [['title', 'description', 'video_link'], 'safe'],
+            [['title', 'description', 'video_link', 'image',], 'safe'],
         ];
     }
 
@@ -66,7 +66,8 @@ class AccomSearch extends Accom
 
         $query->andFilterWhere(['like', 'title', $this->title])
             ->andFilterWhere(['like', 'description', $this->description])
-            ->andFilterWhere(['like', 'video_link', $this->video_link]);
+            ->andFilterWhere(['like', 'video_link', $this->video_link])
+            ->andFilterWhere(['like', 'image', $this->image]);
 
         return $dataProvider;
     }
