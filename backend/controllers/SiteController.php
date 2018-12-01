@@ -94,7 +94,11 @@ class SiteController extends Controller
             foreach ($browserStat as $item){
                 /* @var $item WebVisitor */
                 $browser = UserAgentParser::parse($item->user_agent)['browser'];
-                $tempArr[$browser][0] = $tempArr[$browser][0]+$item->visits;
+                if (array_key_exists($browser, $tempArr)){
+                    $tempArr[$browser][0] = $tempArr[$browser][0]+$item->visits;
+                }else{
+                    $tempArr[$browser][0] = $item->visits;
+                }
             }
             foreach ($tempArr as $key => $item){
                 $labelsChart[] = $key;
