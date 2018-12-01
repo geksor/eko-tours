@@ -55,5 +55,5 @@ $this->registerMetaTag([
     <a class="md-trigger zabron_read" data-modal="modal-1">Поехали!</a>
 </div>
 <div id="map" class="map">
-    <?= Yii::$app->params['Contact']['mapScript'] ?>
+    <?= array_key_exists('mapScript', Yii::$app->params['Contact'])?Yii::$app->params['Contact']['mapScript']:'' ?>
 </div>
