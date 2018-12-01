@@ -85,6 +85,7 @@ class ToursController extends Controller
 
         return $this->render('index', [
             'models' => $models,
+            'pageParams' => $pageParams,
         ]);
     }
 }
