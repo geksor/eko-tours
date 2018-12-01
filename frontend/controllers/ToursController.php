@@ -5,6 +5,7 @@ use common\models\AboutPage;
 use common\models\Contact;
 use common\models\HomePage;
 use common\models\Tour;
+use common\models\ToursPage;
 use Yii;
 use yii\base\InvalidParamException;
 use yii\web\BadRequestHttpException;
@@ -77,6 +78,10 @@ class ToursController extends Controller
     public function actionIndex()
     {
         $models = Tour::find()->where(['publish' => 1, 'deleted' => 0])->orderBy(['rank' => SORT_ASC])->all();
+
+        $pageParams = new ToursPage();
+        $pageParams->load(Yii::$app->params);
+
 
         return $this->render('index', [
             'models' => $models,
