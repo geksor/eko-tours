@@ -4,6 +4,9 @@ namespace frontend\controllers;
 use common\models\AboutPage;
 use common\models\Contact;
 use common\models\HomePage;
+use common\models\Know;
+use common\models\TouristPage;
+use common\models\ToursPage;
 use Yii;
 use yii\base\InvalidParamException;
 use yii\web\BadRequestHttpException;
@@ -114,6 +117,19 @@ class SiteController extends Controller
         return $this->render('about', [
             'model' => $model,
             'contactModel' => $contactModel,
+        ]);
+    }
+
+    public function actionTourist()
+    {
+        $models = Know::find()->orderBy(['rank' => SORT_ASC])->all();
+
+        $pageParams = new TouristPage();
+        $pageParams->load(Yii::$app->params);
+
+        return $this->render('tourist', [
+            'models' => $models,
+            'pageParams' => $pageParams,
         ]);
     }
 }

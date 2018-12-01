@@ -55,6 +55,12 @@
                                     || Yii::$app->controller->id === 'timetable-item',
                             ],
                             [
+                                'label' => 'Города',
+                                'icon' => 'globe',
+                                'url' => ['/city'],
+                                "active" => Yii::$app->controller->id === 'city',
+                            ],
+                            [
                                 'label' => 'Раздел цены',
                                 'icon' => 'ruble-sign',
                                 'url' => ['/price-section'],

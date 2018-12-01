@@ -55,7 +55,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     [
                         'model' => $model,
                         'behaviorName' => 'galleryBehavior',
-                        'apiRoute' => 'accom/galleryApi'
+                        'apiRoute' => 'know/galleryApi'
                     ]
                 );
             }?>

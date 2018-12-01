@@ -4,12 +4,12 @@ namespace common\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use common\models\Tour;
+use common\models\City;
 
 /**
- * TourSearch represents the model behind the search form of `common\models\Tour`.
+ * CitySearch represents the model behind the search form of `common\models\City`.
  */
-class TourSearch extends Tour
+class CitySearch extends City
 {
     /**
      * {@inheritdoc}
@@ -17,8 +17,8 @@ class TourSearch extends Tour
     public function rules()
     {
         return [
-            [['id', 'rank', 'publish', 'hot', 'deleted', 'min_price', 'places_count', 'city_id'], 'integer'],
-            [['title', 'alias', 'short_description', 'description', 'meta_title', 'meta_description'], 'safe'],
+            [['id'], 'integer'],
+            [['title'], 'safe'],
         ];
     }
 
@@ -40,7 +40,7 @@ class TourSearch extends Tour
      */
     public function search($params)
     {
-        $query = Tour::find();
+        $query = City::find();
 
         // add conditions that should always apply here
 
@@ -59,21 +59,9 @@ class TourSearch extends Tour
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'rank' => $this->rank,
-            'publish' => $this->publish,
-            'hot' => $this->hot,
-            'deleted' => 0,
-            'min_price' => $this->min_price,
-            'places_count' => $this->places_count,
-            'city_id' => $this->city_id,
         ]);
 
-        $query->andFilterWhere(['like', 'title', $this->title])
-            ->andFilterWhere(['like', 'alias', $this->alias])
-            ->andFilterWhere(['like', 'short_description', $this->short_description])
-            ->andFilterWhere(['like', 'description', $this->description])
-            ->andFilterWhere(['like', 'meta_title', $this->meta_title])
-            ->andFilterWhere(['like', 'meta_description', $this->meta_description]);
+        $query->andFilterWhere(['like', 'title', $this->title]);
 
         return $dataProvider;
     }
