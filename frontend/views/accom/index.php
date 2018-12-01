@@ -45,13 +45,13 @@ $this->params['breadcrumbs'][] = $this->title;
                     <?}else{?>
                         <? if ($model->rooms) {?>
                             <? foreach ($model->rooms as $room) {/* @var $room \common\models\Room */?>
-                                <div class="apart item">
+                                <div class="apart item" style="position: relative; padding-top: 130.72%;">
 
                                     <?$images = $room->getBehavior('galleryBehavior')->getImages();?>
 
                                     <? if ($images) {?>
-                                        <a href="<?= $images[0]->getUrl('original') ?>" data-fancybox="<?= $room->title ?>">
-                                            <img src="<?= $images[0]->getUrl('medium') ?>" alt="<?= $room->title ?>" class="apart_img">
+                                        <a href="<?= $images[0]->getUrl('original') ?>" data-fancybox="<?= $room->title ?>" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+                                            <img src="<?= $images[0]->getUrl('medium') ?>" alt="<?= $room->title ?>" class="apart_img" style="height: 100%; width: 100%; object-fit: cover">
                                         </a>
                                         <div class="gallery_nom_1" style="display: none">
                                             <? foreach ($images as $key => $image) {?>

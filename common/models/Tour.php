@@ -24,6 +24,7 @@ use zxbodya\yii2\galleryManager\GalleryBehavior;
  * @property array $tourPrice
  * @property int $deleted
  * @property int $min_price
+ * @property int $places_count
  *
  * @property Booking[] $bookings
  * @property Month[] $months
@@ -62,7 +63,7 @@ class Tour extends \yii\db\ActiveRecord
             [['title'], 'required'],
             [['tourPrice'], 'safe'],
             [['description', 'meta_description'], 'string'],
-            [['rank', 'publish', 'hot', 'deleted', 'min_price',], 'integer'],
+            [['rank', 'publish', 'hot', 'deleted', 'min_price', 'places_count'], 'integer'],
             [['title', 'alias', 'short_description', 'meta_title'], 'string', 'max' => 255],
             [['rank'], 'default', 'value' => 1],
         ];
@@ -86,6 +87,7 @@ class Tour extends \yii\db\ActiveRecord
             'hot' => 'Hot',
             'deleted' => 'Deleted',
             'min_price' => 'Цена от',
+            'places_count' => 'Мест осталось',
         ];
     }
 

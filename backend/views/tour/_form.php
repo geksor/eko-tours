@@ -32,6 +32,8 @@ use mihaildev\ckeditor\CKEditor;
 
     <?= $form->field($model, 'meta_description')->textarea(['rows' => 6]) ?>
 
+    <?= $form->field($model, 'places_count')->textInput() ?>
+
     <?= $form->field($model, 'rank')->textInput() ?>
 
     <?= $form->field($model, 'publish')->checkbox() ?>

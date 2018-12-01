@@ -17,7 +17,7 @@ class TourSearch extends Tour
     public function rules()
     {
         return [
-            [['id', 'rank', 'publish', 'hot', 'deleted', 'min_price',], 'integer'],
+            [['id', 'rank', 'publish', 'hot', 'deleted', 'min_price', 'places_count'], 'integer'],
             [['title', 'alias', 'short_description', 'description', 'meta_title', 'meta_description'], 'safe'],
         ];
     }
@@ -64,6 +64,7 @@ class TourSearch extends Tour
             'hot' => $this->hot,
             'deleted' => 0,
             'min_price' => $this->min_price,
+            'places_count' => $this->places_count,
         ]);
 
         $query->andFilterWhere(['like', 'title', $this->title])

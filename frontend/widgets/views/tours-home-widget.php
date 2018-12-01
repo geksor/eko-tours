@@ -30,7 +30,9 @@
                             <? if ($model->hot) {?>
                                 <div class="fire_tour">Горящий тур</div>
                             <?}?>
-                            <div class="fire_all">Мест отслость: 2</div>
+                            <? if ($model->places_count) {?>
+                                <div class="fire_all">Мест отслость: <?= $model->places_count ?></div>
+                            <?}?>
                         </div>
                         <h3 class = "aa tour_h3"><?= $model->title ?><br>от <?= Yii::$app->formatter->asInteger($model->min_price) ?> руб./чел.</h3>
                         <div class="caption">
