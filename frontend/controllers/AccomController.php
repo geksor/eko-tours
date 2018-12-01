@@ -3,6 +3,7 @@ namespace frontend\controllers;
 
 use common\models\AboutPage;
 use common\models\Accom;
+use common\models\AccomPage;
 use common\models\Contact;
 use common\models\HomePage;
 use common\models\Tour;
@@ -87,8 +88,12 @@ class AccomController extends Controller
             ->orderBy(['rank' => SORT_ASC])
             ->all();
 
+        $pageParams = new AccomPage();
+        $pageParams->load(Yii::$app->params);
+
         return $this->render('index', [
             'models' => $models,
+            'pageParams' => $pageParams,
         ]);
     }
 }

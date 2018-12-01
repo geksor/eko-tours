@@ -2,15 +2,16 @@
 
 /* @var $this yii\web\View */
 /* @var $models \common\models\Accom */
+/* @var $pageParams \common\models\AccomPage */
 
-$this->title = Yii::$app->params['AccomPage']['title'];
+$this->title = $pageParams->title;
 $this->registerMetaTag([
     'name' => 'title',
-    'content' => Yii::$app->params['AccomPage']['meta_title'],
+    'content' => $pageParams->meta_title,
 ]);
 $this->registerMetaTag([
     'name' => 'description',
-    'content' => Yii::$app->params['AccomPage']['meta_description'],
+    'content' => $pageParams->meta_description,
 ]);
 $this->params['breadcrumbs'][] = $this->title;
 
