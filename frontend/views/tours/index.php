@@ -49,7 +49,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             <h3 class = "aa tour_h3"><?= $model->title ?><br>от <?= Yii::$app->formatter->asInteger($model->min_price) ?> руб./чел.</h3>
                             <div class="caption">
                                 <p class="title tour_h3"><?= $model->title ?><br>от <?= Yii::$app->formatter->asInteger($model->min_price) ?> руб./чел.</p>
-                                <p class="title_1"><a href="/pages.php" class="info_read">Подробнее</a></p>
+                                <p class="title_1"><a href="<?= \yii\helpers\Url::to(['view', 'id' => $model->id]) ?>" class="info_read">Подробнее</a></p>
                                 <p class="title_2"><a href="/pages.php" class="info_bron">Забронировать</a></p>
                             </div>
                         </div>

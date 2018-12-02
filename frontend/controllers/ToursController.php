@@ -2,12 +2,14 @@
 namespace frontend\controllers;
 
 use common\models\AboutPage;
+use common\models\Accom;
 use common\models\Contact;
 use common\models\HomePage;
 use common\models\Tour;
 use common\models\ToursPage;
 use Yii;
 use yii\base\InvalidParamException;
+use yii\helpers\VarDumper;
 use yii\web\BadRequestHttpException;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
@@ -86,6 +88,68 @@ class ToursController extends Controller
         return $this->render('index', [
             'models' => $models,
             'pageParams' => $pageParams,
+        ]);
+    }
+
+    /**
+     * @param $id
+     * @return string
+     */
+    public function actionView($id)
+    {
+        $model = Tour::find()
+            ->where(['id' => $id, 'publish' => 1, 'deleted' => 0])
+            ->orderBy(['rank' => SORT_ASC])
+            ->with([
+                'months' => function (\yii\db\ActiveQuery $query) {
+                    $query
+                        ->andWhere(['publish' => 1])
+                        ->with(['stages' => function (\yii\db\ActiveQuery $query) {
+                            $query->andWhere(['publish' => 1])->orderBy(['start_date' => SORT_ASC]);
+                        }])
+                        ->orderBy(['title' => SORT_ASC]);
+                },
+                'reviews' => function (\yii\db\ActiveQuery $query) {
+                    $query
+                        ->andWhere(['publish' => 1])
+                        ->orderBy(['rank' => SORT_ASC]);
+                },
+                'timetableDays' => function (\yii\db\ActiveQuery $query) {
+                    $query
+                        ->with(['timetableItem' => function (\yii\db\ActiveQuery $query) {
+                            $query->andWhere(['publish' => 1])->orderBy(['start_time' => SORT_ASC]);
+                        }])
+                        ->orderBy(['day_number' => SORT_ASC]);
+                },
+                'knows' => function (\yii\db\ActiveQuery $query) {
+                    $query->orderBy(['rank' => SORT_ASC]);
+                },
+                'priceSections' => function (\yii\db\ActiveQuery $query) {
+                    $query
+                        ->with(['priceItems' => function (\yii\db\ActiveQuery $query) {
+                            $query
+                                ->with(['tourPriceItems'])
+                                ->orderBy(['rank' => SORT_ASC]);
+                        }])
+                        ->orderBy(['rank' => SORT_ASC]);
+                },
+            ])
+            ->one();
+
+        $models = Accom::find()
+            ->where(['publish' => 1])
+            ->with([
+                'rooms' => function (\yii\db\ActiveQuery $query) {
+                    $query->andWhere(['publish' => 1])->orderBy(['rank' => SORT_ASC]);
+                },
+            ])
+            ->orderBy(['rank' => SORT_ASC])
+            ->all();
+
+//        VarDumper::dump($model,20,true);die;
+        return $this->render('view', [
+            'model' => $model,
+            'models' => $models,
         ]);
     }
 }
