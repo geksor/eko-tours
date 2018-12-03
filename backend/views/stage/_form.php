@@ -23,7 +23,7 @@ use kartik\datetime\DateTimePicker;
             'format' => 'd.M.yyyy',
             'autoclose'=>true,
             'weekStart'=>1, //неделя начинается с понедельника
-            'startDate' => '01.05.2015 00:00', //самая ранняя возможная дата
+            'startDate' => $model::getStartDate($model->month_id), //самая ранняя возможная дата
             'todayBtn'=>true, //снизу кнопка "сегодня"
             'minView'=>2,
         ]
@@ -39,7 +39,7 @@ use kartik\datetime\DateTimePicker;
             'format' => 'd.M.yyyy',
             'autoclose'=>true,
             'weekStart'=>1, //неделя начинается с понедельника
-            'startDate' => '01.05.2015 00:00', //самая ранняя возможная дата
+            'startDate' => $model::getStartDate($model->month_id), //самая ранняя возможная дата
             'todayBtn'=>true, //снизу кнопка "сегодня"
             'minView'=>2,
         ]

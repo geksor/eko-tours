@@ -95,15 +95,16 @@ class ToursController extends Controller
      * @param $id
      * @return string
      */
-    public function actionView($id)
+    public function actionView($alias)
     {
         $model = Tour::find()
-            ->where(['id' => $id, 'publish' => 1, 'deleted' => 0])
+            ->where(['alias' => $alias, 'publish' => 1, 'deleted' => 0])
             ->orderBy(['rank' => SORT_ASC])
             ->with([
                 'months' => function (\yii\db\ActiveQuery $query) {
                     $query
                         ->andWhere(['publish' => 1])
+                        ->andWhere(['>', 'title', strtotime('first day of this month 00:00:00')-100])
                         ->with(['stages' => function (\yii\db\ActiveQuery $query) {
                             $query->andWhere(['publish' => 1])->orderBy(['start_date' => SORT_ASC]);
                         }])
@@ -116,7 +117,7 @@ class ToursController extends Controller
                 },
                 'timetableDays' => function (\yii\db\ActiveQuery $query) {
                     $query
-                        ->with(['timetableItem' => function (\yii\db\ActiveQuery $query) {
+                        ->with(['timetableItems' => function (\yii\db\ActiveQuery $query) {
                             $query->andWhere(['publish' => 1])->orderBy(['start_time' => SORT_ASC]);
                         }])
                         ->orderBy(['day_number' => SORT_ASC]);
@@ -146,7 +147,7 @@ class ToursController extends Controller
             ->orderBy(['rank' => SORT_ASC])
             ->all();
 
-//        VarDumper::dump($model,20,true);die;
+//        VarDumper::dump(Yii::$app->formatter->asDate(strtotime('first day of this month 00:00:00')),20,true);die;
         return $this->render('view', [
             'model' => $model,
             'models' => $models,

@@ -93,6 +93,12 @@ class StageController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        if ($model->start_date){
+            $model->start_date = Yii::$app->formatter->asDate((integer)$model->start_date, 'php:d.m.Y');
+        }
+        if ($model->end_date){
+            $model->end_date = Yii::$app->formatter->asDate((integer)$model->end_date, 'php:d.m.Y');
+        }
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);

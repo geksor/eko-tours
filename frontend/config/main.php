@@ -45,6 +45,7 @@ return [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                '/tours/<alias>' => 'tours/view',
                 '<controller:tours>' => 'tours/index',
                 '<controller:accom>' => 'accom/index',
 

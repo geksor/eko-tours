@@ -17,6 +17,8 @@ use Yii;
  * @property int $publish
  * @property int $deleted
  *
+ * @property int $places
+ *
  * @property Booking[] $bookings
  * @property Month $month
  */
@@ -36,7 +38,7 @@ class Stage extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['month_id'], 'required'],
+            [['month_id', 'price'], 'required'],
             [['start_date', 'end_date',], 'safe'],
             [['month_id', 'places_beads', 'places_lavender', 'price', 'publish', 'deleted'], 'integer'],
             [['month_id'], 'exist', 'skipOnError' => true, 'targetClass' => Month::className(), 'targetAttribute' => ['month_id' => 'id']],
@@ -59,6 +61,16 @@ class Stage extends \yii\db\ActiveRecord
             'publish' => 'Publish',
             'deleted' => 'Deleted',
         ];
+    }
+
+    public function getPlaces()
+    {
+        return $this->places_beads + $this->places_lavender;
+    }
+
+    public static function getStartDate($month_id)
+    {
+        return Yii::$app->formatter->asDate(Month::findOne(['id' => $month_id])->title, 'php:d.m.Y H:i');
     }
 
     /**
