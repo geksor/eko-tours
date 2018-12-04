@@ -141,41 +141,40 @@ class SiteController extends Controller
     {
 
         $models = City::find()
-            ->with([
-                'tours' => function (\yii\db\ActiveQuery $query) {
-                    $query
-                        ->andWhere(['publish' => 1, 'deleted' => 0])
-                        ->with([
-                            'months' => function (\yii\db\ActiveQuery $query) {
-                                $query
-                                    ->where(['publish' => 1])
-                                    ->andWhere(['>', 'title', strtotime('first day of this month 00:00:00')-100])
-                                    ->with([
-                                        'tour' => function (\yii\db\ActiveQuery $query) {
-                                            $query
-                                                ->andWhere(['publish' => 1, 'deleted' => 0])
-                                                ->with([
-                                                    'months' => function (\yii\db\ActiveQuery $query) {
-                                                        $query
-                                                            ->andWhere(['publish' => 1])
-                                                            ->with(['stages' => function (\yii\db\ActiveQuery $query) {
-                                                                $query->andWhere(['publish' => 1])->orderBy(['start_date' => SORT_ASC]);
-                                                            }])
-                                                            ->orderBy(['title' => SORT_ASC]);
-                                                    },
-                                                ])
-                                                ->orderBy(['rank' => SORT_ASC]);
-                                        },
-                                    ])
-                                    ->orderBy(['title' => SORT_ASC]);
-                                },
-                            ])
-                        ->orderBy(['rank' => SORT_ASC]);
-                    },
-                ])
-            ->orderBy(['rank' => SORT_ASC])
-            ->all();
+        ->with([
+            'tours' => function (\yii\db\ActiveQuery $query) {
+                $query
+                    ->andWhere(['publish' => 1, 'deleted' => 0])
+                    ->with([
+                        'months' => function (\yii\db\ActiveQuery $query) {
+                            $query
+                                ->where(['publish' => 1])
+                                ->andWhere(['>', 'title', strtotime('first day of this month 00:00:00')-100])
+                                ->with([
+                                    'tour' => function (\yii\db\ActiveQuery $query) {
+                                        $query
+                                            ->andWhere(['publish' => 1, 'deleted' => 0])
+                                            ->with([
+                                                'months' => function (\yii\db\ActiveQuery $query) {
+                                                    $query
+                                                        ->andWhere(['publish' => 1])
+                                                        ->with(['stages' => function (\yii\db\ActiveQuery $query) {
+                                                            $query->andWhere(['publish' => 1])->orderBy(['start_date' => SORT_ASC]);
+                                                        }])
+                                                        ->orderBy(['title' => SORT_ASC]);
+                                                },
+                                            ])
+                                            ->orderBy(['rank' => SORT_ASC]);
+                                    },
+                                ])
+                                ->orderBy(['title' => SORT_ASC]);
+                            },
+                        ])
+                    ->orderBy(['rank' => SORT_ASC]);
+                },
+            ])
+        ->orderBy(['rank' => SORT_ASC])
+        ->all();
 
-        VarDumper::dump($models,20,true);die;
     }
 }

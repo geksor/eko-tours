@@ -1,5 +1,4 @@
 <?php
-
 /* @var $this yii\web\View */
 /* @var $model \common\models\HomePage */
 
@@ -42,6 +41,10 @@ $this->registerMetaTag([
     <div class="tours">
         <div class="slider3 owl-carousel owl-theme">
 <!--            --><?//include 'public/inwidget/template.php'?>
+            <?= \frontend\widgets\InstagramWidget::widget([
+//                'clientId' => '_8046550710',
+                'userName' => 'skorik.georgii'
+            ]) ?>
         </div>
     </div>
 </div>
