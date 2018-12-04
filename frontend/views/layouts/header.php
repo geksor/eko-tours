@@ -8,12 +8,7 @@
     <div class = "head_cont cont">
         <div class="nav">
             <a href="/"><img src="/public/img/logo.svg" alt="Эко Тур"></a>
-            <ul class="head_menu">
-                <li><a href ="/tours">ТУРЫ</a></li>
-                <li><a href ="/accom">РАЗМЕЩЕНИЕ</a></li>
-                <li><a href ="/about">О НАС</a></li>
-                <li><a href ="/contact">КОНТАКТЫ</a></li>
-            </ul>
+            <?= \frontend\widgets\MenuWidget::widget() ?>
         </div>
         <div class="phone_soc">
             <div class="soc">

@@ -27,12 +27,19 @@ $this->params['breadcrumbs'][] = $this->title;
                     <div class="price_tour_img">
                         <? $images = $model->getBehavior('galleryBehavior')->getImages(); ?>
                         <? if ($images) {?>
-                            <? foreach ($images as $image) {?>
-                                <a href="<?= $image->getUrl('original') ?>" class="gall_link" data-fancybox="gallery10">
-                                    <img src="<?= $image->getUrl('medium') ?>" alt="<?= $image->name ?>">
-                                    <i class="fas fa-search-plus zoom_icon"></i>
-                                </a>
-                            <?}?>
+                            <?
+                            $i = 1;
+                            $count = $model->image_count?(integer)$model->image_count:2;
+
+                            foreach ($images as $image) {?>
+                                <? if ($i <= $count) {?>
+                                    <a href="<?= $image->getUrl('original') ?>" class="gall_link" data-fancybox="gallery10">
+                                        <img src="<?= $image->getUrl('medium') ?>" alt="<?= $image->name ?>">
+                                        <i class="fas fa-search-plus zoom_icon"></i>
+                                    </a>
+                                <?}else{break;}?>
+                                <?$i++;}?>
+
                         <?}?>
                     </div>
                 </div>

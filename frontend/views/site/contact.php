@@ -30,7 +30,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     </li>
                     <li>
                         <img src="/public/images/svg/phone_1.svg" alt="Рябиновые бусы">
-                        <?= $model->phone ?>
+                        Тел: <?= $model->phone ?>
                     </li>
                 </ul>
             </div>

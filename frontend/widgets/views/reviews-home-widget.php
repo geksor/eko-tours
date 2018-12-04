@@ -1,6 +1,6 @@
 <?
 
-/* @var $items \frontend\widgets\HeaderMenuWidget */
+/* @var $items \frontend\widgets\MenuWidget */
 /* @var $models \common\models\Reviews */
 
 ?>

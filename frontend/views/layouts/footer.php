@@ -2,14 +2,7 @@
     <div class = "head_cont cont">
         <div class="nav">
             <img src="/public/img/logo.svg" alt="Эко Тур">
-            <ul class="head_menu">
-                <li><a href ="/tours">ТУРЫ</a></li>
-                <li><a href ="/schedule">РАСПИСАНИЕ ТУРОВ</a></li>
-                <li><a href ="/hotel">РАЗМЕЩЕНИЕ</a></li>
-                <li><a href ="/tourist">ТУРИСТАМ</a></li>
-                <li><a href ="/about">О НАС</a></li>
-                <li><a href ="/contact">КОНТАКТЫ</a></li>
-            </ul>
+            <?= \frontend\widgets\MenuWidget::widget() ?>
         </div>
         <div class="soc">
             <a href = "<?= array_key_exists('vk', Yii::$app->params['Contact'])?Yii::$app->params['Contact']['vk']:'' ?>" target="_blank">
