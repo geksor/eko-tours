@@ -20,7 +20,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
             <p>
                 <?= Html::a('<i class="fa fa-reply" aria-hidden="true"></i>', ['month/view', 'id' => $searchModel->month_id], ['class' => 'btn btn-default']) ?>
-                <?= Html::a(Yii::t('app', 'Create Stage'), ['create', 'month_id' => $searchModel->month_id], ['class' => 'btn btn-success']) ?>
+                <?= Html::a(Yii::t('app', 'Создать заезд'), ['create', 'month_id' => $searchModel->month_id], ['class' => 'btn btn-success']) ?>
             </p>
 
             <?= GridView::widget([
@@ -33,8 +33,7 @@ $this->params['breadcrumbs'][] = $this->title;
         //            'month_id',
                     'start_date:date',
                     'end_date:date',
-                    'places_beads',
-                    'places_lavender',
+                    'places',
                     'price:decimal',
                     [
                         'attribute' => 'publish',

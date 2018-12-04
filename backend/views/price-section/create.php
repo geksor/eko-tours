@@ -4,8 +4,8 @@
 /* @var $this yii\web\View */
 /* @var $model common\models\PriceSection */
 
-$this->title = 'Create Price Section';
-$this->params['breadcrumbs'][] = ['label' => 'Price Sections', 'url' => ['index']];
+$this->title = 'Создание раздела';
+$this->params['breadcrumbs'][] = ['label' => 'Разделы цен', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="price-section-create">

@@ -7,11 +7,11 @@ use yii\helpers\Html;
 /* @var $priceSections */
 
 $this->title = 'Настройка раздела цены: ' . $model->title;
-$this->params['breadcrumbs'][] = ['label' => 'Категории', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Туры', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->title, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'Настройка раздела цены';
 ?>
-<div class="category-atribute">
+<div class="tour-price">
 
     <div class="box box-primary">
         <div class="box-body">

@@ -5,10 +5,10 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model common\models\Know */
 
-$this->title = 'Update Know: '.$model->title;
-$this->params['breadcrumbs'][] = ['label' => 'Knows', 'url' => ['index']];
+$this->title = 'Редактирование раздела: '.$model->title;
+$this->params['breadcrumbs'][] = ['label' => 'Туристам', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->title, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = 'Update';
+$this->params['breadcrumbs'][] = 'Редактирование';
 ?>
 <div class="know-update">
 

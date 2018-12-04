@@ -11,12 +11,9 @@ use Yii;
  * @property int $month_id
  * @property int $start_date
  * @property int $end_date
- * @property int $places_beads
- * @property int $places_lavender
  * @property int $price
  * @property int $publish
  * @property int $deleted
- *
  * @property int $places
  *
  * @property Booking[] $bookings
@@ -40,7 +37,7 @@ class Stage extends \yii\db\ActiveRecord
         return [
             [['month_id', 'price'], 'required'],
             [['start_date', 'end_date',], 'safe'],
-            [['month_id', 'places_beads', 'places_lavender', 'price', 'publish', 'deleted'], 'integer'],
+            [['month_id', 'places', 'price', 'publish', 'deleted'], 'integer'],
             [['month_id'], 'exist', 'skipOnError' => true, 'targetClass' => Month::className(), 'targetAttribute' => ['month_id' => 'id']],
         ];
     }
@@ -52,20 +49,14 @@ class Stage extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'month_id' => 'Month ID',
-            'start_date' => 'Start Date',
-            'end_date' => 'End Date',
-            'places_beads' => 'Places Beads',
-            'places_lavender' => 'Places Lavender',
-            'price' => 'Price',
-            'publish' => 'Publish',
-            'deleted' => 'Deleted',
+            'month_id' => 'Месяц',
+            'start_date' => 'Начало заезда',
+            'end_date' => 'Завершение заезда',
+            'places' => 'Кол-во мест',
+            'price' => 'Цена',
+            'publish' => 'Публикация',
+            'deleted' => 'Удален',
         ];
-    }
-
-    public function getPlaces()
-    {
-        return $this->places_beads + $this->places_lavender;
     }
 
     public static function getStartDate($month_id)

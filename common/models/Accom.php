@@ -41,7 +41,7 @@ class Accom extends \yii\db\ActiveRecord
             [['description'], 'string'],
             [['rank', 'publish', 'is_gallery'], 'integer'],
             [['title', 'video_link', 'image',], 'string', 'max' => 255],
-            [['rank'], 'default', 'value' => 1],
+            [['rank'], 'default', 'value' => 100],
         ];
     }
 

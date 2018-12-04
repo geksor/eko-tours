@@ -15,8 +15,7 @@ use Yii;
  *
  * @property string $email
  * @property string $phone
- * @property string $address_beads
- * @property string $address_lavender
+ * @property string $address
  * @property string $mapScript
  * @property string $field
  *
@@ -39,8 +38,7 @@ class Contact extends Model
 
     public $email;
     public $phone;
-    public $address_beads;
-    public $address_lavender;
+    public $address;
     public $mapScript;
 
     public $company_name;
@@ -68,8 +66,7 @@ class Contact extends Model
 
                     'email',
                     'phone',
-                    'address_beads',
-                    'address_lavender',
+                    'address',
                     'mapScript',
 
                     'company_name',
@@ -101,8 +98,7 @@ class Contact extends Model
 
             'email' => 'E-mail',
             'phone' => 'Телефон',
-            'address_beads' => 'Адрес рябиновые бусы',
-            'address_lavender' => 'Адрес лаванда',
+            'address' => 'Адрес',
             'mapScript' => 'Код карты',
 
             'company_name' => 'Название фирмы',

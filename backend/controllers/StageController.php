@@ -73,6 +73,7 @@ class StageController extends Controller
     {
         $model = new Stage();
         $model->month_id = $month_id;
+        $model->places = Month::findOne($month_id)->maxCount;
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);

@@ -6,8 +6,8 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model common\models\PriceItem */
 
-$this->title = 'Create Price Item';
-$this->params['breadcrumbs'][] = ['label' => 'Price Items', 'url' => ['index']];
+$this->title = 'Создание элемента';
+$this->params['breadcrumbs'][] = ['label' => 'Элементы разделов', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="price-item-create">

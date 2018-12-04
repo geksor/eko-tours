@@ -7,7 +7,7 @@ use yii\helpers\Html;
 /* @var $priceSections */
 
 $this->title = 'Заполнение значений цены: ' . $model->title;
-$this->params['breadcrumbs'][] = ['label' => 'Категории', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Туры', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->title, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = ['label' => 'Настройка раздела цены: ' . $model->title, 'url' => ['price', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'Заполнение значений цены';

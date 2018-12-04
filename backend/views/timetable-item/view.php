@@ -7,7 +7,7 @@ use yii\widgets\DetailView;
 /* @var $model common\models\TimetableItem */
 
 $this->title = Yii::$app->formatter->asTime($model->start_time, 'hh:mm');
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Timetable Items'), 'url' => ['index', 'day_id' => $model->timetable_day_id]];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'События'), 'url' => ['index', 'day_id' => $model->timetable_day_id]];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
@@ -18,11 +18,11 @@ $this->params['breadcrumbs'][] = $this->title;
 
             <p>
                 <?= Html::a('<i class="fa fa-reply" aria-hidden="true"></i>', ['index', 'day_id' => $model->timetable_day_id], ['class' => 'btn btn-default']) ?>
-                <?= Html::a(Yii::t('app', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-                <?= Html::a(Yii::t('app', 'Delete'), ['delete', 'id' => $model->id], [
+                <?= Html::a(Yii::t('app', 'Редактировать'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+                <?= Html::a(Yii::t('app', 'Удалить'), ['delete', 'id' => $model->id], [
                     'class' => 'btn btn-danger',
                     'data' => [
-                        'confirm' => Yii::t('app', 'Are you sure you want to delete this item?'),
+                        'confirm' => Yii::t('app', 'Вы уверены что хотите удалить запись?'),
                         'method' => 'post',
                     ],
                 ]) ?>

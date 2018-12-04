@@ -7,7 +7,7 @@ use yii\widgets\Pjax;
 /* @var $searchModel common\models\GallerySearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Galleries';
+$this->title = 'Галереи';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="gallery-index">
@@ -18,7 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
             <p>
-                <?= Html::a('Create Gallery', ['create'], ['class' => 'btn btn-success']) ?>
+                <?= Html::a('Создать галерею', ['create'], ['class' => 'btn btn-success']) ?>
             </p>
 
             <?= GridView::widget([

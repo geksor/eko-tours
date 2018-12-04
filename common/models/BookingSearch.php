@@ -17,7 +17,7 @@ class BookingSearch extends Booking
     public function rules()
     {
         return [
-            [['id', 'tour_id', 'month_id', 'stage_id', 'places_count_beads', 'places_count_lavender', 'user_places_count', 'total_price', 'confirm', 'created_at', 'done_at', 'viewed'], 'integer'],
+            [['id', 'tour_id', 'month_id', 'stage_id', 'user_places_count', 'total_price', 'confirm', 'created_at', 'done_at', 'viewed'], 'integer'],
             [['customer_name', 'customer_phone'], 'safe'],
         ];
     }
@@ -62,8 +62,6 @@ class BookingSearch extends Booking
             'tour_id' => $this->tour_id,
             'month_id' => $this->month_id,
             'stage_id' => $this->stage_id,
-            'places_count_beads' => $this->places_count_beads,
-            'places_count_lavender' => $this->places_count_lavender,
             'user_places_count' => $this->user_places_count,
             'total_price' => $this->total_price,
             'confirm' => $this->confirm,

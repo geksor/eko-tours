@@ -20,7 +20,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
             <p>
                 <?= Html::a('<i class="fa fa-reply" aria-hidden="true"></i>', ['accom/view', 'id' => $searchModel->accom_id], ['class' => 'btn btn-default']) ?>
-                <?= Html::a('Create Room', ['create', 'accom_id' => $searchModel->accom_id], ['class' => 'btn btn-success']) ?>
+                <?= Html::a('Создание номера', ['create', 'accom_id' => $searchModel->accom_id], ['class' => 'btn btn-success']) ?>
             </p>
 
             <?= GridView::widget([

@@ -20,7 +20,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
             <p>
                 <?= Html::a('<i class="fa fa-reply" aria-hidden="true"></i>', ['tour/view', 'id' => $searchModel->tour_id], ['class' => 'btn btn-default']) ?>
-                <?= Html::a(Yii::t('app', 'Create Month'), ['create', 'tour_id' => $searchModel->tour_id], ['class' => 'btn btn-success']) ?>
+                <?= Html::a(Yii::t('app', 'Создать месяц'), ['create', 'tour_id' => $searchModel->tour_id], ['class' => 'btn btn-success']) ?>
             </p>
 
             <?= GridView::widget([

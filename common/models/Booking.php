@@ -12,8 +12,6 @@ use yii\helpers\ArrayHelper;
  * @property int $tour_id
  * @property int $month_id
  * @property int $stage_id
- * @property int $places_count_beads
- * @property int $places_count_lavender
  * @property int $user_places_count
  * @property int $total_price
  * @property string $customer_name
@@ -43,7 +41,7 @@ class Booking extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['tour_id', 'month_id', 'stage_id', 'places_count_beads', 'places_count_lavender', 'user_places_count', 'total_price', 'confirm', 'created_at', 'done_at', 'viewed'], 'integer'],
+            [['tour_id', 'month_id', 'stage_id', 'user_places_count', 'total_price', 'confirm', 'created_at', 'done_at', 'viewed'], 'integer'],
             [['tour_id', 'month_id', 'stage_id','customer_name', 'customer_phone'], 'required'],
             [['customer_name', 'customer_phone'], 'string', 'max' => 255],
             [['month_id'], 'exist', 'skipOnError' => true, 'targetClass' => Month::className(), 'targetAttribute' => ['month_id' => 'id']],
@@ -59,18 +57,16 @@ class Booking extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'tour_id' => 'Tour ID',
-            'month_id' => 'Month ID',
-            'stage_id' => 'Stage ID',
-            'places_count_beads' => 'Places Count Beads',
-            'places_count_lavender' => 'Places Count Lavender',
-            'user_places_count' => 'User Places Count',
-            'total_price' => 'Total Price',
-            'customer_name' => 'Customer Name',
-            'customer_phone' => 'Customer Phone',
-            'confirm' => 'Confirm',
-            'created_at' => 'Created At',
-            'done_at' => 'Done At',
+            'tour_id' => 'Тур',
+            'month_id' => 'Месяц',
+            'stage_id' => 'Заезд',
+            'user_places_count' => 'Кол-во мест',
+            'total_price' => 'Стоимость',
+            'customer_name' => 'Имя Клиента',
+            'customer_phone' => 'Телефон клиента',
+            'confirm' => 'Подтверждение',
+            'created_at' => 'Дата создания',
+            'done_at' => 'Дата изменения',
             'viewed' => 'Viewed',
         ];
     }

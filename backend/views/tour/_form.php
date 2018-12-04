@@ -1,4 +1,4 @@
-+<?php
+<?php
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
@@ -15,9 +15,13 @@ use mihaildev\ckeditor\CKEditor;
 
     <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
 
+    <?= $form->field($model, 'title_add')->textInput(['maxlength' => true]) ?>
+
     <?= $form->field($model, 'city_id')->dropDownList($model::getCityFromDropDown(), ['prompt' => 'Выбрать город...']) ?>
 
     <?= $form->field($model, 'min_price')->textInput() ?>
+
+    <?= $form->field($model, 'max_count')->textInput() ?>
 
     <?= $form->field($model, 'short_description')->textInput(['maxlength' => true]) ?>
 
@@ -42,8 +46,12 @@ use mihaildev\ckeditor\CKEditor;
 
     <?= $form->field($model, 'hot')->checkbox() ?>
 
+    <?= $form->field($model, 'show_on_home')->checkbox() ?>
+
+    <?= $form->field($model, 'free_field')->textInput() ?>
+
     <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton('Сохранить', ['class' => 'btn btn-success']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

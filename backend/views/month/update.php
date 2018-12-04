@@ -5,12 +5,12 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model common\models\Month */
 
-$this->title = Yii::t('app', 'Update Month: {name}', [
+$this->title = Yii::t('app', 'Редактирование: {name}', [
     'name' => $model->title,
 ]);
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Months'), 'url' => ['index', 'tour_id' => $model->tour_id]];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Месяца'), 'url' => ['index', 'tour_id' => $model->tour_id]];
 $this->params['breadcrumbs'][] = ['label' => $model->title, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = Yii::t('app', 'Update');
+$this->params['breadcrumbs'][] = Yii::t('app', 'Редактирование');
 ?>
 <div class="month-update">
 

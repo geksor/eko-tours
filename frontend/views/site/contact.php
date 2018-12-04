@@ -22,11 +22,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <ul>
                     <li>
                         <img src="/public/images/svg/map_1.svg" alt="Рябиновые бусы">
-                        Рябиновые бусы: Адыгея Майкопский<br>р-н <?= $model->address_beads ?>
-                    </li>
-                    <li>
-                        <img src="/public/images/svg/map_1.svg" alt="Горная лаванда">
-                        Горная лаванда: Адыгея Майкопский<br>р-н <?= $model->address_lavender ?>
+                        Адрес: <?= $model->address ?>
                     </li>
                     <li>
                         <img src="/public/images/svg/mail_1.svg" alt="Рябиновые бусы">

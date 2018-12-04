@@ -7,7 +7,7 @@ use yii\widgets\Pjax;
 /* @var $searchModel common\models\CallBackSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Call Backs';
+$this->title = 'Обратная связь';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="call-back-index">

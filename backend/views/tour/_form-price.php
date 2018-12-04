@@ -9,7 +9,7 @@ use yii\widgets\ActiveForm;
 /* @var $priceSections */
 ?>
 
-<div class="category-form-attr">
+<div class="tour-form-attr">
 
     <?php $form = ActiveForm::begin(); ?>
 

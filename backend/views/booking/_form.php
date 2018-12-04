@@ -18,10 +18,6 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'stage_id')->dropDownList($model::getStageFromFilter()) ?>
 
-    <?= $form->field($model, 'places_count_beads')->textInput() ?>
-
-    <?= $form->field($model, 'places_count_lavender')->textInput() ?>
-
     <?= $form->field($model, 'user_places_count')->textInput() ?>
 
     <?= $form->field($model, 'total_price')->textInput() ?>
@@ -33,7 +29,7 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'confirm')->checkbox() ?>
 
     <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton('Сохранить', ['class' => 'btn btn-success']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

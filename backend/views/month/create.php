@@ -6,8 +6,8 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model common\models\Month */
 
-$this->title = Yii::t('app', 'Create Month');
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Months'), 'url' => ['index', 'tour_id' => $model->tour_id]];
+$this->title = Yii::t('app', 'Создание месяца');
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Месяца'), 'url' => ['index', 'tour_id' => $model->tour_id]];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="month-create">

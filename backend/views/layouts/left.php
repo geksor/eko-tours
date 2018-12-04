@@ -55,10 +55,29 @@
                                     || Yii::$app->controller->id === 'timetable-item',
                             ],
                             [
-                                'label' => 'Города',
+                                'label' => 'Направления',
                                 'icon' => 'globe',
                                 'url' => ['/city'],
                                 "active" => Yii::$app->controller->id === 'city',
+                            ],
+                            [
+                                'label' => 'Атрибуты туров',
+                                'icon' => 'globe',
+                                'url' => '#',
+                                'items' => [
+                                    [
+                                      'label' => 'Группы атрибутов',
+                                      'icon' => 'globe',
+                                      'url' => ['/attr-group'],
+                                      'active' => Yii::$app->controller->id === 'attr-group',
+                                    ],
+                                    [
+                                      'label' => 'Атрибуты',
+                                      'icon' => 'globe',
+                                      'url' => ['/attr'],
+                                      'active' => Yii::$app->controller->id === 'attr',
+                                    ],
+                                ],
                             ],
                             [
                                 'label' => 'Раздел цены',

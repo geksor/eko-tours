@@ -7,7 +7,7 @@ use yii\widgets\Pjax;
 /* @var $searchModel common\models\BookingSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Bookings';
+$this->title = 'Запись';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="booking-index">
@@ -18,7 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
             <p>
-                <?= Html::a('Create Booking', ['create'], ['class' => 'btn btn-success']) ?>
+                <?= Html::a('Создать запись', ['create'], ['class' => 'btn btn-success']) ?>
             </p>
 
             <?= GridView::widget([
@@ -69,8 +69,6 @@ $this->params['breadcrumbs'][] = $this->title;
                             return null;
                         }
                     ],
-//                    'places_count_beads',
-                    //'places_count_lavender',
 //                    'user_places_count',
                     //'total_price',
                     'customer_name',

@@ -45,16 +45,14 @@ use kartik\datetime\DateTimePicker;
         ]
     ]) ?>
 
-    <?= $form->field($model, 'places_beads')->textInput() ?>
-
-    <?= $form->field($model, 'places_lavender')->textInput() ?>
+    <?= $form->field($model, 'places')->textInput() ?>
 
     <?= $form->field($model, 'price')->textInput() ?>
 
     <?= $form->field($model, 'publish')->checkbox() ?>
 
     <div class="form-group">
-        <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton(Yii::t('app', 'Сохранить'), ['class' => 'btn btn-success']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

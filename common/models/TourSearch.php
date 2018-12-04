@@ -17,8 +17,8 @@ class TourSearch extends Tour
     public function rules()
     {
         return [
-            [['id', 'rank', 'publish', 'hot', 'deleted', 'min_price', 'places_count', 'city_id'], 'integer'],
-            [['title', 'alias', 'short_description', 'description', 'meta_title', 'meta_description'], 'safe'],
+            [['id', 'rank', 'publish', 'hot', 'deleted', 'min_price', 'places_count', 'city_id', 'max_count', 'show_on_home'], 'integer'],
+            [['title', 'alias', 'short_description', 'description', 'meta_title', 'meta_description', 'title_add', 'free_field'], 'safe'],
         ];
     }
 
@@ -66,6 +66,8 @@ class TourSearch extends Tour
             'min_price' => $this->min_price,
             'places_count' => $this->places_count,
             'city_id' => $this->city_id,
+            'max_count' => $this->max_count,
+            'show_on_home' => $this->show_on_home,
         ]);
 
         $query->andFilterWhere(['like', 'title', $this->title])
@@ -73,7 +75,9 @@ class TourSearch extends Tour
             ->andFilterWhere(['like', 'short_description', $this->short_description])
             ->andFilterWhere(['like', 'description', $this->description])
             ->andFilterWhere(['like', 'meta_title', $this->meta_title])
-            ->andFilterWhere(['like', 'meta_description', $this->meta_description]);
+            ->andFilterWhere(['like', 'meta_description', $this->meta_description])
+            ->andFilterWhere(['like', 'title_add', $this->title_add])
+            ->andFilterWhere(['like', 'free_field', $this->free_field]);
 
         return $dataProvider;
     }

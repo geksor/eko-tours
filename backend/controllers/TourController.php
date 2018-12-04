@@ -256,4 +256,23 @@ class TourController extends Controller
         return $this->redirect(Yii::$app->request->referrer);
     }
 
+    /**
+     * @param $id
+     * @return string|\yii\web\Response
+     * @throws NotFoundHttpException
+     */
+    public function actionAttrs($id)
+    {
+        $model = $this->findModel($id);
+
+        if ($model->load(Yii::$app->request->post())) {
+            $model->saveTourAttr($model->selectedTourAttr);
+            return $this->redirect(['view', 'id' => $model->id]);
+        }
+
+        return $this->render('attrs', [
+            'model' => $model,
+        ]);
+    }
+
 }

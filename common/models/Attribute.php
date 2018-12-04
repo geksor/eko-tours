@@ -34,7 +34,7 @@ class Attribute extends \yii\db\ActiveRecord
         return [
             [['rank'], 'integer'],
             [['title', 'image'], 'string', 'max' => 255],
-            [['rank'], 'default', 'value' => 1],
+            [['rank'], 'default', 'value' => 100],
         ];
     }
 
@@ -45,9 +45,9 @@ class Attribute extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'title' => 'Title',
-            'image' => 'Image',
-            'rank' => 'Rank',
+            'title' => 'Название',
+            'image' => 'Изображение',
+            'rank' => 'Порядок вывода',
         ];
     }
 

@@ -6,8 +6,8 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model common\models\Know */
 
-$this->title = 'Create Know';
-$this->params['breadcrumbs'][] = ['label' => 'Knows', 'url' => ['index']];
+$this->title = 'Создание раздела';
+$this->params['breadcrumbs'][] = ['label' => 'Туристам', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="know-create">

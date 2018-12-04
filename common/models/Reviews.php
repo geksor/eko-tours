@@ -43,7 +43,7 @@ class Reviews extends \yii\db\ActiveRecord
             [['create_at', 'done_at',], 'safe'],
             [['user_name', 'phone'], 'string', 'max' => 255],
             [['tour_id'], 'exist', 'skipOnError' => true, 'targetClass' => Tour::className(), 'targetAttribute' => ['tour_id' => 'id']],
-            [['rank'], 'default', 'value' => 1],
+            [['rank'], 'default', 'value' => 100],
         ];
     }
 
@@ -54,15 +54,15 @@ class Reviews extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'tour_id' => 'Tour ID',
-            'user_name' => 'User Name',
-            'phone' => 'Phone',
-            'text' => 'Text',
-            'create_at' => 'Create At',
-            'done_at' => 'Done At',
-            'publish' => 'Publish',
-            'from_widget' => 'From Widget',
-            'rank' => 'Rank',
+            'tour_id' => 'Тур',
+            'user_name' => 'Имя',
+            'phone' => 'Телефон',
+            'text' => 'Текст отзыва',
+            'create_at' => 'Создан',
+            'done_at' => 'Изменен',
+            'publish' => 'Публикация',
+            'from_widget' => 'Выводить на главной',
+            'rank' => 'Порядок вывода',
             'viewed' => 'Viewed',
         ];
     }

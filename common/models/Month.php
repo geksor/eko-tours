@@ -14,6 +14,7 @@ use Yii;
  * @property string $image
  * @property int $publish
  * @property int $deleted
+ * @property int $maxCount
  *
  * @property Booking[] $bookings
  * @property Tour $tour
@@ -21,6 +22,14 @@ use Yii;
  */
 class Month extends \yii\db\ActiveRecord
 {
+    public $maxCount;
+
+    public function afterFind()
+    {
+        $this->maxCount = $this->tour->max_count;
+        parent::afterFind();
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -50,11 +59,11 @@ class Month extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'tour_id' => 'Tour ID',
-            'title' => 'Title',
-            'image' => 'Image',
-            'publish' => 'Publish',
-            'deleted' => 'Deleted',
+            'tour_id' => 'Тур',
+            'title' => 'Название',
+            'image' => 'Изображение',
+            'publish' => 'Побликация',
+            'deleted' => 'Удален',
         ];
     }
 

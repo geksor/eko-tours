@@ -3,10 +3,10 @@
 /* @var $this yii\web\View */
 /* @var $model common\models\PriceSection */
 
-$this->title = 'Update Price Section: '.$model->title;
-$this->params['breadcrumbs'][] = ['label' => 'Price Sections', 'url' => ['index']];
+$this->title = 'Редактирование: '.$model->title;
+$this->params['breadcrumbs'][] = ['label' => 'Раздел цен', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->title, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = 'Update';
+$this->params['breadcrumbs'][] = 'Редактирование';
 ?>
 <div class="price-section-update">
 

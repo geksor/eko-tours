@@ -8,7 +8,7 @@ use zxbodya\yii2\galleryManager\GalleryManager;
 /* @var $model common\models\Tour */
 
 $this->title = $model->title;
-$this->params['breadcrumbs'][] = ['label' => 'Tours', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Туры', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
@@ -19,17 +19,19 @@ $this->params['breadcrumbs'][] = $this->title;
 
             <p>
                 <?= Html::a('<i class="fa fa-reply" aria-hidden="true"></i>', ['index'], ['class' => 'btn btn-default']) ?>
-                <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-                <?= Html::a('Delete', ['delete', 'id' => $model->id], [
+                <?= Html::a('Редактировать', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+                <?= Html::a('Удалить', ['delete', 'id' => $model->id], [
                     'class' => 'btn btn-danger',
                     'data' => [
-                        'confirm' => 'Are you sure you want to delete this item?',
+                        'confirm' => 'Вы уверены что хотите удалить запись?',
                         'method' => 'post',
                     ],
                 ]) ?>
+                <?= Html::a('Создать новый тур', ['create'], ['class' => 'btn btn-warning']) ?>
                 <?= Html::a('Месяца', ['month/index', 'tour_id' => $model->id], ['class' => 'btn btn-default']) ?>
                 <?= Html::a('Расписание', ['timetable-day/index', 'tour_id' => $model->id], ['class' => 'btn btn-default']) ?>
                 <?= Html::a('Раздел цены', ['price', 'id' => $model->id], ['class' => 'btn btn-default']) ?>
+                <?= Html::a('Выбор атрибутов', ['attrs', 'id' => $model->id], ['class' => 'btn btn-default']) ?>
 
             </p>
 
@@ -38,7 +40,9 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attributes' => [
                     'id',
                     'title',
+                    'title_add',
                     'min_price:decimal',
+                    'max_count',
                     'alias',
                     'short_description',
                     [
@@ -59,17 +63,9 @@ $this->params['breadcrumbs'][] = $this->title;
                             return 'Не опубликован';
                         }
                     ],
-                    [
-                        'attribute' => 'hot',
-                        'label' => 'Горящий тур',
-                        'value' => function ($data){
-                            /* @var $data \common\models\Tour */
-                            if ($data->hot){
-                                return 'Да';
-                            }
-                            return 'Нет';
-                        }
-                    ],
+                    'hot:boolean',
+                    'free_field',
+                    'show_on_home:boolean'
                 ],
             ]) ?>
 

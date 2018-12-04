@@ -15,6 +15,7 @@ class m181201_190538_create_city_table extends Migration
         $this->createTable('city', [
             'id' => $this->primaryKey(),
             'title' => $this->string(),
+            'rank' => $this->integer(),
         ]);
     }
 

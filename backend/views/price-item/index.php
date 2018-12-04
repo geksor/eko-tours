@@ -20,7 +20,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
             <p>
                 <?= Html::a('<i class="fa fa-reply" aria-hidden="true"></i>', ['price-section/view', 'id' => $searchModel->price_section_id], ['class' => 'btn btn-default']) ?>
-                <?= Html::a('Create Price Item', ['create', 'section_id' => $searchModel->price_section_id], ['class' => 'btn btn-success']) ?>
+                <?= Html::a('Создать элемент', ['create', 'section_id' => $searchModel->price_section_id], ['class' => 'btn btn-success']) ?>
             </p>
 
             <?= GridView::widget([

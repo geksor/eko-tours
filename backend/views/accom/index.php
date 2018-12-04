@@ -7,7 +7,7 @@ use yii\widgets\Pjax;
 /* @var $searchModel common\models\AccomSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Accoms';
+$this->title = 'Размещение';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="accom-index">
@@ -18,7 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
             <p>
-                <?= Html::a('Create Accom', ['create'], ['class' => 'btn btn-success']) ?>
+                <?= Html::a('Создать размещение', ['create'], ['class' => 'btn btn-success']) ?>
             </p>
 
             <?= GridView::widget([

@@ -17,7 +17,7 @@ class StageSearch extends Stage
     public function rules()
     {
         return [
-            [['id', 'month_id', 'start_date', 'end_date', 'places_beads', 'places_lavender', 'price', 'publish', 'deleted'], 'integer'],
+            [['id', 'month_id', 'start_date', 'end_date', 'places', 'price', 'publish', 'deleted'], 'integer'],
         ];
     }
 
@@ -61,8 +61,7 @@ class StageSearch extends Stage
             'month_id' => $this->month_id,
             'start_date' => $this->start_date,
             'end_date' => $this->end_date,
-            'places_beads' => $this->places_beads,
-            'places_lavender' => $this->places_lavender,
+            'places' => $this->places,
             'price' => $this->price,
             'publish' => $this->publish,
             'deleted' => 0,

@@ -5,10 +5,10 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model common\models\PriceItem */
 
-$this->title = 'Update Price Item: '.$model->text;
+$this->title = 'Редактирование: '.$model->text;
 $this->params['breadcrumbs'][] = ['label' => 'Price Items', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->text, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = 'Update';
+$this->params['breadcrumbs'][] = 'Редактирование';
 ?>
 <div class="price-item-update">
 

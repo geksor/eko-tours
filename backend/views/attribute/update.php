@@ -5,10 +5,10 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model common\models\Attribute */
 
-$this->title = 'Update Attribute: '.$model->title;
-$this->params['breadcrumbs'][] = ['label' => 'Attributes', 'url' => ['index']];
+$this->title = 'Редактирование атрибута: '.$model->title;
+$this->params['breadcrumbs'][] = ['label' => 'Атрибуты номеров', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->title, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = 'Update';
+$this->params['breadcrumbs'][] = 'Редактирование';
 ?>
 <div class="attribute-update">
 

@@ -26,11 +26,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'stage_id') ?>
 
-    <?= $form->field($model, 'places_count_beads') ?>
-
-    <?php // echo $form->field($model, 'places_count_lavender') ?>
-
-    <?php // echo $form->field($model, 'user_places_count') ?>
+    <?= $form->field($model, 'user_places_count') ?>
 
     <?php // echo $form->field($model, 'total_price') ?>
 

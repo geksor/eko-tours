@@ -9,6 +9,7 @@ use Yii;
  *
  * @property int $id
  * @property string $title
+ * @property int $rank
  *
  * @property Tour[] $tours
  */
@@ -29,6 +30,8 @@ class City extends \yii\db\ActiveRecord
     {
         return [
             [['title'], 'string', 'max' => 255],
+            [['rank'], 'integer'],
+            [['rank'], 'default', 'value' => 100],
         ];
     }
 
@@ -39,7 +42,8 @@ class City extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'title' => 'Title',
+            'title' => 'Название',
+            'rank' => 'Порядок вывода'
         ];
     }
 

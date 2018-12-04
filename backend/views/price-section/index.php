@@ -7,7 +7,7 @@ use yii\widgets\Pjax;
 /* @var $searchModel common\models\PriceSectionSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Price Sections';
+$this->title = 'Разделы цен';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="price-section-index">
@@ -18,7 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
             <p>
-                <?= Html::a('Create Price Section', ['create'], ['class' => 'btn btn-success']) ?>
+                <?= Html::a('Создать раздел', ['create'], ['class' => 'btn btn-success']) ?>
             </p>
 
             <?= GridView::widget([

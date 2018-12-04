@@ -38,7 +38,7 @@ class Know extends \yii\db\ActiveRecord
             [['text'], 'string'],
             [['image_count', 'rank'], 'integer'],
             [['title'], 'string', 'max' => 255],
-            [['rank'], 'default', 'value' => 1],
+            [['rank'], 'default', 'value' => 100],
         ];
     }
 
@@ -49,10 +49,10 @@ class Know extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'title' => 'Title',
-            'text' => 'Text',
-            'image_count' => 'Image Count',
-            'rank' => 'Rank',
+            'title' => 'Название',
+            'text' => 'Текст',
+            'image_count' => 'Кол-во изображений для вывода',
+            'rank' => 'Порядок вывода',
         ];
     }
 

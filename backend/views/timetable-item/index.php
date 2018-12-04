@@ -20,7 +20,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
             <p>
                 <?= Html::a('<i class="fa fa-reply" aria-hidden="true"></i>', ['timetable-day/view', 'id' => $searchModel->timetable_day_id], ['class' => 'btn btn-default']) ?>
-                <?= Html::a(Yii::t('app', 'Create Timetable Item'), ['create', 'day_id' => $searchModel->timetable_day_id], ['class' => 'btn btn-success']) ?>
+                <?= Html::a(Yii::t('app', 'Создание события'), ['create', 'day_id' => $searchModel->timetable_day_id], ['class' => 'btn btn-success']) ?>
             </p>
 
             <?= GridView::widget([

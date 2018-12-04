@@ -47,11 +47,11 @@ class TimetableItem extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'timetable_day_id' => 'Timetable Day ID',
-            'start_time' => 'Start Time',
-            'end_time' => 'End Time',
-            'text' => 'Text',
-            'publish' => 'Publish',
+            'timetable_day_id' => 'День',
+            'start_time' => 'Время начала',
+            'end_time' => 'Время завершения',
+            'text' => 'Текст',
+            'publish' => 'Публикация',
         ];
     }
 

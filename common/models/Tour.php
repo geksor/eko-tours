@@ -26,6 +26,10 @@ use zxbodya\yii2\galleryManager\GalleryBehavior;
  * @property int $min_price
  * @property int $places_count
  * @property int $city_id
+ * @property string $title_add
+ * @property int $max_count
+ * @property string $free_field
+ * @property int $show_on_home
  *
  * @property Booking[] $bookings
  * @property Month[] $months
@@ -37,10 +41,19 @@ use zxbodya\yii2\galleryManager\GalleryBehavior;
  * @property PriceItem[] $priceItems
  * @property TourPriceSection[] $tourPriceSections
  * @property PriceSection[] $priceSections
+ *
+ * @property City $city
+ * @property TourAttr[] $tourAttrs
+ * @property Attr[] $attrs
+ *
+ * @property $selectedTourAttr
+ * @property $selectAttr
+ *
  */
 class Tour extends \yii\db\ActiveRecord
 {
     public $tourPrice = [];
+    public $selectedTourAttr;
     /**
      * {@inheritdoc}
      */
@@ -52,6 +65,7 @@ class Tour extends \yii\db\ActiveRecord
     public function afterFind()
     {
         $this->tourPrice = $this->getSelectedPrice();
+        $this->selectedTourAttr = $this->selectAttr;
         parent::afterFind();
     }
 
@@ -62,11 +76,11 @@ class Tour extends \yii\db\ActiveRecord
     {
         return [
             [['title', 'min_price', 'places_count'], 'required'],
-            [['tourPrice'], 'safe'],
+            [['tourPrice', 'selectedTourAttr'], 'safe'],
             [['description', 'meta_description'], 'string'],
-            [['rank', 'publish', 'hot', 'deleted', 'min_price', 'places_count', 'city_id'], 'integer'],
-            [['title', 'alias', 'short_description', 'meta_title'], 'string', 'max' => 255],
-            [['rank'], 'default', 'value' => 1],
+            [['rank', 'publish', 'hot', 'deleted', 'min_price', 'places_count', 'city_id', 'max_count', 'show_on_home'], 'integer'],
+            [['title', 'alias', 'short_description', 'meta_title', 'title_add', 'free_field'], 'string', 'max' => 255],
+            [['rank'], 'default', 'value' => 100],
         ];
     }
 
@@ -77,19 +91,25 @@ class Tour extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'title' => 'Title',
-            'alias' => 'Alias',
-            'short_description' => 'Short Description',
-            'description' => 'Description',
+            'title' => 'Название',
+            'title_add' => 'Вторая часть названия',
+            'alias' => 'Название в адресной строке',
+            'short_description' => 'Короткое описание',
+            'description' => 'Описание',
             'meta_title' => 'Meta Title',
             'meta_description' => 'Meta Description',
-            'rank' => 'Rank',
-            'publish' => 'Publish',
-            'hot' => 'Hot',
-            'deleted' => 'Deleted',
+            'rank' => 'Порядок вывода',
+            'publish' => 'Публикация',
+            'hot' => 'Горящий',
+            'deleted' => 'Удален',
             'min_price' => 'Цена от',
             'places_count' => 'Мест осталось',
-            'city_id' => 'City ID',
+            'city_id' => 'Направление',
+            'max_count' => 'Максимальное кол-во мест',
+            'free_field' => 'Свободное поле',
+            'show_on_home' => 'Показывать на главной',
+            'selectedTourAttr' => 'Атрибуты',
+            'tourPrice' => 'Разделы цен'
         ];
     }
 
@@ -140,6 +160,32 @@ class Tour extends \yii\db\ActiveRecord
     public static function getCityFromDropDown()
     {
         return ArrayHelper::map(City::find()->all(), 'id', 'title');
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getTourAttrs()
+    {
+        return $this->hasMany(TourAttr::className(), ['tour_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getAttrs()
+    {
+        return $this->hasMany(Attr::className(), ['id' => 'attr_id'])->viaTable('tour_attr', ['tour_id' => 'id']);
+    }
+
+    public function getSelectAttr()
+    {
+        return ArrayHelper::getColumn($this->getAttrs()->select('id')->all(), 'id');
+    }
+
+    public static function getAttrFromDropDown()
+    {
+        return ArrayHelper::map(Attr::find()->orderBy(['attr_group_id' => SORT_ASC,'rank' => SORT_ASC])->all(), 'id', 'title', 'groupName');
     }
 
     /**
@@ -229,6 +275,22 @@ class Tour extends \yii\db\ActiveRecord
     {
         $selectedAttributes = $this->getPriceSections()->select('id')->asArray()->all();
         return ArrayHelper::getColumn($selectedAttributes, 'id');
+    }
+
+    /**
+     * @param $attrs array ([0 => attr_id, 1 => attr_id, ...])
+     */
+    public function saveTourAttr($attrs)
+    {
+        TourAttr::deleteAll(['tour_id' => $this->id]);
+        if (is_array($attrs))
+        {
+            foreach ($attrs as $attr_id)
+            {
+                $attr = Attr::findOne($attr_id);
+                $this->link('attrs', $attr);
+            }
+        }
     }
 
     /**

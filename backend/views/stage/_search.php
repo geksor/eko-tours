@@ -26,9 +26,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'end_date') ?>
 
-    <?= $form->field($model, 'places_beads') ?>
-
-    <?php // echo $form->field($model, 'places_lavender') ?>
+    <?= $form->field($model, 'places') ?>
 
     <?php // echo $form->field($model, 'price') ?>
 

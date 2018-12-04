@@ -43,8 +43,8 @@ class TimetableDay extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'tour_id' => 'Tour ID',
-            'day_number' => 'Day Number',
+            'tour_id' => 'Тур',
+            'day_number' => 'Номер дня',
         ];
     }
 

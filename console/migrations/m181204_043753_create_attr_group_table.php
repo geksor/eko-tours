@@ -3,18 +3,19 @@
 use yii\db\Migration;
 
 /**
- * Handles the creation of table `tour_type`.
+ * Handles the creation of table `attr_group`.
  */
-class m181201_190556_create_tour_type_table extends Migration
+class m181204_043753_create_attr_group_table extends Migration
 {
     /**
      * {@inheritdoc}
      */
     public function safeUp()
     {
-        $this->createTable('tour_type', [
+        $this->createTable('attr_group', [
             'id' => $this->primaryKey(),
             'title' => $this->string(),
+            'rank' => $this->integer(),
         ]);
     }
 
@@ -23,6 +24,6 @@ class m181201_190556_create_tour_type_table extends Migration
      */
     public function safeDown()
     {
-        $this->dropTable('tour_type');
+        $this->dropTable('attr_group');
     }
 }

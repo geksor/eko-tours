@@ -25,8 +25,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
             <h2>Контакты</h2>
 
-            <?= $form->field($model, 'address_beads') ?>
-            <?= $form->field($model, 'address_lavender') ?>
+            <?= $form->field($model, 'address') ?>
             <?= $form->field($model, 'phone') ?>
             <?= $form->field($model, 'email') ?>
             <?= $form->field($model, 'mapScript') ?>
