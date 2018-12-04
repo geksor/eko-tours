@@ -2,13 +2,17 @@
 namespace frontend\controllers;
 
 use common\models\AboutPage;
+use common\models\City;
 use common\models\Contact;
 use common\models\HomePage;
 use common\models\Know;
+use common\models\Month;
+use common\models\Tour;
 use common\models\TouristPage;
 use common\models\ToursPage;
 use Yii;
 use yii\base\InvalidParamException;
+use yii\helpers\VarDumper;
 use yii\web\BadRequestHttpException;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
@@ -131,5 +135,47 @@ class SiteController extends Controller
             'models' => $models,
             'pageParams' => $pageParams,
         ]);
+    }
+
+    public function actionTimetable()
+    {
+
+        $models = City::find()
+            ->with([
+                'tours' => function (\yii\db\ActiveQuery $query) {
+                    $query
+                        ->andWhere(['publish' => 1, 'deleted' => 0])
+                        ->with([
+                            'months' => function (\yii\db\ActiveQuery $query) {
+                                $query
+                                    ->where(['publish' => 1])
+                                    ->andWhere(['>', 'title', strtotime('first day of this month 00:00:00')-100])
+                                    ->with([
+                                        'tour' => function (\yii\db\ActiveQuery $query) {
+                                            $query
+                                                ->andWhere(['publish' => 1, 'deleted' => 0])
+                                                ->with([
+                                                    'months' => function (\yii\db\ActiveQuery $query) {
+                                                        $query
+                                                            ->andWhere(['publish' => 1])
+                                                            ->with(['stages' => function (\yii\db\ActiveQuery $query) {
+                                                                $query->andWhere(['publish' => 1])->orderBy(['start_date' => SORT_ASC]);
+                                                            }])
+                                                            ->orderBy(['title' => SORT_ASC]);
+                                                    },
+                                                ])
+                                                ->orderBy(['rank' => SORT_ASC]);
+                                        },
+                                    ])
+                                    ->orderBy(['title' => SORT_ASC]);
+                                },
+                            ])
+                        ->orderBy(['rank' => SORT_ASC]);
+                    },
+                ])
+            ->orderBy(['rank' => SORT_ASC])
+            ->all();
+
+        VarDumper::dump($models,20,true);die;
     }
 }
