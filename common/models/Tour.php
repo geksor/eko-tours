@@ -48,12 +48,21 @@ use zxbodya\yii2\galleryManager\GalleryBehavior;
  *
  * @property $selectedTourAttr
  * @property $selectAttr
+ * @property $selectedTourKnow
+ * @property $selectKnow
+ * @property $selectedTourAccom
+ * @property $selectAccom
+ *
+ * @property TourAccom[] $tourAccoms
+ * @property Accom[] $accoms
  *
  */
 class Tour extends \yii\db\ActiveRecord
 {
     public $tourPrice = [];
     public $selectedTourAttr;
+    public $selectedTourKnow;
+    public $selectedTourAccom;
     /**
      * {@inheritdoc}
      */
@@ -66,6 +75,8 @@ class Tour extends \yii\db\ActiveRecord
     {
         $this->tourPrice = $this->getSelectedPrice();
         $this->selectedTourAttr = $this->selectAttr;
+        $this->selectedTourKnow = $this->selectKnow;
+        $this->selectedTourAccom = $this->selectAccom;
         parent::afterFind();
     }
 
@@ -76,7 +87,7 @@ class Tour extends \yii\db\ActiveRecord
     {
         return [
             [['title', 'min_price', 'places_count'], 'required'],
-            [['tourPrice', 'selectedTourAttr'], 'safe'],
+            [['tourPrice', 'selectedTourAttr', 'selectedTourKnow', 'selectedTourAccom'], 'safe'],
             [['description', 'meta_description'], 'string'],
             [['rank', 'publish', 'hot', 'deleted', 'min_price', 'places_count', 'city_id', 'max_count', 'show_on_home'], 'integer'],
             [['title', 'alias', 'short_description', 'meta_title', 'title_add', 'free_field'], 'string', 'max' => 255],
@@ -109,7 +120,9 @@ class Tour extends \yii\db\ActiveRecord
             'free_field' => 'Свободное поле',
             'show_on_home' => 'Показывать на главной',
             'selectedTourAttr' => 'Атрибуты',
-            'tourPrice' => 'Разделы цен'
+            'tourPrice' => 'Разделы цен',
+            'selectedTourKnow' => 'Разделы туристам',
+            'selectedTourAccom' => 'Разделы размещение'
         ];
     }
 
@@ -236,6 +249,16 @@ class Tour extends \yii\db\ActiveRecord
         return $this->hasMany(Know::className(), ['id' => 'know_id'])->viaTable('tour_know', ['tour_id' => 'id']);
     }
 
+    public function getSelectKnow()
+    {
+        return ArrayHelper::getColumn($this->getKnows()->select('id')->all(),'id');
+    }
+
+    public static function getKnowsFromDropDown()
+    {
+        return ArrayHelper::map(Know::find()->orderBy(['rank' => SORT_ASC])->all(), 'id', 'title');
+    }
+
     /**
      * @return \yii\db\ActiveQuery
      */
@@ -294,6 +317,38 @@ class Tour extends \yii\db\ActiveRecord
     }
 
     /**
+     * @param $knows array ([0 => know_id, 1 => know_id, ...])
+     */
+    public function saveTourKnow($knows)
+    {
+        TourKnow::deleteAll(['tour_id' => $this->id]);
+        if (is_array($knows))
+        {
+            foreach ($knows as $know_id)
+            {
+                $know = Know::findOne($know_id);
+                $this->link('knows', $know);
+            }
+        }
+    }
+
+    /**
+     * @param $accoms array ([0 => accom_id, 1 => accom_id, ...])
+     */
+    public function saveTourAccom($accoms)
+    {
+        TourAccom::deleteAll(['tour_id' => $this->id]);
+        if (is_array($accoms))
+        {
+            foreach ($accoms as $accom_id)
+            {
+                $accom = Accom::findOne($accom_id);
+                $this->link('accoms', $accom);
+            }
+        }
+    }
+
+    /**
      * @param $priceSections array ([0 => $priceSections_id, 1 => $priceSections_id, ...])
      */
     public function saveTourPrice($priceSections)
@@ -337,6 +392,32 @@ class Tour extends \yii\db\ActiveRecord
         $this->alias = Inflector::slug($this->alias);
 
         return parent::beforeValidate();
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getTourAccoms()
+    {
+        return $this->hasMany(TourAccom::className(), ['tour_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getAccoms()
+    {
+        return $this->hasMany(Accom::className(), ['id' => 'accom_id'])->viaTable('tour_accom', ['tour_id' => 'id']);
+    }
+
+    public function getSelectAccom()
+    {
+        return ArrayHelper::getColumn($this->getAccoms()->select('id')->all(), 'id');
+    }
+
+    public static function getAccomFromDropDown()
+    {
+        return ArrayHelper::map(Accom::find()->orderBy(['rank' => SORT_ASC])->all(), 'id', 'title');
     }
 
 }

@@ -53,7 +53,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 </div>
             </div>
             <div class="tour_in_des">
-                <h1 class="h2"><?= $model->title ?> от <span><?= Yii::$app->formatter->asInteger($model->min_price) ?> руб./чел.</span></h1>
+                <h1 class="h2"><?= $model->title ?><br><?= $model->title_add ?> от <span><?= Yii::$app->formatter->asInteger($model->min_price) ?> руб./чел.</span></h1>
                 <p><strong><?= $model->short_description ?></strong></p>
                 <?= $model->description ?>
             </div>
@@ -88,8 +88,8 @@ $this->params['breadcrumbs'][] = $this->title;
         <?}?>
     </div>
     <div id="tabs-3">
-        <? if ($models) {?>
-            <? foreach ($models as $accom) {/* @var $model \common\models\Accom */?>
+        <? if ($model->accoms) {?>
+            <? foreach ($model->accoms as $accom) {/* @var $model \common\models\Accom */?>
                 <div class="tour_in">
                     <h2 class="h4"><?= $accom->title ?></h2>
                     <div class="apart_des">
@@ -162,12 +162,18 @@ $this->params['breadcrumbs'][] = $this->title;
                     <div class="price_tour_img">
                         <? $images = $know->getBehavior('galleryBehavior')->getImages(); ?>
                         <? if ($images) {?>
-                            <? foreach ($images as $image) {?>
-                                <a href="<?= $image->getUrl('original') ?>" class="gall_link" data-fancybox="gallery10">
-                                    <img src="<?= $image->getUrl('medium') ?>" alt="<?= $image->name ?>">
-                                    <i class="fas fa-search-plus zoom_icon"></i>
-                                </a>
-                            <?}?>
+                            <?
+                                $i = 1;
+                                $count = $know->image_count?(integer)$know->image_count:2;
+
+                                foreach ($images as $image) {?>
+                                    <? if ($i <= $count) {?>
+                                        <a href="<?= $image->getUrl('original') ?>" class="gall_link" data-fancybox="gallery10">
+                                            <img src="<?= $image->getUrl('medium') ?>" alt="<?= $image->name ?>">
+                                            <i class="fas fa-search-plus zoom_icon"></i>
+                                        </a>
+                                    <?}else{break;}?>
+                            <?$i++;}?>
                         <?}?>
                     </div>
                 </div>

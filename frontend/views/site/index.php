@@ -34,8 +34,6 @@ $this->registerMetaTag([
 
 <?= \frontend\widgets\ToursHomeWidget::widget() ?>
 
-<?= \frontend\widgets\HotelHomeWidget::widget() ?>
-
 <div class="cont">
     <div class = "h2_inst">
         <img src="/public/img/insta.png" alt="eko_tours_adigea">

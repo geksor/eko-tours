@@ -20,6 +20,8 @@ use zxbodya\yii2\galleryManager\GalleryBehavior;
  * @property string $image
  *
  * @property Room[] $rooms
+ * @property TourAccom[] $tourAccoms
+ * @property Tour[] $tours
  */
 class Accom extends \yii\db\ActiveRecord
 {
@@ -109,5 +111,21 @@ class Accom extends \yii\db\ActiveRecord
     public function getRooms()
     {
         return $this->hasMany(Room::className(), ['accom_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getTourAccoms()
+    {
+        return $this->hasMany(TourAccom::className(), ['accom_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getTours()
+    {
+        return $this->hasMany(Tour::className(), ['id' => 'tour_id'])->viaTable('tour_accom', ['accom_id' => 'id']);
     }
 }

@@ -275,4 +275,42 @@ class TourController extends Controller
         ]);
     }
 
+    /**
+     * @param $id
+     * @return string|\yii\web\Response
+     * @throws NotFoundHttpException
+     */
+    public function actionKnows($id)
+    {
+        $model = $this->findModel($id);
+
+        if ($model->load(Yii::$app->request->post())) {
+            $model->saveTourKnow($model->selectedTourKnow);
+            return $this->redirect(['view', 'id' => $model->id]);
+        }
+
+        return $this->render('knows', [
+            'model' => $model,
+        ]);
+    }
+
+    /**
+     * @param $id
+     * @return string|\yii\web\Response
+     * @throws NotFoundHttpException
+     */
+    public function actionAccoms($id)
+    {
+        $model = $this->findModel($id);
+
+        if ($model->load(Yii::$app->request->post())) {
+            $model->saveTourAccom($model->selectedTourAccom);
+            return $this->redirect(['view', 'id' => $model->id]);
+        }
+
+        return $this->render('accoms', [
+            'model' => $model,
+        ]);
+    }
+
 }

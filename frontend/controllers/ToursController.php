@@ -134,6 +134,16 @@ class ToursController extends Controller
                         }])
                         ->orderBy(['rank' => SORT_ASC]);
                 },
+                'accoms' => function (\yii\db\ActiveQuery $query) {
+                    $query
+                        ->where(['publish' => 1])
+                        ->with(['rooms' => function (\yii\db\ActiveQuery $query) {
+                            $query
+                                ->andWhere(['publish' => 1])
+                                ->orderBy(['rank' => SORT_ASC]);
+                        }])
+                        ->orderBy(['rank' => SORT_ASC]);
+                },
             ])
             ->one();
 

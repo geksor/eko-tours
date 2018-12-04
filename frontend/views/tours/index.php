@@ -45,12 +45,15 @@ $this->params['breadcrumbs'][] = $this->title;
                                 <? if ($model->hot) {?>
                                     <div class="fire_tour">Горящий тур</div>
                                 <?}?>
+                                <? if ($model->free_field) {?>
+                                    <div class="fire_tour"><?= $model->free_field ?></div>
+                                <?}?>
                                 <? if ($model->places_count) {?>
                                     <div class="fire_all">Мест отслость: <?= $model->places_count ?></div>
                                 <?}?>                            </div>
-                            <h3 class = "aa tour_h3"><?= $model->title ?><br>от <?= Yii::$app->formatter->asInteger($model->min_price) ?> руб./чел.</h3>
+                            <h3 class = "aa tour_h3"><?= $model->title ?> <?= $model->title_add ?><br>от <?= Yii::$app->formatter->asInteger($model->min_price) ?> руб./чел.</h3>
                             <div class="caption">
-                                <p class="title tour_h3"><?= $model->title ?><br>от <?= Yii::$app->formatter->asInteger($model->min_price) ?> руб./чел.</p>
+                                <p class="title tour_h3"><?= $model->title ?> <?= $model->title_add ?><br>от <?= Yii::$app->formatter->asInteger($model->min_price) ?> руб./чел.</p>
                                 <p class="title_1"><a href="<?= \yii\helpers\Url::to(['view', 'alias' => $model->alias]) ?>" class="info_read">Подробнее</a></p>
                                 <p class="title_2"><a href="/pages.php" class="info_bron">Забронировать</a></p>
                             </div>

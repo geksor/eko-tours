@@ -107,7 +107,7 @@
                                 ],
                             ],
                             [
-                                'label' => 'Важно знать',
+                                'label' => 'Туристам',
                                 'icon' => 'exclamation',
                                 'url' => ['/know'],
                                 "active" => Yii::$app->controller->id === 'know',
