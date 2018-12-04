@@ -147,20 +147,8 @@ class ToursController extends Controller
             ])
             ->one();
 
-        $models = Accom::find()
-            ->where(['publish' => 1])
-            ->with([
-                'rooms' => function (\yii\db\ActiveQuery $query) {
-                    $query->andWhere(['publish' => 1])->orderBy(['rank' => SORT_ASC]);
-                },
-            ])
-            ->orderBy(['rank' => SORT_ASC])
-            ->all();
-
-//        VarDumper::dump(Yii::$app->formatter->asDate(strtotime('first day of this month 00:00:00')),20,true);die;
         return $this->render('view', [
             'model' => $model,
-            'models' => $models,
         ]);
     }
 }
