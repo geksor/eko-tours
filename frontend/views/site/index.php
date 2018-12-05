@@ -41,10 +41,10 @@ $this->registerMetaTag([
     <div class="tours">
         <div class="slider3 owl-carousel owl-theme">
 <!--            --><?//include 'public/inwidget/template.php'?>
-            <?= \kmarenov\instagram\InstagramWidget::widget([
-                'clientId' => '6541867b536548eaaefa3c080f3fad6b',
-                'userName' => 'skorik.georgii'
-            ]) ?>
+<!--            --><?//= \kmarenov\instagram\InstagramWidget::widget([
+//                'clientId' => '6541867b536548eaaefa3c080f3fad6b',
+//                'userName' => 'skorik.georgii'
+//            ]) ?>
         </div>
     </div>
 </div>
