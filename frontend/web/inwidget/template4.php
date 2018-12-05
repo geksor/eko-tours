@@ -9,15 +9,15 @@ try {
     // Options may change through class constructor. For example:
 
     $config = array(
-        'LOGIN' => 'eko_tours_adigea',
-        'HASHTAG' => '',
+        'LOGIN' => 'krasnodar_print',
+        'HASHTAG' => 'печатьназеркале',
         'ACCESS_TOKEN' => '',
         'authLogin' => '',
         'authPassword' => '',
-        'tagsBannedLogins' => '',
+        'tagsBannedLogins' => 'adastra_frescos',
         'tagsFromAccountOnly' => false,
         'imgRandom' => true,
-        'imgCount' => 30,
+        'imgCount' => 100,
         'cacheExpiration' => 6,
         'cacheSkip' => false,
         'cachePath' =>  $_SERVER['DOCUMENT_ROOT'].'/inwidget/cache/',
@@ -33,8 +33,8 @@ try {
 
 
     $inWidget->width = 'auto';	// widget width in pixels
-    $inWidget->inline = 50; // number of images in single line
-    $inWidget->view = 108; // number of images in widget
+    $inWidget->inline = 100; // number of images in single line
+    $inWidget->view = 100; // number of images in widget
     $inWidget->toolbar = false;	// show profile avatar, statistic and action button
     $inWidget->preview = 'large'; // quality of images: small, large, fullsize
     $inWidget->adaptive = false; // enable adaptive mode
@@ -49,7 +49,7 @@ catch (\Exception $e) {
     echo $e->getMessage();
 }
 ?>
-<?php
+<?php 
 /**
  * Project:     inWidget: show pictures from instagram.com on your site!
  * File:        template.php
@@ -57,7 +57,7 @@ catch (\Exception $e) {
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of MIT license
  * http://inwidget.ru/MIT-license.txt
- *
+ * 
  * @link http://inwidget.ru
  * @copyright 2014-2018 Alexandr Kazarmshchikov
  * @author Alexandr Kazarmshchikov
@@ -87,12 +87,10 @@ if(!$inWidget instanceof \inWidget\Core) {
 						default:
 							$thumbnail = $item->small;
 					}?>
-                    <div class="item">
-                    <a href="<?=$thumbnail?>" class="gall_link" data-fancybox="gallery10">
-                        <img src="<?=$thumbnail?>" alt="работа">
-                        <i class="fas fa-search-plus zoom_icon"></i>
-                    </a>
-                    </div>
+					<a href="<?=$thumbnail?>" class="gall_link catalog_link" data-fancybox="gallery04">
+                            <img src="<?=$thumbnail?>" alt="Фотообои">
+                            <i class="fas fa-search-plus zoom_icon"></i>
+                        </a>
         <?
 					$i++;
 					if($i >= $inWidget->view) break;
@@ -101,8 +99,8 @@ if(!$inWidget instanceof \inWidget\Core) {
 		else {
 			if(!empty($inWidget->config['HASHTAG'])) {
 				$inWidget->lang['imgEmptyByHash'] = str_replace(
-					'{$hashtag}',
-					$inWidget->config['HASHTAG'],
+					'{$hashtag}', 
+					$inWidget->config['HASHTAG'], 
 					$inWidget->lang['imgEmptyByHash']
 				);
 			}

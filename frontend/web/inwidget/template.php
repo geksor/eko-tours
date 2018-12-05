@@ -1,8 +1,8 @@
 <?php
 #require_once 'inwidget/classes/Autoload.php';
-require_once 'inwidget/classes/InstagramScraper.php';
-require_once 'inwidget/classes/Unirest.php';
-require_once 'inwidget/classes/InWidget.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/frontend/web/inwidget/classes/InstagramScraper.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/frontend/web/inwidget/classes/Unirest.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/frontend/web/inwidget/classes/InWidget.php';
 
 try {
 
@@ -20,12 +20,12 @@ try {
         'imgCount' => 30,
         'cacheExpiration' => 6,
         'cacheSkip' => false,
-        'cachePath' =>  $_SERVER['DOCUMENT_ROOT'].'/inwidget/cache/',
+        'cachePath' =>  $_SERVER['DOCUMENT_ROOT'].'/frontend/web/inwidget/cache/',
         'skinDefault' => 'modern-black',
         'skinPath'=> '/inwidget/skins/',
         'langDefault' => 'ru',
         'langAuto' => false,
-        'langPath' => $_SERVER['DOCUMENT_ROOT'].'/inwidget/langs/',
+        'langPath' => $_SERVER['DOCUMENT_ROOT'].'/frontend/web/inwidget/langs/',
     );
     $inWidget = new \inWidget\Core($config);
 
@@ -87,13 +87,14 @@ if(!$inWidget instanceof \inWidget\Core) {
 						default:
 							$thumbnail = $item->small;
 					}?>
-                    <div class="item">
-                    <a href="<?=$thumbnail?>" class="gall_link" data-fancybox="gallery10">
-                        <img src="<?=$thumbnail?>" alt="работа">
-                        <i class="fas fa-search-plus zoom_icon"></i>
-                    </a>
-                    </div>
-        <?
+
+                        <div class="item">
+                        <a href="<?=$thumbnail?>" class="gall_link" data-fancybox="gallery10">
+                            <img src="<?=$thumbnail?>" alt="работа">
+                            <i class="fas fa-search-plus zoom_icon"></i>
+                        </a>
+                        </div>
+                    <?
 					$i++;
 					if($i >= $inWidget->view) break;
 				}

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b98e0b95f2ffd729a25900e887e46005",
+    "content-hash": "6ba24a22a6f7f06be985c888257a45ca",
     "packages": [
         {
             "name": "akiraz2/yii2-stat",
@@ -870,6 +870,33 @@
                 "html"
             ],
             "time": "2018-02-23T01:58:20+00:00"
+        },
+        {
+            "name": "happyendik/yii2-inwidget-wrapper",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/happyendik/yii2-inwidget-wrapper.git",
+                "reference": "525ba41c4fe85e5bb7e0727993b93dabb6bf7673"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/happyendik/yii2-inwidget-wrapper/zipball/525ba41c4fe85e5bb7e0727993b93dabb6bf7673",
+                "reference": "525ba41c4fe85e5bb7e0727993b93dabb6bf7673",
+                "shasum": ""
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "happyendik\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "mit"
+            ],
+            "homepage": "https://github.com/happyendik/yii2-inwidget-wrapper",
+            "time": "2017-07-24T09:34:53+00:00"
         },
         {
             "name": "imagine/imagine",
@@ -4507,7 +4534,8 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "zxbodya/yii2-gallery-manager": 20,
-        "akiraz2/yii2-stat": 20
+        "akiraz2/yii2-stat": 20,
+        "happyendik/yii2-inwidget-wrapper": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

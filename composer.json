@@ -28,8 +28,7 @@
         "mirocow/yii2-yandex-maps": "*",
         "ext-json": "*",
         "akiraz2/yii2-stat": "dev-master",
-        "nox-it/yii2-nox-user-agent-parser": "*",
-        "kmarenov/yii2-instagram-widget": "*"
+        "nox-it/yii2-nox-user-agent-parser": "*"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",

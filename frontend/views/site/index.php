@@ -39,12 +39,8 @@ $this->registerMetaTag([
         <p>/eko_tours_adigea</p>
     </div>
     <div class="tours">
-        <div class="slider3 owl-carousel owl-theme">
-<!--            --><?//include 'public/inwidget/template.php'?>
-<!--            --><?//= \kmarenov\instagram\InstagramWidget::widget([
-//                'clientId' => '6541867b536548eaaefa3c080f3fad6b',
-//                'userName' => 'skorik.georgii'
-//            ]) ?>
+        <div class="slider3 owl-carousel owl-theme" style="font-size: 0;line-height: 0">
+            <?= \frontend\widgets\InwidgetWrapper::widget() ?>
         </div>
     </div>
 </div>
