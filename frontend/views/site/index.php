@@ -42,7 +42,7 @@ $this->registerMetaTag([
         <div class="slider3 owl-carousel owl-theme">
 <!--            --><?//include 'public/inwidget/template.php'?>
             <?= \frontend\widgets\InstagramWidget::widget([
-//                'clientId' => '_8046550710',
+                'clientId' => 'ca3e36812941426aa20f83672b224f05',
                 'userName' => 'skorik.georgii'
             ]) ?>
         </div>
