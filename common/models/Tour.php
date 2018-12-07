@@ -368,9 +368,9 @@ class Tour extends \yii\db\ActiveRecord
      * @param $item_id
      * @param $value
      */
-    public function saveTourPriceItem($item_id, $value)
+    public function saveTourPriceItem($item_id, $tour_id, $value)
     {
-        if ($link = TourPriceItem::findOne(['price_item_id' => $item_id])){
+        if ($link = TourPriceItem::findOne(['price_item_id' => $item_id, 'tour_id' => $tour_id])){
             $link->value = $value;
             $link->save(false);
         }else{

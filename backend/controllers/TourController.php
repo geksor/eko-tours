@@ -249,7 +249,7 @@ class TourController extends Controller
 
             if ($model){
 
-                $model->saveTourPriceItem($id, $value);
+                $model->saveTourPriceItem($id, $tour_id, $value);
 
             }
         }
