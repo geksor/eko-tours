@@ -234,7 +234,12 @@ $this->params['breadcrumbs'][] = $this->title;
                                             Осталось мест: <?= $stage->places ?>
                                         </div>
                                         <div class="day_in day_bron">
-                                            <a class="md-trigger" data-modal="modal-1">Забронировать</a>
+                                            <a class="md-trigger tour-stage_booking"
+                                               data-tour_id="<?= $model->id ?>"
+                                               data-month_id="<?= $month1->id ?>"
+                                               data-stage_id="<?= $stage->id ?>"
+                                               data-modal="modal-tour-stage"
+                                            >Забронировать</a>
                                         </div>
                                     </div>
                                 <?}?>
@@ -247,7 +252,7 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
 </div>
 <div class="bron_click_in">
-    <a class="md-trigger zabron_read bron_click bron_click_1" data-modal="modal-tour-stage">Забронировать в 1 клик</a>
+    <a class="md-trigger zabron_read bron_click bron_click_1 tour_booking" data-modal="modal-tour" data-tour_id="<?= $model->id ?>">Забронировать в 1 клик</a>
     <a class="md-trigger zabron_read bron_click bron_click_2" data-modal="modal-3">Бесплатная консультация</a>
     <a class="md-trigger zabron_read bron_click bron_click_3" data-modal="modal-4">Заказать звонок</a>
 </div>
@@ -275,6 +280,21 @@ $this->params['breadcrumbs'][] = $this->title;
 <?}?>
 <?
 $js = <<<JS
+
+        $('.tour_booking').on('click', function() {
+            var tourId = $('#'+$(this).attr('data-modal')).find('#booking-tour_id');
+            tourId.val($(this).attr('data-tour_id'));
+        });
+        $('.tour-stage_booking').on('click', function() {
+            var popUpBlock = $('#'+$(this).attr('data-modal'));
+            var tourId = popUpBlock.find('#booking-tour_id');
+            var monthId = popUpBlock.find('#booking-month_id');
+            var stageId = popUpBlock.find('#booking-stage_id');
+            tourId.val($(this).attr('data-tour_id'));
+            monthId.val($(this).attr('data-month_id'));
+            stageId.val($(this).attr('data-stage_id'));
+        });
+        
         $( function() {
             $( "#tabs" ).tabs();
         } );

@@ -31,7 +31,7 @@ $this->registerCss($css, ["type" => "text/css"], "BookingWidget" );
         </a>
         <div>
             <?php $form = ActiveForm::begin([
-                'action' => '/site/booking'
+                'action' => '/tours/booking'
             ]); ?>
 
                 <?= $form->field($model, 'lastName')->textInput([
@@ -40,7 +40,7 @@ $this->registerCss($css, ["type" => "text/css"], "BookingWidget" );
 
                 <div class="addInput">
                     <?= $form->field($model, 'tour_id')->hiddenInput()->label(false)?>
-                    </div>
+                </div>
 
                 <?= $form->field($model, 'customer_name')->textInput(['maxlength' => true, 'class' => 'form_text', 'placeholder' => 'Ваше имя'])->label(false) ?>
 
@@ -76,7 +76,7 @@ $this->registerCss($css, ["type" => "text/css"], "BookingWidget" );
         </a>
         <div>
             <?php $form = ActiveForm::begin([
-                'action' => '/site/booking'
+                'action' => '/tours/booking'
             ]); ?>
 
                 <?= $form->field($model, 'lastName')->textInput([

@@ -39,7 +39,12 @@ $this->params['breadcrumbs'][] = $this->title;
                         'attribute' => 'end_time',
                         'format' => ['time', 'hh:mm']
                     ],
-                    'text:ntext',
+                    [
+                        'attribute' => 'text',
+                        'contentOptions' => [
+                            'style'=>'max-width:1000px; overflow: auto; white-space: normal; word-wrap: break-word;'
+                        ],
+                    ],
                     [
                         'attribute' => 'publish',
                         'label' => 'Состояние',

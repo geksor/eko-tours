@@ -3,12 +3,14 @@ namespace frontend\controllers;
 
 use common\models\AboutPage;
 use common\models\Accom;
+use common\models\Booking;
 use common\models\Contact;
 use common\models\HomePage;
 use common\models\Tour;
 use common\models\ToursPage;
 use Yii;
 use yii\base\InvalidParamException;
+use yii\base\Model;
 use yii\helpers\VarDumper;
 use yii\web\BadRequestHttpException;
 use yii\web\Controller;
@@ -157,5 +159,20 @@ class ToursController extends Controller
         return $this->render('view', [
             'model' => $model,
         ]);
+    }
+
+    public function actionBooking()
+    {
+        $model = new Booking();
+
+        if ($model->load(Yii::$app->request->post())){
+            if ($model->lastName || $model->agree === 0){
+                return $this->redirect(Yii::$app->request->referrer);
+            }
+            $model->tour_id = $model->tour_id?$model->tour_id:'0';
+            $model->month_id = $model->month_id?$model->month_id:'0';
+            $model->stage_id = $model->stage_id?$model->stage_id:'0';
+            VarDumper::dump($model,20,true);die;
+        }
     }
 }
