@@ -34,20 +34,24 @@ $this->params['breadcrumbs'][] = $this->title;
                 <div class="tour_in_img_1">
                     <? if ($images) {?>
                         <? $i = 1; foreach ($images as $image) {?>
-                            <? if ($i < 5) {?>
-                                <a href="<?= $image->getUrl('original') ?>" class="gall_link" data-fancybox="gallery10">
+                            <? if ($i>1 && $i < 6) {?>
+                            <a href="<?= $image->getUrl('original') ?>" class="gall_link" data-fancybox="gallery-main">
                                 <img src="<?= $image->getUrl('medium') ?>" alt="<?= $image->name ?>">
-                                <i class="fas fa-search-plus zoom_icon"></i>
                             </a>
-                            <?}else{break;}?>
+                            <?}elseif ($i === 1){?>
+
+                            <?}else{?>
+                                <a href="<?= $image->getUrl('original') ?>" class="gall_link" data-fancybox="gallery-main" style="display: none">
+                                    <img src="<?= $image->getUrl('medium') ?>" alt="<?= $image->name ?>">
+                                </a>
+                            <?}?>
                         <?$i++;}?>
                     <?}?>
                 </div>
                 <div class="tour_in_img_2">
                     <? if ($images) {?>
-                        <a href="<?= $images[0]->getUrl('original') ?>" class="gall_link" data-fancybox="gallery10">
+                        <a href="<?= $images[0]->getUrl('original') ?>" class="gall_link" data-fancybox="gallery-main">
                         <img src="<?= $images[0]->getUrl('medium') ?>" alt="<?= $model->title ?>">
-                        <i class="fas fa-search-plus zoom_icon"></i>
                     </a>
                     <?}?>
                 </div>
@@ -106,7 +110,6 @@ $this->params['breadcrumbs'][] = $this->title;
                                 <? foreach ($images as $image) {?>
                                     <a href="<?= $image->getUrl('original') ?>" class="gall_link" data-fancybox="<?= $accom->title ?>">
                                         <img src="<?= $image->getUrl('medium') ?>" alt="<?= $accom->title ?>">
-                                        <i class="fas fa-search-plus zoom_icon"></i>
                                     </a>
                                 <?}?>
                             <?}?>
@@ -168,7 +171,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
                                 foreach ($images as $image) {?>
                                     <? if ($i <= $count) {?>
-                                        <a href="<?= $image->getUrl('original') ?>" class="gall_link" data-fancybox="gallery10">
+                                        <a href="<?= $image->getUrl('original') ?>" class="gall_link" data-fancybox="gallery-know">
                                             <img src="<?= $image->getUrl('medium') ?>" alt="<?= $image->name ?>">
                                             <i class="fas fa-search-plus zoom_icon"></i>
                                         </a>
@@ -201,7 +204,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <? if ($model->months) {?>
                 <? foreach ($model->months as $keyImage => $monsImage) {?>
                     <div id="<?= $monsImage->id ?>" class="price_tour_img" <?= $keyImage!==0?'style="display:none;"':'' ?>>
-                        <a href="<?= $monsImage->getImage() ?>" class="gall_link" data-fancybox="gallery10">
+                        <a href="<?= $monsImage->getImage() ?>" class="gall_link" data-fancybox="gallery-booking">
                             <img src="<?= $monsImage->getThumbImage() ?>" alt="Картинка">
                             <i class="fas fa-search-plus zoom_icon"></i>
                         </a>
@@ -253,8 +256,8 @@ $this->params['breadcrumbs'][] = $this->title;
 </div>
 <div class="bron_click_in">
     <a class="md-trigger zabron_read bron_click bron_click_1 tour_booking" data-modal="modal-tour" data-tour_id="<?= $model->id ?>">Забронировать в 1 клик</a>
-    <a class="md-trigger zabron_read bron_click bron_click_2" data-modal="modal-3">Бесплатная консультация</a>
-    <a class="md-trigger zabron_read bron_click bron_click_3" data-modal="modal-4">Заказать звонок</a>
+    <a class="md-trigger zabron_read bron_click bron_click_2" data-modal="modal-callBack" data-is_consult="1">Бесплатная консультация</a>
+    <a class="md-trigger zabron_read bron_click bron_click_3" data-modal="modal-callBack" data-is_consult="0">Заказать звонок</a>
 </div>
 <? if ($model->timetableDays) {?>
     <h2 class="h3">Программа тура</h2>

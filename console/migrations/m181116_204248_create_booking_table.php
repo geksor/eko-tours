@@ -33,57 +33,6 @@ class m181116_204248_create_booking_table extends Migration
             'done_at' => $this->integer(),
             'viewed' => $this->integer(),
         ]);
-
-        // creates index for column `tour_id`
-        $this->createIndex(
-            'idx-booking-tour_id',
-            'booking',
-            'tour_id'
-        );
-
-        // add foreign key for table `tour`
-        $this->addForeignKey(
-            'fk-booking-tour_id',
-            'booking',
-            'tour_id',
-            'tour',
-            'id',
-            'RESTRICT'
-        );
-
-        // creates index for column `month_id`
-        $this->createIndex(
-            'idx-booking-month_id',
-            'booking',
-            'month_id'
-        );
-
-        // add foreign key for table `month`
-        $this->addForeignKey(
-            'fk-booking-month_id',
-            'booking',
-            'month_id',
-            'month',
-            'id',
-            'RESTRICT'
-        );
-
-        // creates index for column `stage_id`
-        $this->createIndex(
-            'idx-booking-stage_id',
-            'booking',
-            'stage_id'
-        );
-
-        // add foreign key for table `stage`
-        $this->addForeignKey(
-            'fk-booking-stage_id',
-            'booking',
-            'stage_id',
-            'stage',
-            'id',
-            'RESTRICT'
-        );
     }
 
     /**
@@ -91,42 +40,6 @@ class m181116_204248_create_booking_table extends Migration
      */
     public function safeDown()
     {
-        // drops foreign key for table `tour`
-        $this->dropForeignKey(
-            'fk-booking-tour_id',
-            'booking'
-        );
-
-        // drops index for column `tour_id`
-        $this->dropIndex(
-            'idx-booking-tour_id',
-            'booking'
-        );
-
-        // drops foreign key for table `month`
-        $this->dropForeignKey(
-            'fk-booking-month_id',
-            'booking'
-        );
-
-        // drops index for column `month_id`
-        $this->dropIndex(
-            'idx-booking-month_id',
-            'booking'
-        );
-
-        // drops foreign key for table `stage`
-        $this->dropForeignKey(
-            'fk-booking-stage_id',
-            'booking'
-        );
-
-        // drops index for column `stage_id`
-        $this->dropIndex(
-            'idx-booking-stage_id',
-            'booking'
-        );
-
         $this->dropTable('booking');
     }
 }

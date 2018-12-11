@@ -34,11 +34,11 @@ $this->registerCss($css, ["type" => "text/css"], "BookingWidget" );
                 'action' => '/tours/booking'
             ]); ?>
 
-                <?= $form->field($model, 'lastName')->textInput([
-                    'class' => 'addInput',
-                ])->label(false) ?>
-
                 <div class="addInput">
+                    <?= $form->field($model, 'lastName')->textInput([
+                        'class' => 'addInput',
+                    ])->label(false) ?>
+
                     <?= $form->field($model, 'tour_id')->hiddenInput()->label(false)?>
                 </div>
 
@@ -52,7 +52,7 @@ $this->registerCss($css, ["type" => "text/css"], "BookingWidget" );
                     ])
                     ->label(
                         'Контакты исключительно для связи с Вами. Никаких sms-рассылок. Управляющий позвонит лично.<br><br>
-                    Оставляя ваши данные Вы соглашаетесь с политикой конфиденциальности. Ваши контактные данные в безопасности и не будут переданы третьим лицам.'
+                        Оставляя ваши данные Вы соглашаетесь с политикой конфиденциальности. Ваши контактные данные в безопасности и не будут переданы третьим лицам.'
                     )
                 ?>
 
@@ -79,11 +79,11 @@ $this->registerCss($css, ["type" => "text/css"], "BookingWidget" );
                 'action' => '/tours/booking'
             ]); ?>
 
-                <?= $form->field($model, 'lastName')->textInput([
-                    'class' => 'addInput',
-                ])->label(false) ?>
-
                 <div class="addInput">
+                    <?= $form->field($model, 'lastName')->textInput([
+                        'class' => 'addInput',
+                    ])->label(false) ?>
+
                     <?= $form->field($model, 'tour_id')->hiddenInput()->label(false)?>
 
                     <?= $form->field($model, 'month_id')->hiddenInput()->label(false)?>

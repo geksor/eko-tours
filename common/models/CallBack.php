@@ -14,9 +14,11 @@ use Yii;
  * @property int $created_at
  * @property int $done_at
  * @property int $viewed
+ * @property string $lastName
  */
 class CallBack extends \yii\db\ActiveRecord
 {
+    public $lastName;
     /**
      * {@inheritdoc}
      */
@@ -32,7 +34,7 @@ class CallBack extends \yii\db\ActiveRecord
     {
         return [
             [['is_consult', 'created_at', 'done_at', 'viewed'], 'integer'],
-            [['user_name', 'phone'], 'string', 'max' => 255],
+            [['user_name', 'phone', 'lastName'], 'string', 'max' => 255],
         ];
     }
 

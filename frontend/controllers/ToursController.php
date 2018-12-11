@@ -172,7 +172,13 @@ class ToursController extends Controller
             $model->tour_id = $model->tour_id?$model->tour_id:'0';
             $model->month_id = $model->month_id?$model->month_id:'0';
             $model->stage_id = $model->stage_id?$model->stage_id:'0';
-            VarDumper::dump($model,20,true);die;
+            if ($model->save()){
+                Yii::$app->session->setFlash('popUp', 'Операция выполнена успешно. Ожидайте звонка специалиста.');
+                $model->sendEmail();
+            }else{
+                Yii::$app->session->setFlash('popUp', 'Что то пошло не так. Попробуйте еще раз.');
+            }
         }
+        return $this->redirect(Yii::$app->request->referrer);
     }
 }
