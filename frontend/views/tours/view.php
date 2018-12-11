@@ -108,7 +108,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
                             <? if ($images) {?>
                                 <? foreach ($images as $image) {?>
-                                    <a href="<?= $image->getUrl('original') ?>" class="gall_link" data-fancybox="<?= $accom->title ?>">
+                                    <a href="<?= $image->getUrl('original') ?>" class="gall_link" data-fancybox="gallery-<?= $accom->id ?>">
                                         <img src="<?= $image->getUrl('medium') ?>" alt="<?= $accom->title ?>">
                                     </a>
                                 <?}?>
@@ -121,14 +121,14 @@ $this->params['breadcrumbs'][] = $this->title;
                                         <?$images = $room->getBehavior('galleryBehavior')->getImages();?>
 
                                         <? if ($images) {?>
-                                            <a href="<?= $images[0]->getUrl('original') ?>" data-fancybox="<?= $room->title ?>" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+                                            <a href="<?= $images[0]->getUrl('original') ?>" data-fancybox="gallery-<?= $room->id ?>" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
                                                 <img src="<?= $images[0]->getUrl('medium') ?>" alt="<?= $room->title ?>" class="apart_img" style="height: 100%; width: 100%; object-fit: cover">
                                             </a>
                                             <div class="gallery_nom_1" style="display: none">
                                                 <? foreach ($images as $key => $image) {?>
                                                     <? if ($key === 0) {continue;}?>
 
-                                                    <a href="<?= $image->getUrl('original') ?>" data-fancybox="<?= $room->title ?>">
+                                                    <a href="<?= $image->getUrl('original') ?>" data-fancybox="gallery-<?= $room->id ?>">
                                                         <img src="<?= $image->getUrl('medium') ?>" alt="<?= $room->title ?>">
                                                     </a>
 
