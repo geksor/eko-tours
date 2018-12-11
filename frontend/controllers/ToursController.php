@@ -25,6 +25,7 @@ use frontend\models\ContactForm;
  */
 class ToursController extends Controller
 {
+    public $tourId;
     /**
      * {@inheritdoc}
      */
@@ -97,6 +98,7 @@ class ToursController extends Controller
      */
     public function actionView($alias)
     {
+        $this->tourId = Tour::findOne(['alias' => $alias])->id;
         $model = Tour::find()
             ->where(['alias' => $alias, 'publish' => 1, 'deleted' => 0])
             ->orderBy(['rank' => SORT_ASC])
@@ -132,7 +134,9 @@ class ToursController extends Controller
                     $query
                         ->with(['priceItems' => function (\yii\db\ActiveQuery $query) {
                             $query
-                                ->with(['tourPriceItems'])
+                                ->with(['tourPriceItems' => function (\yii\db\ActiveQuery $query) {
+                                    $query->where(['tour_id' => $this->tourId]);
+                                }])
                                 ->orderBy(['rank' => SORT_ASC]);
                         }])
                         ->orderBy(['rank' => SORT_ASC]);

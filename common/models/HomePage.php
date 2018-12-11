@@ -89,7 +89,7 @@ class HomePage extends Model
             'item_3' => 'Блок 3 в шапке сайта',
 
             'text' => 'Текст о нас',
-            'gallery_id' => 'Галлерай в раздел о нас',
+            'gallery_id' => 'Галерея в раздел о нас',
             'rightBlock_title' => 'Заголовок правого блока о нас',
             'rightBlock_text' => 'Содержание правого блока о нас',
 

@@ -4,6 +4,7 @@ namespace frontend\controllers;
 use common\models\AboutPage;
 use common\models\City;
 use common\models\Contact;
+use common\models\Gallery;
 use common\models\HomePage;
 use common\models\Know;
 use common\models\Month;
@@ -85,8 +86,15 @@ class SiteController extends Controller
         $model = new HomePage();
         $model->load(Yii::$app->params);
 
+        $galleryModel = Gallery::findOne(['id' => (integer)$model->gallery_id]);
+        $galleryImages = false;
+        if ($galleryModel){
+            $galleryImages = $galleryModel->getBehavior('galleryBehavior')->getImages();
+        }
+
         return $this->render('index', [
             'model' => $model,
+            'galleryImages' => $galleryImages,
         ]);
     }
 

@@ -1,6 +1,7 @@
 <?php
 /* @var $this yii\web\View */
 /* @var $model \common\models\HomePage */
+/* @var $galleryImages */
 
 $this->title = $model->title;
 $this->registerMetaTag([
@@ -18,11 +19,16 @@ $this->registerMetaTag([
             <p>
                 <?= $model->text ?>
             </p>
-            <div class="all_img">
-                <img src="/public/img/all.jpg" alt="Адыгея отдых">
-                <img src="/public/img/all_1.jpg" alt="Адыгея отдых">
-                <img src="/public/img/all_2.jpg" alt="Адыгея отдых">
-            </div>
+            <? if ($galleryImages) {?>
+                <div class="all_img">
+                    <? $i = 1 ?>
+                    <? foreach ($galleryImages as $image) {?>
+                        <? if ($i <= 3) {?>
+                            <img src="<?= $image->getUrl('medium') ?>" alt="<?= $image->name ?>">
+                        <?}else{break;}?>
+                    <?$i++;}?>
+                </div>
+            <?}?>
         </div>
         <div class="all_1 all_2">
             <h3><?= $model->rightBlock_title ?></h3>

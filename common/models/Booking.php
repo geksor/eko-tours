@@ -20,6 +20,8 @@ use yii\helpers\ArrayHelper;
  * @property int $created_at
  * @property int $done_at
  * @property int $viewed
+ * @property int $agree
+ * @property string $lastName
  *
  * @property Month $month
  * @property Stage $stage
@@ -27,6 +29,8 @@ use yii\helpers\ArrayHelper;
  */
 class Booking extends \yii\db\ActiveRecord
 {
+    public $lastName; /* Trap for bots */
+    public $agree = 1;
     /**
      * {@inheritdoc}
      */
@@ -42,11 +46,12 @@ class Booking extends \yii\db\ActiveRecord
     {
         return [
             [['tour_id', 'month_id', 'stage_id', 'user_places_count', 'total_price', 'confirm', 'created_at', 'done_at', 'viewed'], 'integer'],
-            [['tour_id', 'month_id', 'stage_id','customer_name', 'customer_phone'], 'required'],
-            [['customer_name', 'customer_phone'], 'string', 'max' => 255],
+            [['tour_id', 'month_id', 'stage_id', 'customer_name', 'customer_phone'], 'required'],
+            [['customer_name', 'customer_phone', 'lastName'], 'string', 'max' => 255],
             [['month_id'], 'exist', 'skipOnError' => true, 'targetClass' => Month::className(), 'targetAttribute' => ['month_id' => 'id']],
             [['stage_id'], 'exist', 'skipOnError' => true, 'targetClass' => Stage::className(), 'targetAttribute' => ['stage_id' => 'id']],
             [['tour_id'], 'exist', 'skipOnError' => true, 'targetClass' => Tour::className(), 'targetAttribute' => ['tour_id' => 'id']],
+            ['agree', 'compare', 'compareValue' => 1, 'message' => 'Для бронирования тура необходимо согласиться с обработкой персональных данных.'],
         ];
     }
 
@@ -68,6 +73,7 @@ class Booking extends \yii\db\ActiveRecord
             'created_at' => 'Дата создания',
             'done_at' => 'Дата изменения',
             'viewed' => 'Viewed',
+            'agree' => 'Согласие на обработку данных',
         ];
     }
 
@@ -127,6 +133,35 @@ class Booking extends \yii\db\ActiveRecord
         return ArrayHelper::map($modelsArr, 'id', 'start_date');
 
     }
+
+
+
+    /**
+     * Sends an email to the specified email address using the information collected by this model.
+     *
+     * @param string $email the target email address
+     * @return bool whether the email was sent
+     */
+    public function sendEmail()
+    {
+        $body = '<h1>Запрос обратного звонка</h1>
+                <p>
+                    <a href="'. Yii::$app->request->hostInfo .'/admin/call-back/view/'. $this->id .'">Ссылка на запрос</a>
+                </p>
+                <h2>Информация</h2>
+                <p> Дата запроса: '.Yii::$app->formatter->asDate($this->created_at, 'long').'</p>
+                <p> Время запроса: '.Yii::$app->formatter->asTime($this->created_at).'</p>
+                <p> Имя: '.$this->name.'</p>
+                <p> Телефон: '.$this->phone . '</p>';
+
+        return Yii::$app->mailer->compose()
+            ->setTo(Yii::$app->params['Contact']['email'])
+            ->setFrom(['info@eco-tour.ru' => 'EcoTour'])
+            ->setSubject('Запрос обратного звонка: '. $this->name)
+            ->setHtmlBody($body)
+            ->send();
+    }
+
 
     public function beforeSave($insert)
     {

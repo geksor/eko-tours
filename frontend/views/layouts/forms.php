@@ -98,3 +98,6 @@
         </div>
     </div>
 </div>
+
+
+<?= \frontend\widgets\BookingWidget::widget() ?>

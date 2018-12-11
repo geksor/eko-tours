@@ -247,7 +247,7 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
 </div>
 <div class="bron_click_in">
-    <a class="md-trigger zabron_read bron_click bron_click_1" data-modal="modal-1">Забронировать в 1 клик</a>
+    <a class="md-trigger zabron_read bron_click bron_click_1" data-modal="modal-tour-stage">Забронировать в 1 клик</a>
     <a class="md-trigger zabron_read bron_click bron_click_2" data-modal="modal-3">Бесплатная консультация</a>
     <a class="md-trigger zabron_read bron_click bron_click_3" data-modal="modal-4">Заказать звонок</a>
 </div>
