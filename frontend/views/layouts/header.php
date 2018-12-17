@@ -38,7 +38,7 @@
 
         <div class="head_name cont">
             <h1><?= array_key_exists('headerTitle', Yii::$app->params['HomePage'])?Yii::$app->params['HomePage']['headerTitle']:'' ?></h1>
-            <a href="/tours" class="head_but">Выбрать тур</a>
+            <?= \frontend\widgets\FilterWidget::widget() ?>
         </div>
         <div class="head_ok cont">
             <div class="head_ok_1">

@@ -8,6 +8,7 @@ use common\models\Gallery;
 use common\models\HomePage;
 use common\models\Know;
 use common\models\Month;
+use common\models\TimetablePage;
 use common\models\Tour;
 use common\models\TouristPage;
 use common\models\ToursPage;
@@ -145,44 +146,53 @@ class SiteController extends Controller
         ]);
     }
 
-    public function actionTimetable()
+    public function actionTimetable($id = null)
     {
 
         $models = City::find()
-        ->with([
-            'tours' => function (\yii\db\ActiveQuery $query) {
-                $query
-                    ->andWhere(['publish' => 1, 'deleted' => 0])
-                    ->with([
-                        'months' => function (\yii\db\ActiveQuery $query) {
-                            $query
-                                ->where(['publish' => 1])
-                                ->andWhere(['>', 'title', strtotime('first day of this month 00:00:00')-100])
-                                ->with([
-                                    'tour' => function (\yii\db\ActiveQuery $query) {
-                                        $query
-                                            ->andWhere(['publish' => 1, 'deleted' => 0])
-                                            ->with([
-                                                'months' => function (\yii\db\ActiveQuery $query) {
-                                                    $query
-                                                        ->andWhere(['publish' => 1])
-                                                        ->with(['stages' => function (\yii\db\ActiveQuery $query) {
-                                                            $query->andWhere(['publish' => 1])->orderBy(['start_date' => SORT_ASC]);
-                                                        }])
-                                                        ->orderBy(['title' => SORT_ASC]);
-                                                },
-                                            ])
-                                            ->orderBy(['rank' => SORT_ASC]);
-                                    },
-                                ])
-                                ->orderBy(['title' => SORT_ASC]);
-                            },
-                        ])
-                    ->orderBy(['rank' => SORT_ASC]);
-                },
-            ])
         ->orderBy(['rank' => SORT_ASC])
         ->all();
 
+        if ($models){
+            $selectModelQuery = City::find();
+            if ($id){
+                $selectModelQuery->where(['id' => $id]);
+            }else{
+                $selectModelQuery->where(['id' => $models[0]->id]);
+            }
+            $selectModel = $selectModelQuery
+                ->with([
+                    'tours' => function (\yii\db\ActiveQuery $query) {
+                        $query
+                            ->andWhere(['publish' => 1, 'deleted' => 0])
+                            ->with([
+                                'months' => function (\yii\db\ActiveQuery $query) {
+                                    $query
+                                        ->where(['publish' => 1])
+                                        ->andWhere(['>', 'title', strtotime('first day of this month 00:00:00')-100])
+                                        ->with(['stages' => function (\yii\db\ActiveQuery $query) {
+                                            $query->andWhere(['publish' => 1])->orderBy(['start_date' => SORT_ASC]);
+                                        }])
+                                        ->orderBy(['title' => SORT_ASC]);
+                                },
+                            ])
+                            ->orderBy(['rank' => SORT_ASC]);
+                    },
+                ])
+                ->one();
+        }else{
+            return $this->redirect('/');
+        }
+
+//        VarDumper::dump($selectModel,20,true);die;
+
+        $pageParams = new TimetablePage();
+        $pageParams->load(Yii::$app->params);
+
+        return $this->render('timetable', [
+            'models' => $models,
+            'selectModel' => $selectModel,
+            'pageParams' => $pageParams,
+        ]);
     }
 }

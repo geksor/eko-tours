@@ -2,6 +2,7 @@
 
 namespace frontend\components;
 
+
 /**
  * Class View
  * @package frontend\components

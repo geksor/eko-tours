@@ -3,6 +3,7 @@ namespace frontend\controllers;
 
 use common\models\AboutPage;
 use common\models\Accom;
+use common\models\Attr;
 use common\models\Booking;
 use common\models\Contact;
 use common\models\HomePage;
@@ -80,9 +81,16 @@ class ToursController extends Controller
      *
      * @return mixed
      */
-    public function actionIndex()
+    public function actionIndex($city_id = null, $attr_id = null)
     {
-        $models = Tour::find()->where(['publish' => 1, 'deleted' => 0])->orderBy(['rank' => SORT_ASC])->all();
+        $query = Tour::find()->where(['publish' => 1, 'deleted' => 0])->orderBy(['rank' => SORT_ASC]);
+        if ($city_id){
+            $models = $query->andWhere(['city_id' => $city_id])->all();
+        }elseif ($attr_id){
+            $models = Attr::findOne($attr_id)->tours;
+        }else{
+            $models = $query->all();
+        }
 
         $pageParams = new ToursPage();
         $pageParams->load(Yii::$app->params);

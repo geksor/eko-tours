@@ -1,0 +1,41 @@
+.head_nap{
+	margin: 40px 0;
+}
+.head_nap h2{
+	font-size: 24px;
+	line-height: 1;
+	color: #fff;
+}
+.head_nap ul{
+	margin: 40px 0;
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: start;
+	align-items: center;
+}
+.head_nap ul li{
+	margin: 5px;
+}
+.head_nap ul li a{
+	background: #94b428;
+	color: #fff;
+	padding: 10px 100px;
+	border-radius: 4px;
+	text-decoration: none;
+	display: block;
+}
+.head_nap ul li .active{
+	background: #f3f3f3;
+	color: #94b428;
+	padding: 10px 100px;
+	border-radius: 4px;
+	text-decoration: none;
+	display: block;
+}
+.head_nap ul li a:hover{
+	background: #fff;
+	color: #94b428;
+	padding: 10px 100px;
+	border-radius: 4px;
+	text-decoration: none;
+}

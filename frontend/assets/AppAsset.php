@@ -14,6 +14,7 @@ class AppAsset extends AssetBundle
     public $css = [
         'public/css/jquery-ui.css',
         'public/css/style.css',
+        'public/css/nap.css',
         'public/css/mobile.css',
         'public/css/jquery.fancybox.min.css',
         'public/css/owl.carousel.min.css',
