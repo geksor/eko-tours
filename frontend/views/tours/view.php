@@ -159,7 +159,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <div id="tabs-4">
         <? if ($model->knows) {?>
             <? foreach ($model->knows as $know) { /* @var $model \common\models\Know */?>
-                <div class="tour_in">
+                <div class="tour_in tour_know">
                     <h2 class="h4"><?= $know->title ?></h2>
                     <?= $know->text ?>
                     <div class="price_tour_img">

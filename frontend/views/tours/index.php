@@ -83,7 +83,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             <div class="caption">
                                 <p class="title tour_h3"><?= $model->title ?> <?= $model->title_add ?><br>от <?= Yii::$app->formatter->asInteger($model->min_price) ?> руб./чел.</p>
                                 <p class="title_1"><a href="<?= \yii\helpers\Url::to(['view', 'alias' => $model->alias]) ?>" class="info_read">Подробнее</a></p>
-                                <p class="title_2"><a href="/pages.php" class="info_bron">Забронировать</a></p>
+                                <p class="title_2"><a data-modal="modal-tour" data-tour_id="<?= $model->id ?>" class="md-trigger info_bron tour_booking">Забронировать</a></p>
                             </div>
                         </div>
                     </section>
@@ -94,3 +94,15 @@ $this->params['breadcrumbs'][] = $this->title;
 
 
 </div>
+<?
+
+$js = <<<JS
+
+    $('.tour_booking').on('click', function() {
+        var tourId = $('#'+$(this).attr('data-modal')).find('#booking-tour_id');
+        tourId.val($(this).attr('data-tour_id'));
+    });
+JS;
+
+$this->registerJs($js, $position = yii\web\View::POS_END, $key = null);
+?>

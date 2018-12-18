@@ -21,7 +21,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="pages_cont">
         <? if ($models) {?>
             <? foreach ($models as $model) { /* @var $model \common\models\Know */?>
-                <div class="tour_in">
+                <div class="tour_in tour_know">
                     <h2 class="h4"><?= $model->title ?></h2>
                     <?= $model->text ?>
                     <div class="price_tour_img">

@@ -8,9 +8,18 @@
 }
 .head_nap ul{
 	margin: 40px 0;
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
+	-webkit-box-orient: horizontal;
+	-webkit-box-direction: normal;
+	-ms-flex-flow: row wrap;
 	flex-flow: row wrap;
+	-webkit-box-pack: start;
+	-ms-flex-pack: start;
 	justify-content: start;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
 	align-items: center;
 }
 .head_nap ul li{
