@@ -23,10 +23,11 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="head_nap">
             <ul>
                 <? foreach ($models as $key => $city) {/* @var $city \common\models\City */?>
-                    <li>
-                        <? $url = \yii\helpers\Url::to(['timetable', 'id' => $city->id]) ?>
-                        <a href="<?= $url ?>" class="<?= $url===Yii::$app->request->url?'active':'' ?>"><?= $city->title ?></a>
-                    </li>
+                    <? if ($city->tours) {?>
+                        <li>
+                            <a href="<?= \yii\helpers\Url::to(['timetable', 'id' => $city->id]) ?>" class="<?= $city->id===$selectModel->id?'active':'' ?>"><?= $city->title ?></a>
+                        </li>
+                    <?}?>
                 <?}?>
             </ul>
     </div>

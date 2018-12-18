@@ -30,10 +30,33 @@ $this->params['breadcrumbs'][] = $this->title;
 
                     'id',
                     'title',
+                    [
+                        'attribute' => 'rank',
+                        'format' => 'raw',
+                        'value' => function ($data){
+                            /* @var $data \common\models\Room */
+                            return Html::input('number', 'rank' ,$data->rank, ['class' => 'form-control', 'id' => $data->id]);
+                        }
 
+                    ],
                     ['class' => 'yii\grid\ActionColumn'],
                 ],
             ]); ?>
+            <?
+            $js = <<< JS
+            $('[name = rank]').keypress(function(e){
+                if(e.keyCode==13){
+                    $.ajax({
+                        type: "GET",
+                        url: "/admin/city/rank",
+                        data: 'id='+ $(this).attr('id') +'&rank='+ $(this).val(),
+                    })
+                }
+            });
+JS;
+
+            $this->registerJs($js, $position = yii\web\View::POS_END, $key = null);
+            ?>
             <?php Pjax::end(); ?>
         </div>
     </div>

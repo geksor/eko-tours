@@ -10,9 +10,11 @@
         <h2>Направления</h2>
         <ul>
             <? foreach ($cityModels as $cityModel) {/* @var $cityModel \common\models\City */?>
-                <li>
-                    <?= \yii\helpers\Html::a($cityModel->title, ['/tours', 'city_id' => $cityModel->id]) ?>
-                </li>
+                <? if ($cityModel->tours) {?>
+                    <li>
+                        <?= \yii\helpers\Html::a($cityModel->title, ['/tours', 'city_id' => $cityModel->id]) ?>
+                    </li>
+                <?}?>
             <?}?>
         </ul>
     </div>
@@ -22,9 +24,11 @@
     <h2>Тип отдыха</h2>
     <ul>
         <? foreach ($attrModels as $attrModel) {/* @var $attrModel \common\models\Attr */?>
-            <li>
-                <?= \yii\helpers\Html::a($attrModel->title, ['/tours', 'attr_id' => $attrModel->id]) ?>
-            </li>
+            <? if ($attrModel->tours) {?>
+                <li>
+                    <?= \yii\helpers\Html::a($attrModel->title, ['/tours', 'attr_id' => $attrModel->id]) ?>
+                </li>
+            <?}?>
         <?}?>
     </ul>
 </div>

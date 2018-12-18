@@ -3,6 +3,11 @@
 /* @var $this yii\web\View */
 /* @var $models \common\models\Tour */
 /* @var $pageParams \common\models\AccomPage */
+/* @var $cityModels \common\models\City */
+/* @var $attrModels \common\models\Attr */
+/* @var $city_id */
+/* @var $attr_id */
+
 
 $this->title = $pageParams->title;
 $this->registerMetaTag([
@@ -19,6 +24,29 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <div class="pages">
     <h1 class = "h3"><?= $this->title ?></h1>
+
+    <div class="head_nap">
+        <ul>
+            <? foreach ($cityModels as $key => $city) {/* @var $city \common\models\City */?>
+                <? if ($city->tours) {?>
+                    <li>
+                        <a href="<?= \yii\helpers\Url::to(['/tours', 'city_id' => $city->id]) ?>" class="<?= $city->id===$city_id?'active':'' ?>"><?= $city->title ?></a>
+                    </li>
+                <?}?>
+            <?}?>
+        </ul>
+    </div>
+    <div class="head_nap">
+        <ul>
+            <? foreach ($attrModels as $key => $attr) {/* @var $attr \common\models\Attr */?>
+                <? if ($attr->tours) {?>
+                    <li>
+                        <a href="<?= \yii\helpers\Url::to(['/tours', 'attr_id' => $attr->id]) ?>" class="<?= $attr->id===$attr_id?'active':'' ?>"><?= $attr->title ?></a>
+                    </li>
+                <?}?>
+            <?}?>
+        </ul>
+    </div>
 
     <div class="pages_cont">
         <? if ($models) {?>

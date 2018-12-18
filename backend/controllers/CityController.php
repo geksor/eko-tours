@@ -132,4 +132,27 @@ class CityController extends Controller
 
         throw new NotFoundHttpException('The requested page does not exist.');
     }
+
+    /**
+     * @param $id
+     * @param $rank
+     * @return \yii\web\Response
+     * @throws NotFoundHttpException
+     */
+    public function actionRank($id, $rank)
+    {
+        if (Yii::$app->request->isAjax){
+
+            $model = $this->findModel($id);
+
+            if ($model){
+                $model->rank = (integer) $rank;
+
+                if ($model->save()){
+                    return $this->redirect(Yii::$app->request->referrer);
+                }
+            }
+        }
+        return $this->redirect(Yii::$app->request->referrer);
+    }
 }

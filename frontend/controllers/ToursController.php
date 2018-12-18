@@ -5,6 +5,7 @@ use common\models\AboutPage;
 use common\models\Accom;
 use common\models\Attr;
 use common\models\Booking;
+use common\models\City;
 use common\models\Contact;
 use common\models\HomePage;
 use common\models\Tour;
@@ -92,6 +93,9 @@ class ToursController extends Controller
             $models = $query->all();
         }
 
+        $cityModels = City::find()->orderBy(['rank' => SORT_ASC])->with('tours')->all();
+        $attrModels = Attr::find()->orderBy(['rank' => SORT_ASC])->with('tours')->all();
+
         $pageParams = new ToursPage();
         $pageParams->load(Yii::$app->params);
 
@@ -99,6 +103,10 @@ class ToursController extends Controller
         return $this->render('index', [
             'models' => $models,
             'pageParams' => $pageParams,
+            'cityModels' => $cityModels,
+            'attrModels' => $attrModels,
+            'city_id' => (integer)$city_id,
+            'attr_id' => (integer)$attr_id,
         ]);
     }
 

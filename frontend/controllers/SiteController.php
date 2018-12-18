@@ -14,6 +14,7 @@ use common\models\TouristPage;
 use common\models\ToursPage;
 use Yii;
 use yii\base\InvalidParamException;
+use yii\helpers\ArrayHelper;
 use yii\helpers\VarDumper;
 use yii\web\BadRequestHttpException;
 use yii\web\Controller;
@@ -149,9 +150,20 @@ class SiteController extends Controller
     public function actionTimetable($id = null)
     {
 
-        $models = City::find()
+        $modelsAll = City::find()
+        ->with('tours')
         ->orderBy(['rank' => SORT_ASC])
         ->all();
+
+        $modelsId = [];
+
+        foreach ($modelsAll as $item){
+            if ($item->tours){
+                $modelsId[] = $item->id;
+            }
+        }
+
+        $models = City::findAll(['id' => $modelsId]);
 
         if ($models){
             $selectModelQuery = City::find();

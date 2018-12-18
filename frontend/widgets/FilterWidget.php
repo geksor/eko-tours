@@ -10,8 +10,8 @@ class FilterWidget extends Widget
     public function run()
     {
 
-        $cityModels = City::find()->orderBy(['rank' => SORT_ASC])->all();
-        $attrModels = Attr::find()->orderBy(['rank' => SORT_ASC])->all();
+        $cityModels = City::find()->orderBy(['rank' => SORT_ASC])->with('tours')->all();
+        $attrModels = Attr::find()->orderBy(['rank' => SORT_ASC])->with('tours')->all();
 
         return $this->render('filter-widget', [
             'cityModels' => $cityModels,
