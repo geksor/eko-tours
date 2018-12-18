@@ -17,7 +17,7 @@ class KnowSearch extends Know
     public function rules()
     {
         return [
-            [['id', 'image_count', 'rank'], 'integer'],
+            [['id', 'image_count', 'rank', 'show_on_page'], 'integer'],
             [['title', 'text'], 'safe'],
         ];
     }
@@ -61,6 +61,7 @@ class KnowSearch extends Know
             'id' => $this->id,
             'image_count' => $this->image_count,
             'rank' => $this->rank,
+            'show_on_page' => $this->show_on_page,
         ]);
 
         $query->andFilterWhere(['like', 'title', $this->title])

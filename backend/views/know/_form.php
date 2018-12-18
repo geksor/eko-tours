@@ -28,6 +28,8 @@ use mihaildev\ckeditor\CKEditor;
 
     <?= $form->field($model, 'rank')->textInput() ?>
 
+    <?= $form->field($model, 'show_on_page')->checkbox() ?>
+
     <div class="form-group">
         <?= Html::submitButton('Сохранить', ['class' => 'btn btn-success']) ?>
     </div>

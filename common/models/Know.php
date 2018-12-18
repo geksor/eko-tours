@@ -14,6 +14,7 @@ use zxbodya\yii2\galleryManager\GalleryBehavior;
  * @property string $text
  * @property int $image_count
  * @property int $rank
+ * @property int $show_on_page
  *
  * @property TourKnow[] $tourKnows
  * @property Tour[] $tours
@@ -36,7 +37,7 @@ class Know extends \yii\db\ActiveRecord
         return [
             [['title'], 'required'],
             [['text'], 'string'],
-            [['image_count', 'rank'], 'integer'],
+            [['image_count', 'rank', 'show_on_page'], 'integer'],
             [['title'], 'string', 'max' => 255],
             [['rank'], 'default', 'value' => 100],
         ];
@@ -53,6 +54,7 @@ class Know extends \yii\db\ActiveRecord
             'text' => 'Текст',
             'image_count' => 'Кол-во изображений для вывода',
             'rank' => 'Порядок вывода',
+            'show_on_page' => 'Показывать на общей странице',
         ];
     }
 

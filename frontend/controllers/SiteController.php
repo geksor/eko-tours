@@ -138,7 +138,7 @@ class SiteController extends Controller
 
     public function actionTourist()
     {
-        $models = Know::find()->orderBy(['rank' => SORT_ASC])->all();
+        $models = Know::find()->where(['show_on_page' => 1])->orderBy(['rank' => SORT_ASC])->all();
 
         $pageParams = new TouristPage();
         $pageParams->load(Yii::$app->params);

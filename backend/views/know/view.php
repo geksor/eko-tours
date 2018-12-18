@@ -37,6 +37,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     'text:html',
                     'image_count',
                     'rank',
+                    'show_on_page:boolean'
                 ],
             ]) ?>
 
