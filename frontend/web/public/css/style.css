@@ -836,7 +836,7 @@ a{
 	padding: 20px 0;
 	width: 100%;
 }
-.price_tour{
+.tour_in ul{
 	font: 14px/18px 'Montserrat';
 	display: flex;
 	flex-flow: row wrap;
@@ -849,15 +849,15 @@ a{
 .price_tour_img img{
 	width: 100%;
 }
-.price_tour{
+.tour_in ul{
 	width: 70%;
 }
-.price_tour li strong{
+.tour_in ul li strong{
 	font-size: 18px;
 	font-family: 'MontserratBold';
 	margin-left: 5px;
 }
-.price_tour li{
+.tour_in ul li{
 	padding: 0 10px 0 0;
 	margin-bottom: 20px;
 	display: flex;
@@ -866,18 +866,18 @@ a{
 	justify-content: flex-start;
 	align-items: flex-start;
 }
-.price_tour li::before {
+.tour_in ul li::before {
 	content: "•";
 	font-size: 50px;
 	margin-top: 0px;
 	margin-right: 10px;
 	color: #94b428;
 }
-.price_tour li a{
+.tour_in ul li a{
 	color: #7e7e7e;
 	text-decoration: underline;
 }
-.price_tour li a:hover{
+.tour_in ul li a:hover{
 	color: #94b428;
 	text-decoration: none;
 }
