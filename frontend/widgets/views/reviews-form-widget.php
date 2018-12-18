@@ -1,6 +1,6 @@
 <?
 
-/* @var $model \common\models\CallBack */
+/* @var $model \common\models\Reviews */
 
 use yii\bootstrap\ActiveForm;
 
@@ -11,17 +11,21 @@ $css=<<< CSS
 .field-callback-lastname{
     display: none!important;
 }
-.form-group{
+.reviewsGroup{
+    width: 48%;
+    
+}
+.reviewsGroup input.form_text{
     width: 100%;
 }
 CSS;
-$this->registerCss($css, ["type" => "text/css"], "BookingWidget" );
+$this->registerCss($css, ["type" => "text/css"], "reviews-form-Widget" );
 
 ?>
 
-<div class="md-modal md-modal_1 md-effect-1" id="modal-callBack">
+<div class="md-modal md-modal_2 md-effect-1" id="reviews">
     <div class="md-content">
-        <h3 class="h4 callBackHeader">Бесплатная консультация</h3>
+        <h3 class="h4">Оставить отзыв</h3>
         <a class="md-close">
             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 47.971 47.971" style="enable-background:new 0 0 47.971 47.971;" xml:space="preserve" width="512px" height="512px">
             <g>
@@ -31,7 +35,7 @@ $this->registerCss($css, ["type" => "text/css"], "BookingWidget" );
         </a>
         <div>
             <?php $form = ActiveForm::begin([
-                'action' => '/site/call-back'
+                'action' => '/site/send-reviews'
             ]); ?>
 
             <div class="addInput">
@@ -39,12 +43,14 @@ $this->registerCss($css, ["type" => "text/css"], "BookingWidget" );
                     'class' => 'addInput',
                 ])->label(false) ?>
 
-                <?= $form->field($model, 'is_consult')->hiddenInput(['class' => 'isConsult'])->label(false)?>
+                <?= $form->field($model, 'tour_id')->hiddenInput()->label(false)?>
             </div>
 
-            <?= $form->field($model, 'user_name')->textInput(['maxlength' => true, 'class' => 'form_text', 'placeholder' => 'Ваше имя'])->label(false) ?>
+            <?= $form->field($model, 'user_name', ['options' => ['class' => 'reviewsGroup']])->textInput(['maxlength' => true, 'class' => 'form_text', 'placeholder' => 'Ваше имя'])->label(false) ?>
 
-            <?= $form->field($model, 'phone')->textInput(['maxlength' => true, 'class' => 'form_text', 'placeholder' => 'Ваш телефон'])->label(false) ?>
+            <?= $form->field($model, 'phone', ['options' => ['class' => 'reviewsGroup']])->textInput(['maxlength' => true, 'class' => 'form_text', 'placeholder' => 'Ваш телефон'])->label(false) ?>
+
+            <?= $form->field($model, 'text')->textarea(['class' => 'form_area', 'cols' => '30', 'rows' => '10', 'placeholder' => 'Текст отзыва...'])->label(false) ?>
 
             <?= $form->field($model, 'agree')
                 ->checkbox([
@@ -55,11 +61,10 @@ $this->registerCss($css, ["type" => "text/css"], "BookingWidget" );
                 )
             ?>
 
-            <?= \yii\helpers\Html::submitButton('Отправить', ['class' => 'zabron_read']) ?>
+            <?= \yii\helpers\Html::submitButton('Оставить отзыв', ['class' => 'zabron_read']) ?>
 
             <?php ActiveForm::end(); ?>
 
         </div>
     </div>
 </div>
-

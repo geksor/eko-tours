@@ -2,12 +2,14 @@
 namespace frontend\controllers;
 
 use common\models\AboutPage;
+use common\models\CallBack;
 use common\models\City;
 use common\models\Contact;
 use common\models\Gallery;
 use common\models\HomePage;
 use common\models\Know;
 use common\models\Month;
+use common\models\Reviews;
 use common\models\TimetablePage;
 use common\models\Tour;
 use common\models\TouristPage;
@@ -206,5 +208,31 @@ class SiteController extends Controller
             'selectModel' => $selectModel,
             'pageParams' => $pageParams,
         ]);
+    }
+
+    public function actionSendReviews()
+    {
+        $reviewsModel = new Reviews();
+        if ( $reviewsModel->load( Yii::$app->request->post() ) && !$reviewsModel->lastName ) {
+            if ($reviewsModel->save()){
+                Yii::$app->session->setFlash('popUp', 'Спасибо за ваш отзыв.');
+                return $this->redirect(Yii::$app->request->referrer);
+            }
+        }
+        Yii::$app->session->setFlash('popUp', 'Что то пошло не так.');
+        return $this->redirect(Yii::$app->request->referrer);
+    }
+
+    public function actionCallBack()
+    {
+        $callBackModel = new CallBack();
+        if ( $callBackModel->load( Yii::$app->request->post() ) && !$callBackModel->lastName ) {
+            if ($callBackModel->save()){
+                Yii::$app->session->setFlash('popUp', ' Мы свяжемся с Вами в ближайшее время.   ');
+                return $this->redirect(Yii::$app->request->referrer);
+            }
+        }
+        Yii::$app->session->setFlash('popUp', 'Что то пошло не так.');
+        return $this->redirect(Yii::$app->request->referrer);
     }
 }

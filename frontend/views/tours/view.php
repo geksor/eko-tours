@@ -197,7 +197,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?}?>
             <?}?>
         </div>
-        <a class="md-trigger zabron_read" data-modal="modal-2">Написать отзыв</a>
+        <a class="md-trigger zabron_read reviewsButton" data-tour="<?= $model->id ?>" data-modal="reviews">Написать отзыв</a>
     </div>
     <div id="tabs-6">
         <div class="tour_in">
@@ -256,8 +256,8 @@ $this->params['breadcrumbs'][] = $this->title;
 </div>
 <div class="bron_click_in">
     <a class="md-trigger zabron_read bron_click bron_click_1 tour_booking" data-modal="modal-tour" data-tour_id="<?= $model->id ?>">Забронировать в 1 клик</a>
-    <a class="md-trigger zabron_read bron_click bron_click_2" data-modal="modal-callBack" data-is_consult="1">Бесплатная консультация</a>
-    <a class="md-trigger zabron_read bron_click bron_click_3" data-modal="modal-callBack" data-is_consult="0">Заказать звонок</a>
+    <a class="md-trigger zabron_read bron_click bron_click_2 tour_callBack" data-modal="modal-callBack" data-is_consult="1">Бесплатная консультация</a>
+    <a class="md-trigger zabron_read bron_click bron_click_3 tour_callBack" data-modal="modal-callBack" data-is_consult="0">Заказать звонок</a>
 </div>
 <? if ($model->timetableDays) {?>
     <h2 class="h3">Программа тура</h2>
@@ -296,6 +296,15 @@ $js = <<<JS
             tourId.val($(this).attr('data-tour_id'));
             monthId.val($(this).attr('data-month_id'));
             stageId.val($(this).attr('data-stage_id'));
+        });
+        
+        $('.tour_callBack').on('click', function() {
+            $('.callBackHeader').text($(this).text());
+            $('.isConsult').val($(this).attr('data-is_consult'));
+        });
+        
+        $('.reviewsButton').on('click', function() {
+            $('#reviews-tour_id').val($(this).attr('data-tour'));
         });
         
         $( function() {

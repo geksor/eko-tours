@@ -18,11 +18,16 @@ use Yii;
  * @property int $from_widget
  * @property int $rank
  * @property int $viewed
+ * @property int $agree
+ * @property string $lastName
  *
  * @property Tour $tour
  */
 class Reviews extends \yii\db\ActiveRecord
 {
+    public $lastName; /* Trap for bots */
+    public $agree = 1;
+
     /**
      * {@inheritdoc}
      */
@@ -41,9 +46,10 @@ class Reviews extends \yii\db\ActiveRecord
             [['user_name', 'phone', 'text'], 'required'],
             [['text'], 'string'],
             [['create_at', 'done_at',], 'safe'],
-            [['user_name', 'phone'], 'string', 'max' => 255],
+            [['user_name', 'phone', 'lastName'], 'string', 'max' => 255],
             [['tour_id'], 'exist', 'skipOnError' => true, 'targetClass' => Tour::className(), 'targetAttribute' => ['tour_id' => 'id']],
             [['rank'], 'default', 'value' => 100],
+            ['agree', 'compare', 'compareValue' => 1, 'message' => 'Для того чтобы оставить отзыв необходимо согласиться с обработкой персональных данных.'],
         ];
     }
 
@@ -64,6 +70,7 @@ class Reviews extends \yii\db\ActiveRecord
             'from_widget' => 'Выводить на главной',
             'rank' => 'Порядок вывода',
             'viewed' => 'Viewed',
+            'agree' => 'Согласие на обработку данных',
         ];
     }
 

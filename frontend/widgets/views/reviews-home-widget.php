@@ -22,5 +22,5 @@
             <?}?>
         </div>
     </div>
-    <a class="md-trigger review_read" data-modal="modal-2">Написать отзыв</a>
+    <a class="md-trigger review_read" data-modal="reviews">Написать отзыв</a>
 </div>

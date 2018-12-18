@@ -18,7 +18,8 @@ use Yii;
  */
 class CallBack extends \yii\db\ActiveRecord
 {
-    public $lastName;
+    public $lastName; /* Trap for bots */
+    public $agree = 1;
     /**
      * {@inheritdoc}
      */
@@ -33,8 +34,10 @@ class CallBack extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [['user_name', 'phone'], 'required'],
             [['is_consult', 'created_at', 'done_at', 'viewed'], 'integer'],
             [['user_name', 'phone', 'lastName'], 'string', 'max' => 255],
+            ['agree', 'compare', 'compareValue' => 1, 'message' => 'Для того чтобы отправить данные необходимо согласиться с обработкой персональных данных.'],
         ];
     }
 
