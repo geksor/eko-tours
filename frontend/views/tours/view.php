@@ -98,7 +98,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <h2 class="h4"><?= $accom->title ?></h2>
                     <div class="apart_des">
                         <? if ($accom->video_link) {?>
-                            <iframe class="wid" src="<?= $accom->video_link ?>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            <iframe class="wid" src="https://www.youtube.com/embed/<?= $accom->video_link ?>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                         <?}?>
                         <?= $accom->description ?>
                     </div>
