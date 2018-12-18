@@ -79,7 +79,7 @@ class CallBack extends \yii\db\ActiveRecord
 
         return Yii::$app->mailer->compose()
             ->setTo(Yii::$app->params['Contact']['email'])
-            ->setFrom(['info@eco-tour.ru' => 'EcoTour'])
+            ->setFrom(['info@eko-tours.com' => 'EcoTour'])
             ->setSubject($mailHead.': '. $this->user_name)
             ->setHtmlBody($body)
             ->send();

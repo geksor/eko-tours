@@ -153,7 +153,7 @@ class Booking extends \yii\db\ActiveRecord
 
         return Yii::$app->mailer->compose()
             ->setTo(Yii::$app->params['Contact']['email'])
-            ->setFrom(['info@eco-tour.ru' => 'EcoTour'])
+            ->setFrom(['info@eko-tours.com' => 'EcoTour'])
             ->setSubject('Бронь тура: '. $this->tour->title)
             ->setHtmlBody($body)
             ->send();

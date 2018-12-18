@@ -94,7 +94,7 @@ class Reviews extends \yii\db\ActiveRecord
 
         return Yii::$app->mailer->compose()
             ->setTo(Yii::$app->params['Contact']['email'])
-            ->setFrom(['info@eko-tour.ru' => 'Эко-Тур'])
+            ->setFrom(['info@eko-tours.com' => 'Эко-Тур'])
             ->setSubject('Отзыв от: '. $this->user_name)
             ->setHtmlBody($body)
             ->send();
