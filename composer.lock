@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6ba24a22a6f7f06be985c888257a45ca",
+    "content-hash": "ccaf43ff2afb62ab6c2dcd6976659a53",
     "packages": [
         {
             "name": "akiraz2/yii2-stat",
@@ -549,54 +549,6 @@
             "time": "2018-08-27T06:10:37+00:00"
         },
         {
-            "name": "cosenary/instagram",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/cosenary/Instagram-PHP-API.git",
-                "reference": "6ba37197600bccd4389c7bad8dffe3379a5afc01"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/cosenary/Instagram-PHP-API/zipball/6ba37197600bccd4389c7bad8dffe3379a5afc01",
-                "reference": "6ba37197600bccd4389c7bad8dffe3379a5afc01",
-                "shasum": ""
-            },
-            "require": {
-                "ext-curl": "*",
-                "php": ">=5.3.0"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "2.4-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "MetzWeb\\Instagram\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD"
-            ],
-            "authors": [
-                {
-                    "name": "Christian Metz",
-                    "email": "christian-metz1@gmx.net",
-                    "homepage": "http://metzweb.net"
-                }
-            ],
-            "description": "An easy-to-use PHP Class for accessing Instagram's API.",
-            "homepage": "https://github.com/cosenary/Instagram-PHP-API",
-            "keywords": [
-                "api",
-                "instagram"
-            ],
-            "time": "2015-11-22T11:16:51+00:00"
-        },
-        {
             "name": "dmstr/yii2-adminlte-asset",
             "version": "2.7.0-beta1",
             "source": {
@@ -872,33 +824,6 @@
             "time": "2018-02-23T01:58:20+00:00"
         },
         {
-            "name": "happyendik/yii2-inwidget-wrapper",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/happyendik/yii2-inwidget-wrapper.git",
-                "reference": "525ba41c4fe85e5bb7e0727993b93dabb6bf7673"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/happyendik/yii2-inwidget-wrapper/zipball/525ba41c4fe85e5bb7e0727993b93dabb6bf7673",
-                "reference": "525ba41c4fe85e5bb7e0727993b93dabb6bf7673",
-                "shasum": ""
-            },
-            "type": "yii2-extension",
-            "autoload": {
-                "psr-4": {
-                    "happyendik\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "mit"
-            ],
-            "homepage": "https://github.com/happyendik/yii2-inwidget-wrapper",
-            "time": "2017-07-24T09:34:53+00:00"
-        },
-        {
             "name": "imagine/imagine",
             "version": "dev-develop",
             "source": {
@@ -1061,49 +986,6 @@
                 "yii2"
             ],
             "time": "2018-11-05T12:32:51+00:00"
-        },
-        {
-            "name": "kmarenov/yii2-instagram-widget",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/kmarenov/yii2-instagram-widget.git",
-                "reference": "fca020290da63088e807cf67270a7bf572d4a4de"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/kmarenov/yii2-instagram-widget/zipball/fca020290da63088e807cf67270a7bf572d4a4de",
-                "reference": "fca020290da63088e807cf67270a7bf572d4a4de",
-                "shasum": ""
-            },
-            "require": {
-                "cosenary/instagram": "*",
-                "yiisoft/yii2": "*"
-            },
-            "type": "yii2-extension",
-            "autoload": {
-                "psr-4": {
-                    "kmarenov\\instagram\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "GPL-2.0+"
-            ],
-            "authors": [
-                {
-                    "name": "Kirill Marenov",
-                    "email": "kmarenov@gmail.com"
-                }
-            ],
-            "description": "Allows you to show your Instagram Photos on your Website",
-            "keywords": [
-                "extension",
-                "instagram",
-                "widget",
-                "yii2"
-            ],
-            "time": "2015-12-07T21:13:05+00:00"
         },
         {
             "name": "mihaildev/yii2-ckeditor",
@@ -1389,6 +1271,51 @@
             "time": "2018-04-01T12:51:52+00:00"
         },
         {
+            "name": "sonko-dmitry/yii2-telegram-bot-api",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/SonkoDmitry/yii2-telegram-bot-api.git",
+                "reference": "5d8a202edfb74a7ade2473f76bd4d22abdaf1cf9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/SonkoDmitry/yii2-telegram-bot-api/zipball/5d8a202edfb74a7ade2473f76bd4d22abdaf1cf9",
+                "reference": "5d8a202edfb74a7ade2473f76bd4d22abdaf1cf9",
+                "shasum": ""
+            },
+            "require": {
+                "telegram-bot/api": "*",
+                "yiisoft/yii2": "*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "SonkoDmitry\\Yii\\TelegramBot\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Sonko Dmitry",
+                    "email": "st.difor@gmail.com"
+                }
+            ],
+            "description": "Telegram bot api component for Yii2",
+            "homepage": "http://github.com/SonkoDmitry/yii2-telegram-bot-api",
+            "keywords": [
+                "api",
+                "bot",
+                "telegram",
+                "yii",
+                "yii2"
+            ],
+            "time": "2015-07-31T13:21:10+00:00"
+        },
+        {
             "name": "swiftmailer/swiftmailer",
             "version": "dev-master",
             "source": {
@@ -1446,6 +1373,61 @@
                 "mailer"
             ],
             "time": "2018-11-20T07:53:32+00:00"
+        },
+        {
+            "name": "telegram-bot/api",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/TelegramBot/Api.git",
+                "reference": "8d34f3ccd3230a9fd7c7fd9ba8ec0110a059f781"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/TelegramBot/Api/zipball/8d34f3ccd3230a9fd7c7fd9ba8ec0110a059f781",
+                "reference": "8d34f3ccd3230a9fd7c7fd9ba8ec0110a059f781",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5.0"
+            },
+            "require-dev": {
+                "codeception/codeception": "*",
+                "phpunit/phpunit": "~4.0",
+                "squizlabs/php_codesniffer": "2.*"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "TelegramBot\\Api\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ilya Gusev",
+                    "email": "mail@igusev.ru",
+                    "homepage": "https://php-cat.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "PHP Wrapper for Telegram Bot API",
+            "homepage": "https://github.com/TelegramBot/Api",
+            "keywords": [
+                "bot",
+                "bot api",
+                "php",
+                "telegram"
+            ],
+            "time": "2018-04-30T11:46:15+00:00"
         },
         {
             "name": "yiisoft/yii2",
@@ -2140,6 +2122,54 @@
             "time": "2017-01-09T10:58:51+00:00"
         },
         {
+            "name": "cosenary/instagram",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/cosenary/Instagram-PHP-API.git",
+                "reference": "6ba37197600bccd4389c7bad8dffe3379a5afc01"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/cosenary/Instagram-PHP-API/zipball/6ba37197600bccd4389c7bad8dffe3379a5afc01",
+                "reference": "6ba37197600bccd4389c7bad8dffe3379a5afc01",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.4-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "MetzWeb\\Instagram\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD"
+            ],
+            "authors": [
+                {
+                    "name": "Christian Metz",
+                    "email": "christian-metz1@gmx.net",
+                    "homepage": "http://metzweb.net"
+                }
+            ],
+            "description": "An easy-to-use PHP Class for accessing Instagram's API.",
+            "homepage": "https://github.com/cosenary/Instagram-PHP-API",
+            "keywords": [
+                "api",
+                "instagram"
+            ],
+            "time": "2015-11-22T11:16:51+00:00"
+        },
+        {
             "name": "doctrine/instantiator",
             "version": "dev-master",
             "source": {
@@ -2310,6 +2340,76 @@
                 "url"
             ],
             "time": "2018-11-19T17:50:46+00:00"
+        },
+        {
+            "name": "happyendik/yii2-inwidget-wrapper",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/happyendik/yii2-inwidget-wrapper.git",
+                "reference": "525ba41c4fe85e5bb7e0727993b93dabb6bf7673"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/happyendik/yii2-inwidget-wrapper/zipball/525ba41c4fe85e5bb7e0727993b93dabb6bf7673",
+                "reference": "525ba41c4fe85e5bb7e0727993b93dabb6bf7673",
+                "shasum": ""
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "happyendik\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "mit"
+            ],
+            "homepage": "https://github.com/happyendik/yii2-inwidget-wrapper",
+            "time": "2017-07-24T09:34:53+00:00"
+        },
+        {
+            "name": "kmarenov/yii2-instagram-widget",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kmarenov/yii2-instagram-widget.git",
+                "reference": "fca020290da63088e807cf67270a7bf572d4a4de"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kmarenov/yii2-instagram-widget/zipball/fca020290da63088e807cf67270a7bf572d4a4de",
+                "reference": "fca020290da63088e807cf67270a7bf572d4a4de",
+                "shasum": ""
+            },
+            "require": {
+                "cosenary/instagram": "*",
+                "yiisoft/yii2": "*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "kmarenov\\instagram\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Kirill Marenov",
+                    "email": "kmarenov@gmail.com"
+                }
+            ],
+            "description": "Allows you to show your Instagram Photos on your Website",
+            "keywords": [
+                "extension",
+                "instagram",
+                "widget",
+                "yii2"
+            ],
+            "time": "2015-12-07T21:13:05+00:00"
         },
         {
             "name": "myclabs/deep-copy",
@@ -4534,8 +4634,7 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "zxbodya/yii2-gallery-manager": 20,
-        "akiraz2/yii2-stat": 20,
-        "happyendik/yii2-inwidget-wrapper": 20
+        "akiraz2/yii2-stat": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
