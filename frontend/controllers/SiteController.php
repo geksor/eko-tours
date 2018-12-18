@@ -216,6 +216,11 @@ class SiteController extends Controller
         if ( $reviewsModel->load( Yii::$app->request->post() ) && !$reviewsModel->lastName ) {
             if ($reviewsModel->save()){
                 Yii::$app->session->setFlash('popUp', 'Спасибо за ваш отзыв.');
+                $message = "Новый отзыв\n Имя: $reviewsModel->user_name \n Текст отзыва: $reviewsModel->text";
+                if (ArrayHelper::keyExists('chatId', Yii::$app->params['Contact'])){
+                    \Yii::$app->bot->sendMessage((integer)Yii::$app->params['Contact']['chatId'], $message);
+                }
+                $reviewsModel->sendEmail();
                 return $this->redirect(Yii::$app->request->referrer);
             }
         }
@@ -228,7 +233,13 @@ class SiteController extends Controller
         $callBackModel = new CallBack();
         if ( $callBackModel->load( Yii::$app->request->post() ) && !$callBackModel->lastName ) {
             if ($callBackModel->save()){
-                Yii::$app->session->setFlash('popUp', ' Мы свяжемся с Вами в ближайшее время.   ');
+                Yii::$app->session->setFlash('popUp', ' Мы свяжемся с Вами в ближайшее время.');
+                $messHeader = $callBackModel->is_consult?'Запрос консультации':'Запрос обратного звонка';
+                $message = "$messHeader\n Имя: $callBackModel->user_name \n Телефон: $callBackModel->phone";
+                if (ArrayHelper::keyExists('chatId', Yii::$app->params['Contact'])){
+                    \Yii::$app->bot->sendMessage((integer)Yii::$app->params['Contact']['chatId'], $message);
+                }
+                $callBackModel->sendEmail();
                 return $this->redirect(Yii::$app->request->referrer);
             }
         }

@@ -1,7 +1,7 @@
 <?
 
 /* @var $items \frontend\widgets\MenuWidget */
-
+/* @var $ulClass */
 
 ?>
 
@@ -14,6 +14,6 @@
         ['label' => 'КОНТАКТЫ', 'url' => [ '/site/contact' ]],
     ],
     'options' => [
-        'class' => 'head_menu',
+        'class' => $ulClass,
     ],
 ]) ?>

@@ -13,6 +13,7 @@ use common\models\ToursPage;
 use Yii;
 use yii\base\InvalidParamException;
 use yii\base\Model;
+use yii\helpers\ArrayHelper;
 use yii\helpers\VarDumper;
 use yii\web\BadRequestHttpException;
 use yii\web\Controller;
@@ -190,6 +191,21 @@ class ToursController extends Controller
             $model->stage_id = $model->stage_id?$model->stage_id:'0';
             if ($model->save()){
                 Yii::$app->session->setFlash('popUp', 'Операция выполнена успешно. Ожидайте звонка специалиста.');
+
+                $tour = $model->tour_id?$model->tour->title."\n":'';
+                $month = $model->month_id?Yii::$app->formatter->asDate($model->month->title, 'php:M Y')."\n":'';
+                $stage = $model->stage_id
+                    ?'с '.Yii::$app->formatter->asDate($model->stage->start_date, 'php:d.m')
+                    .' по '.Yii::$app->formatter->asDate($model->stage->end_date, 'php:d.m')."\n"
+                    :'';
+
+                $message = "Бронь тура\n
+                            Имя: $model->customer_name \n 
+                            Телефон: $model->customer_phone \n
+                            $tour $month $stage";
+                if (ArrayHelper::keyExists('chatId', Yii::$app->params['Contact'])){
+                    \Yii::$app->bot->sendMessage((integer)Yii::$app->params['Contact']['chatId'], $message);
+                }
                 $model->sendEmail();
             }else{
                 Yii::$app->session->setFlash('popUp', 'Что то пошло не так. Попробуйте еще раз.');

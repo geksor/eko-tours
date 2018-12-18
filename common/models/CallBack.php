@@ -66,20 +66,21 @@ class CallBack extends \yii\db\ActiveRecord
      */
     public function sendEmail()
     {
-        $body = '<h1>Запрос обратного звонка</h1>
+        $mailHead = $this->is_consult?'Запрос консультации':'Запрос обратного звонка';
+        $body = '<h1>'.$mailHead.'</h1>
                 <p>
                     <a href="'. Yii::$app->request->hostInfo .'/admin/call-back/view/'. $this->id .'">Ссылка на запрос</a>
                 </p>
                 <h2>Информация</h2>
                 <p> Дата запроса: '.Yii::$app->formatter->asDate($this->created_at, 'long').'</p>
                 <p> Время запроса: '.Yii::$app->formatter->asTime($this->created_at).'</p>
-                <p> Имя: '.$this->name.'</p>
+                <p> Имя: '.$this->user_name.'</p>
                 <p> Телефон: '.$this->phone . '</p>';
 
         return Yii::$app->mailer->compose()
             ->setTo(Yii::$app->params['Contact']['email'])
             ->setFrom(['info@eco-tour.ru' => 'EcoTour'])
-            ->setSubject('Запрос обратного звонка: '. $this->name)
+            ->setSubject($mailHead.': '. $this->user_name)
             ->setHtmlBody($body)
             ->send();
     }
