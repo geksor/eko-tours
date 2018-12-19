@@ -43,5 +43,29 @@ $this->params['breadcrumbs'][] = $this->title;
             </ul>
         </div>
     </div>
+
+    <div class="pages_cont">
+        <div class="requisites_in">
+            <div class="contact">
+                <ul>
+                    <li>
+                        <img src="/public/images/svg/map_1.svg" alt="Рябиновые бусы">
+                        Адрес: <?= $contactModel->address ?>
+                    </li>
+                    <li>
+                        <img src="/public/images/svg/mail_1.svg" alt="Рябиновые бусы">
+                        E-mail: <?= $contactModel->email ?>
+                    </li>
+                    <li>
+                        <img src="/public/images/svg/phone_1.svg" alt="Рябиновые бусы">
+                        Тел: <?= $contactModel->phone ?>
+                    </li>
+                </ul>
+            </div>
+            <div class="contact_map">
+                <?= $contactModel->mapScript ?>
+            </div>
+        </div>
+    </div>
 </div>
 
