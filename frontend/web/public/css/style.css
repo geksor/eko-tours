@@ -2227,3 +2227,21 @@ form{
 @media screen and (max-width: 32em) {
 	body { font-size: 75%; }
 }
+
+
+/* geksor */
+.agreeModal{
+	display: none;
+	padding: 20px;
+	margin: 0 auto;
+	background: #ffffff;
+	position: fixed;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	z-index: 50000;
+}
+.agreeLink{
+	color: #0b58a2;
+}

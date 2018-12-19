@@ -57,7 +57,7 @@ $this->registerCss($css, ["type" => "text/css"], "reviews-form-Widget" );
                     'template' => '<div class="container_check">{input}{label}<span class="checkmark"></span><p class="help-block help-block-error"></p></div>',
                 ])
                 ->label(
-                    'Оставляя ваши данные Вы соглашаетесь с политикой конфиденциальности. Ваши контактные данные в безопасности и не будут переданы третьим лицам.'
+                    'Оставляя ваши данные Вы соглашаетесь с <a class="agreeLink"">политикой конфиденциальности</a>. Ваши контактные данные в безопасности и не будут переданы третьим лицам.'
                 )
             ?>
 
