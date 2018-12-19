@@ -139,7 +139,14 @@ class BookingController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        $model = $this->findModel($id);
+
+        if ($model->confirm){
+            Yii::$app->session->setFlash('error', 'Нельзя удалить подтвержденную запись, сначала отмените подтверждение.');
+            return $this->redirect(Yii::$app->request->referrer);
+        }
+
+        $model->delete();
 
         return $this->redirect(['index']);
     }
