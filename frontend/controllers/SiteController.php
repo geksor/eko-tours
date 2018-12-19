@@ -234,6 +234,8 @@ class SiteController extends Controller
         if ( $callBackModel->load( Yii::$app->request->post() ) && !$callBackModel->lastName ) {
             if ($callBackModel->save()){
                 Yii::$app->session->setFlash('popUp', ' Мы свяжемся с Вами в ближайшее время.');
+                Yii::$app->session->setFlash('reachGoal_call_back');
+
                 $messHeader = $callBackModel->is_consult?'Запрос консультации':'Запрос обратного звонка';
                 $message = "$messHeader\n Имя: $callBackModel->user_name \n Телефон: $callBackModel->phone";
                 if (ArrayHelper::keyExists('chatId', Yii::$app->params['Contact'])){

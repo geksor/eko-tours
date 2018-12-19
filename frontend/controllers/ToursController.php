@@ -191,6 +191,7 @@ class ToursController extends Controller
             $model->stage_id = $model->stage_id?$model->stage_id:'0';
             if ($model->save()){
                 Yii::$app->session->setFlash('popUp', 'Операция выполнена успешно. Ожидайте звонка специалиста.');
+                Yii::$app->session->setFlash('reachGoal_tour_brone');
 
                 $tour = $model->tour_id?$model->tour->title."\n":'';
                 $month = $model->month_id?Yii::$app->formatter->asDate($model->month->title, 'php:M Y')."\n":'';

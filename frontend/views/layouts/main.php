@@ -126,6 +126,22 @@ CSS;
 
 $this->registerCss($css, ["type" => "text/css"], "buttonUp" );
 
+if (Yii::$app->session->hasFlash('reachGoal_tour_brone')){
+    $ymJs = <<< JS
+    ym(47450434, 'reachGoal', 'tour_brone');
+JS;
+
+    $this->registerJs($ymJs, $position = yii\web\View::POS_END, $key = null);
+}
+
+if (Yii::$app->session->hasFlash('reachGoal_call_back')){
+    $ymJs = <<< JS
+    ym(47450434, 'reachGoal', 'call_back');
+JS;
+
+    $this->registerJs($ymJs, $position = yii\web\View::POS_END, $key = null);
+}
+
 $js = <<< JS
 $(window).scroll(function () {
     if ($(this).scrollTop() > 200) {
