@@ -66,7 +66,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <div id="tabs-2">
         <? if ($model->priceSections) {?>
             <? foreach ($model->priceSections as $priceSection) {/* @var $priceSection \common\models\PriceSection */?>
-                <div class="tour_in">
+                <div class="tour_in tour_know">
                     <h2 class="h4"><?= $priceSection->title ?></h2>
                     <ul class="price_tour">
                         <? if ($priceSection->priceItems) {?>
