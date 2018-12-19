@@ -28,7 +28,7 @@
 .head_nap ul li a{
 	background: #94b428;
 	color: #fff;
-	padding: 10px 100px;
+	padding: 10px 20px;
 	border-radius: 4px;
 	text-decoration: none;
 	display: block;
@@ -44,7 +44,4 @@
 .head_nap ul li a:hover{
 	background: #fff;
 	color: #94b428;
-	padding: 10px 100px;
-	border-radius: 4px;
-	text-decoration: none;
 }
