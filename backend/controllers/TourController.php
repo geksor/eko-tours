@@ -6,6 +6,7 @@ use common\models\PriceSection;
 use Yii;
 use common\models\Tour;
 use common\models\TourSearch;
+use yii\filters\AccessControl;
 use yii\helpers\ArrayHelper;
 use yii\helpers\VarDumper;
 use yii\web\Controller;
@@ -24,6 +25,35 @@ class TourController extends Controller
     public function behaviors()
     {
         return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'actions' => ['login', 'error'],
+                        'allow' => true,
+                    ],
+                    [
+                        'actions' => [
+                            'index',
+                            'view',
+                            'create',
+                            'update',
+                            'delete',
+                            'rank',
+                            'publish',
+                            'price',
+                            'price-item',
+                            'price-section',
+                            'price-value',
+                            'attrs',
+                            'knows',
+                            'accoms',
+                        ],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                ],
+            ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
@@ -48,7 +78,6 @@ class TourController extends Controller
             ],
         ];
     }
-
 
     /**
      * Lists all Tour models.
