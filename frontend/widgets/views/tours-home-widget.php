@@ -17,8 +17,7 @@
                     <div class="thumbs" style="padding-top: 97.5%">
                         <? if ($images) {?>
                             <img src="<?= $images[0]->getUrl('medium') ?>" alt="<?= $model->title ?>"
-                                 style="-webkit-filter: brightness(0.5);
-                                        filter: brightness(0.5);
+                                 style="
                                         position: absolute;
                                         z-index: -1;
                                         height: 100%;
@@ -36,7 +35,7 @@
                                 <div class="fire_tour"><?= $model->free_field ?></div>
                             <?}?>
                             <? if ($model->places_count) {?>
-                                <div class="fire_all">Мест отслость: <?= $model->places_count ?></div>
+                                <div class="fire_all">Мест осталось: <?= $model->places_count ?></div>
                             <?}?>
                         </div>
                         <h3 class = "aa tour_h3"><?= $model->title ?> <?= $model->title_add ?><br>от <?= Yii::$app->formatter->asInteger($model->min_price) ?> руб./чел.</h3>

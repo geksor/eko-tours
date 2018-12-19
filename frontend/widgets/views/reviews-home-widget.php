@@ -7,7 +7,7 @@
 
 <div class="reviews">
     <div class = "cont">
-        <h2 class = "h2">Отзывы наших гостей</h2>
+        <h2 class = "h2">Отзывы наших туристов</h2>
         <div class="slider4 owl-carousel owl-theme">
             <? if ($models) {?>
                 <? foreach ($models as $model) {/* @var $model \common\models\Reviews */?>
