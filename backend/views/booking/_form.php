@@ -26,8 +26,6 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'customer_phone')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'confirm')->checkbox() ?>
-
     <div class="form-group">
         <?= Html::submitButton('Сохранить', ['class' => 'btn btn-success']) ?>
     </div>

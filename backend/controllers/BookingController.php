@@ -114,6 +114,10 @@ class BookingController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        if ($model->confirm){
+            Yii::$app->session->setFlash('error', 'Нельзя изменить подтвержденную запись, сначала отмените подтверждение.');
+            return $this->redirect(Yii::$app->request->referrer);
+        }
         $model->done_at = time();
         $model->viewed = 2;
 
@@ -164,7 +168,6 @@ class BookingController extends Controller
      */
     public function actionConfirm($id, $confirm)
     {
-        if (Yii::$app->request->isAjax){
 
             $model = $this->findModel($id);
 
@@ -172,15 +175,35 @@ class BookingController extends Controller
             $model->viewed = 2;
             $model->done_at = time();
 
-            $stageModel = $model->stage;
-            $stageModel->places_beads = $confirm?$stageModel->places_beads-$model->places_count_beads:$stageModel->places_beads+$model->places_count_beads;
-            $stageModel->places_lavender = $confirm?$stageModel->places_lavender-$model->places_count_lavender:$stageModel->places_lavender+$model->places_count_lavender;
-
-            if ($model->save() && $stageModel->save(false)){
-
+            if (!$model->tour_id){
+                Yii::$app->session->setFlash('error', 'Не выбран тур');
                 return $this->redirect(Yii::$app->request->referrer);
             }
-        }
+
+            if (!$model->month_id){
+                Yii::$app->session->setFlash('error', 'Не выбран месяц');
+                return $this->redirect(Yii::$app->request->referrer);
+            }
+
+            if ($stageModel = $model->stage){
+                if ($stageModel->places < $model->user_places_count){
+                    Yii::$app->session->setFlash('error', 'Недостаточно мест');
+                    return $this->redirect(Yii::$app->request->referrer);
+                }
+                $stageModel->places = $confirm
+                    ?$stageModel->places - $model->user_places_count
+                    :$stageModel->places + $model->user_places_count;
+
+            }else{
+                Yii::$app->session->setFlash('error', 'Не выбран период заезда');
+                return $this->redirect(Yii::$app->request->referrer);
+            }
+
+            if ($model->save() && $stageModel->save(false)){
+                Yii::$app->session->setFlash('success', 'Операция выполнена успешно');
+                return $this->redirect(Yii::$app->request->referrer);
+            }
+        Yii::$app->session->setFlash('error', 'Что то пошло не так');
         return $this->redirect(Yii::$app->request->referrer);
     }
 

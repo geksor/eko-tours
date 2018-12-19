@@ -11,7 +11,7 @@ $this->title = 'Запись';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="booking-index">
-
+    <? \yii\bootstrap\Alert::widget() ?>
     <div class="box box-primary">
         <div class="box-body">
             <?php Pjax::begin(); ?>
