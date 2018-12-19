@@ -25,7 +25,7 @@ $this->registerCss($css, ["type" => "text/css"], "callBackWidget" );
 
             <ul class="nav navbar-nav">
 
-                <?= \backend\widgets\CountNewItemWidget::widget() ?>
+<!--                --><?//= \backend\widgets\CountNewItemWidget::widget() ?>
 
                 <!-- User Account: style can be found in dropdown.less -->
 
