@@ -45,10 +45,14 @@ return [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                '/tury' => 'tours/index',
+                '/kontakty' => 'site/about',
+
                 '/tours/booking' => 'tours/booking',
                 '/tours/<alias>' => 'tours/view',
                 '<controller:tours>' => 'tours/index',
                 '<controller:accom>' => 'accom/index',
+
 
                 '/' => 'site/index',
                 '<action:\w+>' => 'site/<action>',
