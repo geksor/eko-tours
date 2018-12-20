@@ -200,14 +200,11 @@ class ToursController extends Controller
                     .' по '.Yii::$app->formatter->asDate($model->stage->end_date, 'php:d.m')."\n"
                     :'';
 
-                $message = "Бронь тура\n
-                            Имя: $model->customer_name \n 
-                            Телефон: $model->customer_phone \n
-                            $tour $month $stage";
+                $message = "Бронь тура\nИмя: $model->customer_name \nТелефон: $model->customer_phone \n$tour $month $stage";
                 if (ArrayHelper::keyExists('chatId', Yii::$app->params['Contact'])){
                     \Yii::$app->bot->sendMessage((integer)Yii::$app->params['Contact']['chatId'], $message);
                 }
-                $model->sendEmail();
+                //$model->sendEmail();
             }else{
                 Yii::$app->session->setFlash('popUp', 'Что то пошло не так. Попробуйте еще раз.');
             }
