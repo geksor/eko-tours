@@ -204,7 +204,7 @@ class ToursController extends Controller
                 if (ArrayHelper::keyExists('chatId', Yii::$app->params['Contact'])){
                     \Yii::$app->bot->sendMessage((integer)Yii::$app->params['Contact']['chatId'], $message);
                 }
-                //$model->sendEmail();
+//                $model->sendEmail();
             }else{
                 Yii::$app->session->setFlash('popUp', 'Что то пошло не так. Попробуйте еще раз.');
             }
