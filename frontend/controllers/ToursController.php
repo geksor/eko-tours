@@ -11,6 +11,7 @@ use common\models\HomePage;
 use common\models\Tour;
 use common\models\ToursPage;
 use Yii;
+use yii\base\InvalidConfigException;
 use yii\base\InvalidParamException;
 use yii\base\Model;
 use yii\helpers\ArrayHelper;
@@ -181,6 +182,8 @@ class ToursController extends Controller
     public function actionBooking()
     {
         $model = new Booking();
+        $contact = new Contact();
+        $contact->load(Yii::$app->params);
 
         if ($model->load(Yii::$app->request->post())){
             if ($model->lastName || $model->agree === 0){
@@ -195,16 +198,21 @@ class ToursController extends Controller
 
                 $tour = $model->tour_id?$model->tour->title."\n":'';
                 $month = $model->month_id?Yii::$app->formatter->asDate($model->month->title, 'php:M Y')."\n":'';
-                $stage = $model->stage_id
-                    ?'с '.Yii::$app->formatter->asDate($model->stage->start_date, 'php:d.m')
-                    .' по '.Yii::$app->formatter->asDate($model->stage->end_date, 'php:d.m')."\n"
-                    :'';
-
-                $message = "Бронь тура\nИмя: $model->customer_name \nТелефон: $model->customer_phone \n$tour $month $stage Чел: $model->user_places_count";
-                if (ArrayHelper::keyExists('chatId', Yii::$app->params['Contact'])){
-                    \Yii::$app->bot->sendMessage((integer)Yii::$app->params['Contact']['chatId'], $message);
+                try {
+                    $stage = $model->stage_id
+                        ? 'с ' . Yii::$app->formatter->asDate($model->stage->start_date, 'php:d.m')
+                        . ' по ' . Yii::$app->formatter->asDate($model->stage->end_date, 'php:d.m') . "\n"
+                        : '';
+                } catch (InvalidConfigException $e) {
                 }
+
+                if ($contact->chatId){
+                    $message = "Бронь тура\nИмя: $model->customer_name \nТелефон: $model->customer_phone \n$tour $month $stage Чел: $model->user_places_count";
+                    \Yii::$app->bot->sendMessage((integer)$contact->chatId, $message);
+                }
+//                if ($contact->email){
 //                $model->sendEmail();
+//                }
             }else{
                 Yii::$app->session->setFlash('popUp', 'Что то пошло не так. Попробуйте еще раз.');
             }

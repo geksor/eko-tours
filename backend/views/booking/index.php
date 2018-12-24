@@ -1,7 +1,7 @@
 <?php
 
 use yii\helpers\Html;
-use yii\grid\GridView;
+use backend\widgets\grid\GridView;
 use yii\widgets\Pjax;
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\BookingSearch */
@@ -38,13 +38,18 @@ $this->params['breadcrumbs'][] = $this->title;
                     ['class' => 'yii\grid\SerialColumn'],
 
                     'id',
+                    'customer_name',
+                    'customer_phone',
                     [
                         'attribute' => 'tour_id',
                         'filter'=> \common\models\Booking::getTourFromFilter(),
                         'filterInputOptions' => ['prompt' => 'Все', 'class' => 'form-control form-control-sm'],
                         'value' => function ($data){
                             /* @var $data \common\models\Booking */
-                            return $data->tour->title;
+                            if ($data->tour_id){
+                                return $data->tour->title;
+                            }
+                            return null;
                         }
                     ],
                     [
@@ -54,7 +59,10 @@ $this->params['breadcrumbs'][] = $this->title;
                         'filterInputOptions' => ['prompt' => 'Все', 'class' => 'form-control form-control-sm'],
                         'value' => function ($data){
                             /* @var $data \common\models\Booking */
-                            return $data->month->title;
+                            if ($data->month_id){
+                                return $data->month->title;
+                            }
+                            return null;
                         }
                     ],
                     [
@@ -71,8 +79,6 @@ $this->params['breadcrumbs'][] = $this->title;
                     ],
 //                    'user_places_count',
                     //'total_price',
-                    'customer_name',
-                    //'customer_phone',
                     'created_at:datetime',
                     [
                         'attribute' => 'confirm',

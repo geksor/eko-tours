@@ -48,11 +48,11 @@ class CallBack extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'user_name' => 'User Name',
-            'phone' => 'Phone',
-            'is_consult' => 'Is Consult',
-            'created_at' => 'Created At',
-            'done_at' => 'Done At',
+            'user_name' => 'Имя',
+            'phone' => 'Телефон',
+            'is_consult' => 'Тип',
+            'created_at' => 'Дата создания',
+            'done_at' => 'Дата изменения',
             'viewed' => 'Viewed',
         ];
     }

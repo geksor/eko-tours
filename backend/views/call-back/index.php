@@ -1,7 +1,7 @@
 <?php
 
 use yii\helpers\Html;
-use yii\grid\GridView;
+use backend\widgets\grid\GridView;
 use yii\widgets\Pjax;
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\CallBackSearch */
@@ -32,7 +32,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'columns' => [
                     ['class' => 'yii\grid\SerialColumn'],
 
-                    'id',
+//                    'id',
                     'user_name',
                     'phone',
                     [

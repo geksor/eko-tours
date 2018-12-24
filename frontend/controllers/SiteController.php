@@ -213,14 +213,19 @@ class SiteController extends Controller
     public function actionSendReviews()
     {
         $reviewsModel = new Reviews();
+        $contact = new Contact();
+        $contact->load(Yii::$app->params);
+
         if ( $reviewsModel->load( Yii::$app->request->post() ) && !$reviewsModel->lastName ) {
             if ($reviewsModel->save()){
                 Yii::$app->session->setFlash('popUp', 'Спасибо за ваш отзыв.');
-                $message = "Новый отзыв\n Имя: $reviewsModel->user_name \n Текст отзыва: $reviewsModel->text";
-                if (ArrayHelper::keyExists('chatId', Yii::$app->params['Contact'])){
-                    \Yii::$app->bot->sendMessage((integer)Yii::$app->params['Contact']['chatId'], $message);
+                if ($contact->chatId){
+                    $message = "Новый отзыв\n Имя: $reviewsModel->user_name \n Текст отзыва: $reviewsModel->text";
+                    \Yii::$app->bot->sendMessage((integer)$contact->chatId, $message);
                 }
-                ///$reviewsModel->sendEmail();
+//                if ($contact->email){
+//                $model->sendEmail();
+//                }
                 return $this->redirect(Yii::$app->request->referrer);
             }
         }
@@ -231,17 +236,22 @@ class SiteController extends Controller
     public function actionCallBack()
     {
         $callBackModel = new CallBack();
+        $contact = new Contact();
+        $contact->load(Yii::$app->params);
+
         if ( $callBackModel->load( Yii::$app->request->post() ) && !$callBackModel->lastName ) {
             if ($callBackModel->save()){
                 Yii::$app->session->setFlash('popUp', ' Мы свяжемся с Вами в ближайшее время.');
                 Yii::$app->session->setFlash('reachGoal_call_back');
 
                 $messHeader = $callBackModel->is_consult?'Запрос консультации':'Запрос обратного звонка';
-                $message = "$messHeader\n Имя: $callBackModel->user_name \n Телефон: $callBackModel->phone";
-                if (ArrayHelper::keyExists('chatId', Yii::$app->params['Contact'])){
-                    \Yii::$app->bot->sendMessage((integer)Yii::$app->params['Contact']['chatId'], $message);
+                if ($contact->chatId){
+                    $message = "$messHeader\n Имя: $callBackModel->user_name \n Телефон: $callBackModel->phone";
+                    \Yii::$app->bot->sendMessage((integer)$contact->chatId, $message);
                 }
-                //$callBackModel->sendEmail();
+//                if ($contact->email){
+//                $model->sendEmail();
+//                }
                 return $this->redirect(Yii::$app->request->referrer);
             }
         }

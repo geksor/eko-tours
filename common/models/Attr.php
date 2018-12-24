@@ -24,7 +24,9 @@ class Attr extends \yii\db\ActiveRecord
 
     public function afterFind()
     {
-        $this->groupName = $this->attrGroup->title;
+        if ($attrGroup = $this->attrGroup){
+            $this->groupName = $attrGroup->title;
+        }
         parent::afterFind();
     }
 
