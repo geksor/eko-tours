@@ -667,7 +667,7 @@ a{
 .review_p{
 	display: -webkit-box;
 	-webkit-line-clamp: 10;
-	/*-webkit-box-orient: vertical;*/
+	-webkit-box-orient: vertical;
 	overflow: auto;
 	-o-text-overflow: ellipsis;
 	text-overflow: ellipsis;
