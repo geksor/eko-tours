@@ -234,6 +234,11 @@ $('#buttonUp').click(function () {
         webvisor:true,
         trackHash:true
    });
+   
+    window.replainSettings = { id: '5378381e-0d9c-4723-b5ab-800dab2653f5' };
+    (function(u){var s=document.createElement('script');s.type='text/javascript';s.async=true;s.src=u;
+    var x=document.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);
+    })('https://widget.replain.cc/dist/client.js');
 JS;
 
 $this->registerJs($js, $position = yii\web\View::POS_END, $key = null);
