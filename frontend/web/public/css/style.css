@@ -659,6 +659,7 @@ a{
 	background: #fff;
 	padding: 20px;
 	border-radius: 4px;
+	height: 282px;
 }
 .review_in .owl-nav {
 	top: -5px !important;
@@ -666,8 +667,8 @@ a{
 .review_p{
 	display: -webkit-box;
 	-webkit-line-clamp: 10;
-	-webkit-box-orient: vertical;
-	overflow: hidden;
+	/*-webkit-box-orient: vertical;*/
+	overflow: auto;
 	-o-text-overflow: ellipsis;
 	text-overflow: ellipsis;
 }
