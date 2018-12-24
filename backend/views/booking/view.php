@@ -41,7 +41,10 @@ $this->params['breadcrumbs'][] = $this->title;
                         'attribute' => 'tour_id',
                         'value' => function ($data){
                             /* @var $data \common\models\Booking */
-                            return $data->tour->title;
+                            if ($data->tour_id){
+                                return $data->tour->title;
+                            }
+                            return null;
                         }
                     ],
                     [
@@ -49,7 +52,10 @@ $this->params['breadcrumbs'][] = $this->title;
                         'format' => 'date',
                         'value' => function ($data){
                             /* @var $data \common\models\Booking */
-                            return $data->month->title;
+                            if ($data->month_id){
+                                return $data->month->title;
+                            }
+                            return null;
                         }
                     ],
                     [

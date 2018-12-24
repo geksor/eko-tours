@@ -143,7 +143,7 @@ class Booking extends \yii\db\ActiveRecord
     {
         $body = '<h1>Бронь тура с сайта</h1>
                 <p>
-                    <a href="'. Yii::$app->request->hostInfo .'/admin/call-back/view/'. $this->id .'">Ссылка на бронь</a>
+                    <a href="'. Yii::$app->request->hostInfo .'/admin/booking/view/'. $this->id .'">Ссылка на бронь</a>
                 </p>
                 <h2>Информация</h2>
                 <p> Дата бронирования: '.Yii::$app->formatter->asDate($this->created_at, 'long').'</p>
