@@ -223,9 +223,9 @@ class SiteController extends Controller
                     $message = "Новый отзыв\n Имя: $reviewsModel->user_name \n Текст отзыва: $reviewsModel->text";
                     \Yii::$app->bot->sendMessage((integer)$contact->chatId, $message);
                 }
-//                if ($contact->email){
-//                $model->sendEmail();
-//                }
+                if ($contact->email){
+                    $reviewsModel->sendEmail();
+                }
                 return $this->redirect(Yii::$app->request->referrer);
             }
         }
@@ -249,9 +249,9 @@ class SiteController extends Controller
                     $message = "$messHeader\n Имя: $callBackModel->user_name \n Телефон: $callBackModel->phone";
                     \Yii::$app->bot->sendMessage((integer)$contact->chatId, $message);
                 }
-//                if ($contact->email){
-//                $model->sendEmail();
-//                }
+                if ($contact->email){
+                    $callBackModel->sendEmail();
+                }
                 return $this->redirect(Yii::$app->request->referrer);
             }
         }

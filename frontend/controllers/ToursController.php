@@ -210,9 +210,9 @@ class ToursController extends Controller
                     $message = "Бронь тура\nИмя: $model->customer_name \nТелефон: $model->customer_phone \n$tour $month $stage Чел: $model->user_places_count";
                     \Yii::$app->bot->sendMessage((integer)$contact->chatId, $message);
                 }
-//                if ($contact->email){
-//                $model->sendEmail();
-//                }
+                if ($contact->email){
+                    $model->sendEmail();
+                }
             }else{
                 Yii::$app->session->setFlash('popUp', 'Что то пошло не так. Попробуйте еще раз.');
             }
