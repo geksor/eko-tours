@@ -125,12 +125,18 @@ $js = <<< JS
                 datasets: [{
                     data: $dataChart,
                     backgroundColor: [
-                        '#00b864',
+                        '#dd4b39',
+                        '#363bdd',
+                        '#f39c12',
+                        '#58f344',
+                        '#f3ee17',
+                        '#f374e3',
+                        '#03a80c',
+                        '#ffdfc6',
+                        '#00c0ef',
+                        '#a756ef',
                         '#558ff3',
                         '#c77fdd',
-                        '#00c0ef',
-                        '#f39c12',
-                        '#dd4b39',
                     ],
 
                 }]
