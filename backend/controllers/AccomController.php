@@ -39,6 +39,8 @@ class AccomController extends Controller
                             'delete',
                             'rank',
                             'publish',
+                            'galleryApi',
+                            'set-image',
                         ],
                         'allow' => true,
                         'roles' => ['@'],

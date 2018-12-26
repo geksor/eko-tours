@@ -36,6 +36,7 @@ class GalleryController extends Controller
                             'create',
                             'update',
                             'delete',
+                            'galleryApi',
                         ],
                         'allow' => true,
                         'roles' => ['@'],

@@ -38,6 +38,7 @@ class MonthController extends Controller
                             'update',
                             'delete',
                             'publish',
+                            'set-image',
                         ],
                         'allow' => true,
                         'roles' => ['@'],

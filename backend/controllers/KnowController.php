@@ -37,6 +37,7 @@ class KnowController extends Controller
                             'update',
                             'delete',
                             'rank',
+                            'galleryApi',
                         ],
                         'allow' => true,
                         'roles' => ['@'],

@@ -48,6 +48,7 @@ class TourController extends Controller
                             'attrs',
                             'knows',
                             'accoms',
+                            'galleryApi',
                         ],
                         'allow' => true,
                         'roles' => ['@'],

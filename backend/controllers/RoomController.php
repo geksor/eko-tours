@@ -41,7 +41,8 @@ class RoomController extends Controller
                             'delete',
                             'rank',
                             'publish',
-                            'attr'
+                            'attr',
+                            'galleryApi',
                         ],
                         'allow' => true,
                         'roles' => ['@'],

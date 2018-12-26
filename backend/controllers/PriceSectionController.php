@@ -37,6 +37,7 @@ class PriceSectionController extends Controller
                             'update',
                             'delete',
                             'rank',
+                            'set-image',
                         ],
                         'allow' => true,
                         'roles' => ['@'],
