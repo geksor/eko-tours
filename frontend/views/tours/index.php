@@ -77,8 +77,9 @@ $this->params['breadcrumbs'][] = $this->title;
                                     <div class="fire_tour"><?= $model->free_field ?></div>
                                 <?}?>
                                 <? if ($model->places_count) {?>
-                                    <div class="fire_all">Мест отслость: <?= $model->places_count ?></div>
-                                <?}?>                            </div>
+                                    <div class="fire_all">Мест оталость: <?= $model->places_count ?></div>
+                                <?}?>
+                            </div>
                             <h3 class = "aa tour_h3"><?= $model->title ?> <?= $model->title_add ?><br>от <?= Yii::$app->formatter->asInteger($model->min_price) ?> руб./чел.</h3>
                             <div class="caption">
                                 <p class="title tour_h3"><?= $model->title ?> <?= $model->title_add ?><br>от <?= Yii::$app->formatter->asInteger($model->min_price) ?> руб./чел.</p>
