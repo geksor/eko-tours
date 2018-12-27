@@ -19,7 +19,7 @@ return [
             'thousandSeparator' => ' ',
             'currencyCode' => 'ru-RU',
 //            'defaultTimeZone' => 'Europe/Moscow',
-            'timeZone' => 'Europe/Moscow',
+//            'timeZone' => 'Europe/Moscow',
         ],
     ],
     'modules' => [
