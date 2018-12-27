@@ -41,11 +41,11 @@ $this->params['breadcrumbs'][] = $this->title;
                     ],
                     [
                         'attribute' => 'start_time',
-                        'format' => ['time', 'hh:mm']
+                        'format' => ['time', 'HH:mm']
                     ],
                     [
                         'attribute' => 'end_time',
-                        'format' => ['time', 'hh:mm']
+                        'format' => ['time', 'HH:mm']
                     ],
                     'text:ntext',
                     [

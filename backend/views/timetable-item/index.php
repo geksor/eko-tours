@@ -33,11 +33,11 @@ $this->params['breadcrumbs'][] = $this->title;
 //                    'timetable_day_id:datetime',
                     [
                         'attribute' => 'start_time',
-                        'format' => ['time', 'hh:mm']
+                        'format' => ['time', 'HH:mm']
                     ],
                     [
                         'attribute' => 'end_time',
-                        'format' => ['time', 'hh:mm']
+                        'format' => ['time', 'HH:mm']
                     ],
                     [
                         'attribute' => 'text',
