@@ -18,8 +18,8 @@ return [
             'decimalSeparator' => ',',
             'thousandSeparator' => ' ',
             'currencyCode' => 'ru-RU',
-//            'defaultTimeZone' => 'Europe/Moscow',
-//            'timeZone' => 'Europe/Moscow',
+            'defaultTimeZone' => 'Europe/Moscow',
+            'timeZone' => 'Europe/Moscow',
         ],
     ],
     'modules' => [
