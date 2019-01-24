@@ -39,17 +39,17 @@ $this->registerMetaTag([
 
 <?= \frontend\widgets\ToursHomeWidget::widget() ?>
 
-<!--<div class="cont">-->
-<!--    <div class = "h2_inst">-->
-<!--        <img src="/public/img/insta.png" alt="eko_tours_adigea">-->
-<!--        <p>/eko_tours_adigea</p>-->
-<!--    </div>-->
-<!--    <div class="tours">-->
-<!--        <div class="slider3 owl-carousel owl-theme" style="font-size: 0;line-height: 0">-->
-<!--            --><?//= \frontend\widgets\InwidgetWrapper::widget() ?>
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
+<div class="cont">
+    <div class = "h2_inst">
+        <img src="/public/img/insta.png" alt="eko_tours_adigea">
+        <p>/eko_tours_adigea</p>
+    </div>
+    <div class="tours">
+        <div class="slider3 owl-carousel owl-theme" style="font-size: 0;line-height: 0">
+            <?= \frontend\widgets\InwidgetWrapper::widget() ?>
+        </div>
+    </div>
+</div>
 
 <?= \frontend\widgets\ReviewsHomeWidget::widget() ?>
 
