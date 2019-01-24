@@ -1,9 +1,10 @@
 <?php
 #require_once 'inwidget/classes/Autoload.php';
+echo "run";
+
 require_once $_SERVER['DOCUMENT_ROOT'].'/frontend/web/inwidget/classes/InstagramScraper.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/frontend/web/inwidget/classes/Unirest.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/frontend/web/inwidget/classes/InWidget.php';
-echo "run";
 
 try {
 
