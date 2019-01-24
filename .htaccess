@@ -39,4 +39,4 @@ RewriteRule ^ backend/web/index.php [L]
 RewriteCond %{REQUEST_FILENAME} -d
 RewriteRule ^(.+[^/])$ %{REQUEST_URI}/ [L,R=301]
 
-php_value memory_limit '512M'
+php_value memory_limit 512M
