@@ -709,7 +709,7 @@ class Instagram
             }
         }
 
-        $cookies = $secure_cookies + $not_secure_cookies;
+        $cookies = [$secure_cookies,  $not_secure_cookies];
         return $cookies;
     }
 
