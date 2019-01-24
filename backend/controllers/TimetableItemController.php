@@ -37,7 +37,7 @@ class TimetableItemController extends Controller
                             'update',
                             'delete',
                             'publish',
-                            'change-date'
+//                            'change-date'
                         ],
                         'allow' => true,
                         'roles' => ['@'],
@@ -53,17 +53,17 @@ class TimetableItemController extends Controller
         ];
     }
 
-    public function actionChangeDate(){
-        $items = TimetableItem::find()->all();
-        foreach ($items as $item){
-            if ($item->end_time == -10800){
-                $item->end_time = null;
-                if ($item->save()){
-                    echo "OK<br>";
-                };
-            }
-        }
-    }
+//    public function actionChangeDate(){
+//        $items = TimetableItem::find()->all();
+//        foreach ($items as $item){
+//            if ($item->end_time == -10800){
+//                $item->end_time = null;
+//                if ($item->save()){
+//                    echo "OK<br>";
+//                };
+//            }
+//        }
+//    }
 
     /**
      * Lists all TimetableItem models.
