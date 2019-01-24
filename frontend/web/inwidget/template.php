@@ -2,8 +2,8 @@
 #require_once 'inwidget/classes/Autoload.php';
 
 require_once $_SERVER['DOCUMENT_ROOT'].'/frontend/web/inwidget/classes/InstagramScraper.php';
-echo "run<br>";
 require_once $_SERVER['DOCUMENT_ROOT'].'/frontend/web/inwidget/classes/Unirest.php';
+echo "run<br>";
 require_once $_SERVER['DOCUMENT_ROOT'].'/frontend/web/inwidget/classes/InWidget.php';
 
 try {
