@@ -73,7 +73,7 @@ if(!$inWidget instanceof \inWidget\Core) {
 <?
 		$i = 0;
 		$count = $inWidget->countAvailableImages($inWidget->data->images);
-		if($count>0) {
+		if((int)$count>0) {
 			if($inWidget->config['imgRandom'] === true) shuffle($inWidget->data->images);
 				foreach ($inWidget->data->images as $key=>$item){
 					if($inWidget->isBannedUserId($item->authorId) === true) continue;

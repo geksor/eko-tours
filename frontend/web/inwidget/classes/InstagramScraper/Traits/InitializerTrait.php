@@ -250,9 +250,9 @@ trait InitializerTrait
         $keys = \func_get_args();
         unset($keys[0]); //remove value
         if (\count($keys) > 1) {
-            foreach ($keys as $key) {
-                if (\property_exists($this, $key)) { //first found set
-                    $this->{$key} = $value;
+            foreach ($keys as $key1) {
+                if (\property_exists($this, $key1)) { //first found set
+                    $this->{$key1} = $value;
 
                     return $this;
                 }

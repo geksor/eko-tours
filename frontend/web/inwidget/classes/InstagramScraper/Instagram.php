@@ -697,7 +697,7 @@ class Instagram
             $cookie_array = 'not_secure_cookies';
             $cookie_parts = explode(';', $cookie);
             foreach ($cookie_parts as $cookie_part) {
-                if (trim($cookie_part) == 'Secure') {
+                if (trim($cookie_part) === 'Secure') {
                     $cookie_array = 'secure_cookies';
                     break;
                 }
@@ -709,7 +709,7 @@ class Instagram
             }
         }
 
-        $cookies = [$secure_cookies,  $not_secure_cookies];
+        $cookies = array_merge($secure_cookies, $not_secure_cookies);
         return $cookies;
     }
 
