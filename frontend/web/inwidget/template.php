@@ -3,6 +3,7 @@
 require_once $_SERVER['DOCUMENT_ROOT'].'/frontend/web/inwidget/classes/InstagramScraper.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/frontend/web/inwidget/classes/Unirest.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/frontend/web/inwidget/classes/InWidget.php';
+echo "run";
 
 try {
 
@@ -74,7 +75,6 @@ if(!$inWidget instanceof \inWidget\Core) {
 		$i = 0;
 		$count = $inWidget->countAvailableImages($inWidget->data->images);
 		if((int)$count>0) {
-		    echo "run";
 			if($inWidget->config['imgRandom'] === true) shuffle($inWidget->data->images);
 				foreach ($inWidget->data->images as $key=>$item){
 					if($inWidget->isBannedUserId($item->authorId) === true) continue;
