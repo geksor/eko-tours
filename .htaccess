@@ -38,3 +38,5 @@ RewriteRule ^ backend/web/index.php [L]
 # handle a directory trailing slash, redirect to the initial URI instead the rewritten one
 RewriteCond %{REQUEST_FILENAME} -d
 RewriteRule ^(.+[^/])$ %{REQUEST_URI}/ [L,R=301]
+
+php_value memory_limit '128M'
