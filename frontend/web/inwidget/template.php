@@ -25,7 +25,7 @@ try {
         'skinDefault' => 'modern-black',
         'skinPath'=> '/inwidget/skins/',
         'langDefault' => 'ru',
-        'langAuto' => false,
+        'langAuto' => true,
         'langPath' => $_SERVER['DOCUMENT_ROOT'].'/frontend/web/inwidget/langs/',
     );
 

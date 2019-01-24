@@ -342,7 +342,7 @@ class Core
 			if(isset($_GET['inline']) AND (int)$_GET['inline']>0)
 				$this->inline = (int)$_GET['inline'];
 			if(isset($_GET['view']) AND (int)$_GET['view']>0)
-				$this->view = $_GET['view'];
+				$this->view = (int)$_GET['view'];
 			if(isset($_GET['toolbar']) AND $_GET['toolbar'] === 'false' OR !empty($this->config['HASHTAG']))
 				$this->toolbar = false;
 			if(isset($_GET['adaptive']) AND $_GET['adaptive'] === 'true')
