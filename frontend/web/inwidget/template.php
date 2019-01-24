@@ -35,7 +35,7 @@ try {
     // Also, you may change default values of properties
 
 
-    $inWidget->width = 'auto';	// widget width in pixels
+    $inWidget->width = 300;	// widget width in pixels
     $inWidget->inline = 50; // number of images in single line
     $inWidget->view = 108; // number of images in widget
     $inWidget->toolbar = false;	// show profile avatar, statistic and action button
