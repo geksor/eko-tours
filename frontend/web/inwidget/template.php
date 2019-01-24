@@ -3,8 +3,8 @@
 
 require_once $_SERVER['DOCUMENT_ROOT'].'/frontend/web/inwidget/classes/InstagramScraper.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/frontend/web/inwidget/classes/Unirest.php';
-echo "run<br>";
 require_once $_SERVER['DOCUMENT_ROOT'].'/frontend/web/inwidget/classes/InWidget.php';
+echo "run<br>";
 
 try {
 
