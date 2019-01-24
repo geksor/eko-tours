@@ -35,7 +35,7 @@ try {
     // Also, you may change default values of properties
 
 
-    $inWidget->width = 300;	// widget width in pixels
+//    $inWidget->width = 300;	// widget width in pixels
     $inWidget->inline = 50; // number of images in single line
     $inWidget->view = 108; // number of images in widget
     $inWidget->toolbar = false;	// show profile avatar, statistic and action button
@@ -43,8 +43,6 @@ try {
     $inWidget->adaptive = false; // enable adaptive mode
     $inWidget->skipGET = true; // skip GET variables to avoid name conflicts
     $inWidget->setOptions(); // apply new values
-    echo "</br>run</br>";
-
     $inWidget->getData();
 }
 catch (\Exception $e) {
