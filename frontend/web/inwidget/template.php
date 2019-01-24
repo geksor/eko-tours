@@ -49,7 +49,9 @@ try {
 
 }
 catch (\Exception $e) {
-    echo $e->getMessage();
+    echo "</br>run</br>";
+
+    echo $e->getMessage()."</br>";
 }
 ?>
 <?php
@@ -67,7 +69,6 @@ catch (\Exception $e) {
  * @package inWidget
  *
  */
-echo "run<br>";
 
 if(!$inWidget instanceof \inWidget\Core) {
 	throw new \Exception('inWidget object was not initialised.');
