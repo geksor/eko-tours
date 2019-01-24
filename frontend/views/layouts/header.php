@@ -10,6 +10,12 @@
             <a href="/"><img src="/public/img/logo.svg" alt="Эко Тур"></a>
             <?= \frontend\widgets\MenuWidget::widget() ?>
         </div>
+        <script type="text/javascript" src="https://russiatourism.ru/operators/widget/js/widget.js"></script>
+        <!-- Russiatourism.ru Widget -->
+        <div id="russiatourism_widget"></div>
+        <script type="text/javascript">
+            RT.Widget.build('%D0%A0%D0%A2%D0%9E+020279');
+        </script>
         <div class="phone_soc">
             <div class="soc">
                 <a href = "<?= array_key_exists('vk', Yii::$app->params['Contact'])?Yii::$app->params['Contact']['vk']:'' ?>" target="_blank">
