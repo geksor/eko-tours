@@ -6,7 +6,6 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/frontend/web/inwidget/classes/Unirest.p
 require_once $_SERVER['DOCUMENT_ROOT'].'/frontend/web/inwidget/classes/InWidget.php';
 
 try {
-    echo "run<br>";
 
     // Options may change through class constructor. For example:
 
@@ -29,6 +28,8 @@ try {
         'langAuto' => false,
         'langPath' => $_SERVER['DOCUMENT_ROOT'].'/frontend/web/inwidget/langs/',
     );
+    echo "run<br>";
+
     $inWidget = new \inWidget\Core($config);
 
     // Also, you may change default values of properties
