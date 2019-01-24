@@ -30,7 +30,6 @@ try {
     );
 
     $inWidget = new \inWidget\Core($config);
-    echo "run<br>";
 
 
     // Also, you may change default values of properties
@@ -68,6 +67,7 @@ catch (\Exception $e) {
  * @package inWidget
  *
  */
+echo "run<br>";
 
 if(!$inWidget instanceof \inWidget\Core) {
 	throw new \Exception('inWidget object was not initialised.');
