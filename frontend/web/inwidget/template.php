@@ -42,12 +42,11 @@ try {
     $inWidget->preview = 'large'; // quality of images: small, large, fullsize
     $inWidget->adaptive = false; // enable adaptive mode
     $inWidget->skipGET = true; // skip GET variables to avoid name conflicts
-
+    echo "</br>run</br>";
     $inWidget->setOptions(); // apply new values
 
 
     $inWidget->getData();
-    echo "</br>run</br>";
 }
 catch (\Exception $e) {
 
