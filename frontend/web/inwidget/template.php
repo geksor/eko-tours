@@ -28,9 +28,10 @@ try {
         'langAuto' => false,
         'langPath' => $_SERVER['DOCUMENT_ROOT'].'/frontend/web/inwidget/langs/',
     );
-    echo "run<br>";
 
     $inWidget = new \inWidget\Core($config);
+    echo "run<br>";
+
 
     // Also, you may change default values of properties
 
