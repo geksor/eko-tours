@@ -58,8 +58,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         <div class="thumbs" style="padding-top: 97.5%">
                             <? if ($images) {?>
                                 <img src="<?= $images[0]->getUrl('medium') ?>" alt="<?= $model->title ?>"
-                                     style="-webkit-filter: brightness(0.5);
-                                        filter: brightness(0.5);
+                                     style="
                                         position: absolute;
                                         z-index: -1;
                                         height: 100%;
