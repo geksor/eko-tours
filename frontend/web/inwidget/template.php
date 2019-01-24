@@ -4,9 +4,9 @@
 require_once $_SERVER['DOCUMENT_ROOT'].'/frontend/web/inwidget/classes/InstagramScraper.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/frontend/web/inwidget/classes/Unirest.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/frontend/web/inwidget/classes/InWidget.php';
-echo "run<br>";
 
 try {
+    echo "run<br>";
 
     // Options may change through class constructor. For example:
 
