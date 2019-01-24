@@ -10,11 +10,11 @@ try {
 
     $config = array(
         'LOGIN' => 'eko_tours_adigea',
-        'HASHTAG' => '',
-        'ACCESS_TOKEN' => '',
-        'authLogin' => '',
-        'authPassword' => '',
-        'tagsBannedLogins' => '',
+        'HASHTAG' => 0,
+        'ACCESS_TOKEN' => 0,
+        'authLogin' => 0,
+        'authPassword' => 0,
+        'tagsBannedLogins' => 0,
         'tagsFromAccountOnly' => false,
         'imgRandom' => true,
         'imgCount' => 30,
