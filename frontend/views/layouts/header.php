@@ -6,14 +6,6 @@
 
     </div>
 
-    <div class="rosReestrWidget" style="padding: 5px 5px 0; display: flex; justify-content: center; overflow: hidden;">
-        <script type="text/javascript" src="https://russiatourism.ru/operators/widget/js/widget.js"></script>
-        <!-- Russiatourism.ru Widget -->
-        <div id="russiatourism_widget" style="z-index: 50"></div>
-        <script type="text/javascript">
-            RT.Widget.build('%D0%A0%D0%A2%D0%9E+020279');
-        </script>
-    </div>
 
     <div class = "head_cont cont">
         <div class="nav">

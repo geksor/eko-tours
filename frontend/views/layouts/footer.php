@@ -22,4 +22,13 @@
             <a href="tel:<?= array_key_exists('phone', Yii::$app->params['Contact'])?Yii::$app->params['Contact']['phone']:'' ?>" style="text-decoration: none"><?= array_key_exists('phone', Yii::$app->params['Contact'])?Yii::$app->params['Contact']['phone']:'' ?></a>
         </div>
     </div>
+    <div class="rosReestrWidget" style="padding: 5px; display: flex; justify-content: center; overflow: hidden;">
+        <script type="text/javascript" src="https://russiatourism.ru/operators/widget/js/widget.js"></script>
+        <!-- Russiatourism.ru Widget -->
+        <div id="russiatourism_widget"></div>
+        <script type="text/javascript">
+            RT.Widget.build('%D0%A0%D0%A2%D0%9E+020279');
+        </script>
+    </div>
+
 </footer><!-- .footer -->
