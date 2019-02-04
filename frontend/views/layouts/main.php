@@ -239,6 +239,17 @@ $('#buttonUp').click(function () {
     (function(u){var s=document.createElement('script');s.type='text/javascript';s.async=true;s.src=u;
     var x=document.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);
     })('https://widget.replain.cc/dist/client.js');
+    
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window,document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '383817945754423'); 
+    fbq('track', 'PageView');
 JS;
 
 $this->registerJs($js, $position = yii\web\View::POS_END, $key = null);
