@@ -266,6 +266,7 @@ class TourController extends Controller
         ]);
     }
 
+
     public function getPriceSections()
     {
         return ArrayHelper::map(PriceSection::find()->all(), 'id', 'title');

@@ -185,7 +185,10 @@ class SiteController extends Controller
                                         ->where(['publish' => 1])
                                         ->andWhere(['>', 'title', strtotime('first day of this month 00:00:00')-100])
                                         ->with(['stages' => function (\yii\db\ActiveQuery $query) {
-                                            $query->andWhere(['publish' => 1])->orderBy(['start_date' => SORT_ASC]);
+                                            $query
+                                                ->andWhere(['publish' => 1])
+                                                ->andWhere(['>', 'start_date', strtotime('today')-100])
+                                                ->orderBy(['start_date' => SORT_ASC]);
                                         }])
                                         ->orderBy(['title' => SORT_ASC]);
                                 },
