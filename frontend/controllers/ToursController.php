@@ -90,7 +90,7 @@ class ToursController extends Controller
         if ($city_id){
             $models = $query->andWhere(['city_id' => $city_id])->all();
         }elseif ($attr_id){
-            $models = Attr::findOne($attr_id)->tours;
+            $models = Attr::findOne($attr_id)->toursPublish;
         }else{
             $models = $query->all();
         }

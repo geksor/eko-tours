@@ -17,6 +17,7 @@ use yii\helpers\ArrayHelper;
  * @property AttrGroup $attrGroup
  * @property TourAttr[] $tourAttrs
  * @property Tour[] $tours
+ * @property Tour[] $toursPublish
  */
 class Attr extends \yii\db\ActiveRecord
 {
@@ -92,5 +93,15 @@ class Attr extends \yii\db\ActiveRecord
     public function getTours()
     {
         return $this->hasMany(Tour::className(), ['id' => 'tour_id'])->viaTable('tour_attr', ['attr_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getToursPublish()
+    {
+        return $this
+            ->hasMany(Tour::className(), ['id' => 'tour_id'])->viaTable('tour_attr', ['attr_id' => 'id'])
+            ->where(['publish' => 1]);
     }
 }
