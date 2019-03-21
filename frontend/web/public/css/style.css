@@ -2255,3 +2255,23 @@ form{
 .agreeLink{
 	color: #0b58a2;
 }
+
+.geksor__tourFoHome{
+	display: flex;
+	flex-wrap: wrap;
+	width: 100%;
+	margin: -5px;
+}
+.geksor__tourItem{
+	width: 33.3333333%;
+	padding: 5px;
+}
+@media (max-width: 1000px) {
+	.geksor__tourItem{
+		width: 50%;
+	}
+}@media (max-width: 500px) {
+	.geksor__tourItem{
+		width: 100%;
+	}
+}
