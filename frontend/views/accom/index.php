@@ -4,21 +4,17 @@
 /* @var $models \common\models\Accom */
 /* @var $pageParams \common\models\AccomPage */
 
-$this->title = $pageParams->title;
-$this->registerMetaTag([
-    'name' => 'title',
-    'content' => $pageParams->meta_title,
-]);
+$this->title = $pageParams->meta_title;
 $this->registerMetaTag([
     'name' => 'description',
     'content' => $pageParams->meta_description,
 ]);
-$this->params['breadcrumbs'][] = $this->title;
+$this->params['breadcrumbs'][] = $pageParams->title;
 
 ?>
 
 <div class="pages">
-    <h1 class = "h3"><?= $this->title ?></h1>
+    <h1 class = "h3"><?= $pageParams->title ?></h1>
 
     <div class="pages_cont">
         <? if ($models) {?>

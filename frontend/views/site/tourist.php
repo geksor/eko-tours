@@ -4,20 +4,16 @@
 /* @var $models \common\models\Know */
 /* @var $pageParams \common\models\TouristPage */
 
-$this->title = $pageParams->title;
-$this->registerMetaTag([
-    'name' => 'title',
-    'content' => $pageParams->meta_title,
-]);
+$this->title = $pageParams->meta_title;
 $this->registerMetaTag([
     'name' => 'description',
     'content' => $pageParams->meta_description,
 ]);
-$this->params['breadcrumbs'][] = $this->title;
+$this->params['breadcrumbs'][] = $pageParams->title?$pageParams->title:'Туристам';
 ?>
 
 <div class="pages">
-    <h1 class = "h3"><?= $this->title ?></h1>
+    <h1 class = "h3"><?= $pageParams->title?$pageParams->title:'Туристам' ?></h1>
     <div class="pages_cont">
         <? if ($models) {?>
             <? foreach ($models as $model) { /* @var $model \common\models\Know */?>

@@ -231,7 +231,7 @@ class SiteController extends Controller
     /**
      * @return string|\yii\web\Response
      */
-    public function actionAboutPage()
+    public function actionAboutPage()//Переименовал в контакты
     {
         $model = new AboutPage();
 

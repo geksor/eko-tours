@@ -9,7 +9,6 @@
             <p>Горная лаванда: Адыгея Майкопский р-н п.Каменномостский, ул. Аминовская 22</p>-->
             <p>Телефон - <?= \yii\helpers\ArrayHelper::keyExists('phone', Yii::$app->params['Contact'])?Yii::$app->params['Contact']['phone']:'' ?></p>
             <p>email – <?= \yii\helpers\ArrayHelper::keyExists('email', Yii::$app->params['Contact'])?Yii::$app->params['Contact']['email']:'' ?></p>
-            <p>Работаем официально. В Едином реестре туроператоров наш номер РТО 019362.</p>
             <!--<p>Туристская деятельность застрахована в ПАО Росгосстрах №01/35/162/00830.</p>
             <p>Собственный гостевой дом «Рябиновые бусы» ryabinovka.com, рейтинг гостевого дома на www.booking.com - 9,2 из 10 и более 200 отзывов.</p>-->
         </div>

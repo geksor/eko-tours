@@ -43,6 +43,8 @@ $this->params['breadcrumbs'][] = $this->title;
                     'id',
                     'title',
                     'title_add',
+                    'meta_title',
+                    'meta_description:ntext',
                     'min_price:decimal',
                     'max_count',
                     'alias',
@@ -51,8 +53,6 @@ $this->params['breadcrumbs'][] = $this->title;
                         'attribute' => 'description',
                         'format' => 'html'
                     ],
-                    'meta_title',
-                    'meta_description:ntext',
                     'rank',
                     [
                         'attribute' => 'publish',

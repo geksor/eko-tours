@@ -3,18 +3,15 @@
 /* @var $this yii\web\View */
 /* @var $model \common\models\Tour */
 /* @var $models \common\models\Accom */
+/* @var $pageParamsTours \common\models\ToursPage */
 
-$this->title = $model->title;
-$this->registerMetaTag([
-    'name' => 'title',
-    'content' => $model->meta_title,
-]);
+$this->title = $model->meta_title;
 $this->registerMetaTag([
     'name' => 'description',
     'content' => $model->meta_description,
 ]);
-$this->params['breadcrumbs'][] = ['label' => 'Туры', 'url' => ['/tours']];
-$this->params['breadcrumbs'][] = $this->title;
+$this->params['breadcrumbs'][] = ['label' => $pageParamsTours->title?$pageParamsTours->title:'Туры', 'url' => ['/tours']];
+$this->params['breadcrumbs'][] = $model->title;
 
 ?>
 

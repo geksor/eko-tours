@@ -17,11 +17,11 @@ $this->params['breadcrumbs'][] = $this->title;
 
             <?php $form = ActiveForm::begin(); ?>
 
-            <h2>Настройки страницы</h2>
-
-            <?= $form->field($model, 'title') ?>
-            <?= $form->field($model, 'meta_title') ?>
-            <?= $form->field($model, 'meta_description') ?>
+<!--            <h2>Настройки страницы</h2>-->
+<!---->
+<!--            --><?//= $form->field($model, 'title') ?>
+<!--            --><?//= $form->field($model, 'meta_title') ?>
+<!--            --><?//= $form->field($model, 'meta_description') ?>
 
             <h2>Контакты</h2>
 

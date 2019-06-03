@@ -3,11 +3,7 @@
 /* @var $model \common\models\HomePage */
 /* @var $galleryImages */
 
-$this->title = $model->title;
-$this->registerMetaTag([
-    'name' => 'title',
-    'content' => $model->meta_title,
-]);
+$this->title = $model->meta_title;
 $this->registerMetaTag([
     'name' => 'description',
     'content' => $model->meta_description,

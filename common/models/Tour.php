@@ -107,7 +107,7 @@ class Tour extends \yii\db\ActiveRecord
             'alias' => 'Название в адресной строке',
             'short_description' => 'Короткое описание',
             'description' => 'Описание',
-            'meta_title' => 'Meta Title',
+            'meta_title' => 'Title (То что будет в теге "< title >")',
             'meta_description' => 'Meta Description',
             'rank' => 'Порядок вывода',
             'publish' => 'Публикация',

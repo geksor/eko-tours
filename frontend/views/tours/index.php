@@ -2,28 +2,24 @@
 
 /* @var $this yii\web\View */
 /* @var $models \common\models\Tour */
-/* @var $pageParams \common\models\AccomPage */
+/* @var $pageParams \common\models\ToursPage */
 /* @var $cityModels \common\models\City */
 /* @var $attrModels \common\models\Attr */
 /* @var $city_id */
 /* @var $attr_id */
 
 
-$this->title = $pageParams->title;
-$this->registerMetaTag([
-    'name' => 'title',
-    'content' => $pageParams->meta_title,
-]);
+$this->title = $pageParams->meta_title;
 $this->registerMetaTag([
     'name' => 'description',
     'content' => $pageParams->meta_description,
 ]);
-$this->params['breadcrumbs'][] = $this->title;
+$this->params['breadcrumbs'][] = $pageParams->title?$pageParams->title:'Туры';
 
 ?>
 
 <div class="pages">
-    <h1 class = "h3"><?= $this->title ?></h1>
+    <h1 class = "h3"><?= $pageParams->title?$pageParams->title:'Туры' ?></h1>
 
     <div class="head_nap">
         <ul>

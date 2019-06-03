@@ -92,8 +92,8 @@ class Contact extends Model
     public function attributeLabels()
     {
         return [
-            'title' => 'Заголовок страницы',
-            'meta_title' => 'Meta-title',
+            'title' => 'Заголовок страницы (То что будет в H1)',
+            'meta_title' => 'Title (То что будет в теге "< title >")',
             'meta_description' => 'Meta-description',
 
             'email' => 'E-mail',

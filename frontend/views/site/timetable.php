@@ -5,20 +5,16 @@
 /* @var $selectModel \common\models\City */
 /* @var $pageParams \common\models\TimetablePage */
 
-$this->title = $pageParams->title;
-$this->registerMetaTag([
-    'name' => 'title',
-    'content' => $pageParams->meta_title,
-]);
+$this->title = $pageParams->meta_title;
 $this->registerMetaTag([
     'name' => 'description',
     'content' => $pageParams->meta_description,
 ]);
-$this->params['breadcrumbs'][] = $this->title;
+$this->params['breadcrumbs'][] = $pageParams->title?$pageParams->title:'Расписание';
 ?>
 
 <div class="pages">
-    <h1 class = "h3">Расписание</h1>
+    <h1 class = "h3"><?= $pageParams->title?$pageParams->title:'Расписание' ?></h1>
     <? if ($models) {?>
     <div class="head_nap">
             <ul>

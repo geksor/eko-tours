@@ -174,8 +174,12 @@ class ToursController extends Controller
             ])
             ->one();
 
+        $pageParamsTours = new ToursPage();
+        $pageParamsTours->load(Yii::$app->params);
+
         return $this->render('view', [
             'model' => $model,
+            'pageParamsTours' => $pageParamsTours,
         ]);
     }
 

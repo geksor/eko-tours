@@ -3,19 +3,15 @@
 /* @var $this yii\web\View */
 /* @var $model \common\models\Contact */
 
-$this->title = $model->title;
-$this->registerMetaTag([
-    'name' => 'title',
-    'content' => $model->meta_title,
-]);
+$this->title = $model->meta_title;
 $this->registerMetaTag([
     'name' => 'description',
     'content' => $model->meta_description,
 ]);
-$this->params['breadcrumbs'][] = $this->title;
+$this->params['breadcrumbs'][] = $model->title?$model->title:'Контакты';
 ?>
 <div class="pages">
-    <h1 class = "h3"><?= $this->title ?></h1>
+    <h1 class = "h3"><?= $model->title?$model->title:'Контакты' ?></h1>
     <div class="pages_cont">
         <div class="requisites_in">
             <div class="contact">

@@ -17,6 +17,10 @@ use mihaildev\ckeditor\CKEditor;
 
     <?= $form->field($model, 'title_add')->textInput(['maxlength' => true]) ?>
 
+    <?= $form->field($model, 'meta_title')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'meta_description')->textarea(['rows' => 6]) ?>
+
     <?= $form->field($model, 'city_id')->dropDownList($model::getCityFromDropDown(), ['prompt' => 'Выбрать город...']) ?>
 
     <?= $form->field($model, 'min_price')->textInput() ?>
@@ -33,10 +37,6 @@ use mihaildev\ckeditor\CKEditor;
             'resize_enabled' => true,
         ],
     ]) ?>
-
-    <?= $form->field($model, 'meta_title')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'meta_description')->textarea(['rows' => 6]) ?>
 
     <?= $form->field($model, 'places_count')->textInput() ?>
 
