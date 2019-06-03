@@ -40,7 +40,7 @@ AppAsset::register($this);
     <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
     <meta name="theme-color" content="#94b428">
     <?= Html::csrfMetaTags() ?>
-    <title><?= Html::encode($this->title) ?> - Эко-Тур</title>
+    <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
     <meta name="yandex-verification" content="ef7906f901706e64" />
     <meta name="yandex-verification" content="95103ec31c0a5fec" />
