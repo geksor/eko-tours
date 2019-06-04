@@ -153,9 +153,9 @@ class SiteController extends Controller
     {
 
         $modelsAll = City::find()
-        ->with('tours')
-        ->orderBy(['rank' => SORT_ASC])
-        ->all();
+            ->with('tours')
+            ->orderBy(['rank' => SORT_ASC])
+            ->all();
 
         $modelsId = [];
 

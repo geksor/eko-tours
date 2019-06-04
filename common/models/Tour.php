@@ -31,6 +31,8 @@ use zxbodya\yii2\galleryManager\GalleryBehavior;
  * @property string $free_field
  * @property int $show_on_home
  *
+ * @property CategoryTour[] $categoryTours
+ * @property Category[] $categories
  * @property Booking[] $bookings
  * @property Month[] $months
  * @property Reviews[] $reviews
@@ -56,6 +58,9 @@ use zxbodya\yii2\galleryManager\GalleryBehavior;
  * @property TourAccom[] $tourAccoms
  * @property Accom[] $accoms
  *
+ * @property array $selectCat
+ * @property array $selectedCats
+ * @property array $catForList
  */
 class Tour extends \yii\db\ActiveRecord
 {
@@ -63,6 +68,8 @@ class Tour extends \yii\db\ActiveRecord
     public $selectedTourAttr;
     public $selectedTourKnow;
     public $selectedTourAccom;
+
+    public $selectCat;
     /**
      * {@inheritdoc}
      */
@@ -77,6 +84,8 @@ class Tour extends \yii\db\ActiveRecord
         $this->selectedTourAttr = $this->selectAttr;
         $this->selectedTourKnow = $this->selectKnow;
         $this->selectedTourAccom = $this->selectAccom;
+
+        $this->selectCat = $this->selectedCats;
         parent::afterFind();
     }
 
@@ -86,6 +95,7 @@ class Tour extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [['selectCat'], 'safe'],
             [['title', 'min_price', 'places_count'], 'required'],
             [['tourPrice', 'selectedTourAttr', 'selectedTourKnow', 'selectedTourAccom'], 'safe'],
             [['description', 'meta_description'], 'string'],
@@ -122,9 +132,44 @@ class Tour extends \yii\db\ActiveRecord
             'selectedTourAttr' => 'Атрибуты',
             'tourPrice' => 'Разделы цен',
             'selectedTourKnow' => 'Разделы туристам',
-            'selectedTourAccom' => 'Разделы размещение'
+            'selectedTourAccom' => 'Разделы размещение',
+            'selectCat' => 'Выбор раздела'
         ];
     }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCategoryTours()
+    {
+        return $this->hasMany(CategoryTour::className(), ['tour_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCategories()
+    {
+        return $this->hasMany(Category::className(), ['id' => 'category_id'])->viaTable('category_tour', ['tour_id' => 'id']);
+    }
+
+    /**
+     * @return array
+     */
+    public function getSelectedCats()
+    {
+        $selectedCats = $this->getCategories()->select('id')->asArray()->all();
+        return ArrayHelper::getColumn($selectedCats, 'id');
+    }
+
+    /**
+     * @return array
+     */
+    public static function getCatForList()
+    {
+        return ArrayHelper::map(Category::find()->orderBy(['rank' => SORT_ASC])->all(), 'id', 'title');
+    }
+
 
     /**
      * @return array
@@ -300,6 +345,32 @@ class Tour extends \yii\db\ActiveRecord
         return ArrayHelper::getColumn($selectedAttributes, 'id');
     }
 
+
+    /**
+     * @param array $cats - array [category_id, ...]
+     * @param bool $clean
+     * @return bool
+     */
+    public function saveCategories($cats, $clean = false)
+    {
+        if (is_array($cats)) {
+            CategoryTour::deleteAll(['tour_id' => $this->id]);
+            $categoryModels = Category::find()->where(['id' => $cats])->all();
+            foreach ($categoryModels as $category)
+            {
+                $this->link('categories', $category);
+            }
+            return true;
+        }
+        if ($clean) {
+            if (CategoryTour::deleteAll(['tour_id' => $this->id])){
+                return true;
+            }
+            return false;
+        }
+        return false;
+    }
+
     /**
      * @param $attrs array ([0 => attr_id, 1 => attr_id, ...])
      */
@@ -418,6 +489,15 @@ class Tour extends \yii\db\ActiveRecord
     public static function getAccomFromDropDown()
     {
         return ArrayHelper::map(Accom::find()->orderBy(['rank' => SORT_ASC])->all(), 'id', 'title');
+    }
+
+    /**
+     * {@inheritdoc}
+     * @return \common\models\query\TourQuery the active query used by this AR class.
+     */
+    public static function find()
+    {
+        return new \common\models\query\TourQuery(get_called_class());
     }
 
 }

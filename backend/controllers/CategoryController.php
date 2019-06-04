@@ -2,18 +2,20 @@
 
 namespace backend\controllers;
 
+use backend\actions\Publish;
+use backend\actions\Rank;
 use Yii;
-use common\models\City;
-use common\models\CitySearch;
+use common\models\Category;
+use common\models\CategorySearch;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * CityController implements the CRUD actions for City model.
+ * CategoryController implements the CRUD actions for Category model.
  */
-class CityController extends Controller
+class CategoryController extends Controller
 {
     /**
      * {@inheritdoc}
@@ -44,12 +46,27 @@ class CityController extends Controller
     }
 
     /**
-     * Lists all City models.
+     * @return array
+     */
+    public function actions()
+    {
+        return [
+            'publish' => [
+                'class' => Publish::className()
+            ],
+            'rank' => [
+                'class' => Rank::className()
+            ],
+        ];
+    }
+
+    /**
+     * Lists all Category models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new CitySearch();
+        $searchModel = new CategorySearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -59,7 +76,7 @@ class CityController extends Controller
     }
 
     /**
-     * Displays a single City model.
+     * Displays a single Category model.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -72,13 +89,13 @@ class CityController extends Controller
     }
 
     /**
-     * Creates a new City model.
+     * Creates a new Category model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new City();
+        $model = new Category();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -90,7 +107,7 @@ class CityController extends Controller
     }
 
     /**
-     * Updates an existing City model.
+     * Updates an existing Category model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -110,7 +127,7 @@ class CityController extends Controller
     }
 
     /**
-     * Deletes an existing City model.
+     * Deletes an existing Category model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -120,53 +137,24 @@ class CityController extends Controller
      */
     public function actionDelete($id)
     {
-        $model = $this->findModel($id);
-        if ($model->tours){
-            Yii::$app->session->setFlash('error', 'Ошибка удаления. у города есть туры');
-            return $this->redirect(Yii::$app->request->referrer);
-        }
-
-        $model->delete();
+        $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
     }
 
     /**
-     * Finds the City model based on its primary key value.
+     * Finds the Category model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return City the loaded model
+     * @return Category the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($id)
+    public function findModel($id)
     {
-        if (($model = City::findOne($id)) !== null) {
+        if (($model = Category::findOne($id)) !== null) {
             return $model;
         }
 
-        throw new NotFoundHttpException('The requested page does not exist.');
-    }
-
-    /**
-     * @param $id
-     * @param $rank
-     * @return \yii\web\Response
-     * @throws NotFoundHttpException
-     */
-    public function actionRank($id, $rank)
-    {
-        if (Yii::$app->request->isAjax){
-
-            $model = $this->findModel($id);
-
-            if ($model){
-                $model->rank = (integer) $rank;
-
-                if ($model->save()){
-                    return $this->redirect(Yii::$app->request->referrer);
-                }
-            }
-        }
-        return $this->redirect(Yii::$app->request->referrer);
+        throw new NotFoundHttpException('Запрпашиваемая страница не найдена.');
     }
 }

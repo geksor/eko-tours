@@ -29,7 +29,8 @@
         "ext-json": "*",
         "akiraz2/yii2-stat": "dev-master",
         "nox-it/yii2-nox-user-agent-parser": "*",
-        "sonko-dmitry/yii2-telegram-bot-api": "*"
+        "sonko-dmitry/yii2-telegram-bot-api": "*",
+        "kartik-v/yii2-widgets": "dev-master"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",

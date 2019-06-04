@@ -45,6 +45,12 @@
                         'url' => '#',
                         'items' => [
                             [
+                                'label' => 'Разделы',
+                                'icon' => 'globe',
+                                'url' => ['/category'],
+                                "active" => Yii::$app->controller->id === 'category',
+                            ],
+                            [
                                 'label' => 'Туры',
                                 'icon' => 'globe',
                                 'url' => ['/tour'],

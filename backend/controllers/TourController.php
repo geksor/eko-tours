@@ -33,23 +33,6 @@ class TourController extends Controller
                         'allow' => true,
                     ],
                     [
-                        'actions' => [
-                            'index',
-                            'view',
-                            'create',
-                            'update',
-                            'delete',
-                            'rank',
-                            'publish',
-                            'price',
-                            'price-item',
-                            'price-section',
-                            'price-value',
-                            'attrs',
-                            'knows',
-                            'accoms',
-                            'galleryApi',
-                        ],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -181,7 +164,7 @@ class TourController extends Controller
             return $model;
         }
 
-        throw new NotFoundHttpException('The requested page does not exist.');
+        throw new NotFoundHttpException('Запарашиваемая страница не найдена.');
     }
 
     /**
@@ -304,6 +287,38 @@ class TourController extends Controller
         }
 
         return $this->render('attrs', [
+            'model' => $model,
+        ]);
+    }
+
+    /**
+     * @param $id
+     * @return string|\yii\web\Response
+     * @throws NotFoundHttpException
+     */
+    public function actionCategories($id)
+    {
+        $model = $this->findModel($id);
+
+        if ($model->load(Yii::$app->request->post())) {
+            if ($model->selectCat){
+                if ($model->saveCategories($model->selectCat)){
+                    Yii::$app->session->setFlash('success', 'Успешно.');
+                    return $this->redirect(['view', 'id' => $model->id]);
+                }
+                Yii::$app->session->setFlash('error', 'Что то пошло не так.');
+                return $this->redirect(['view', 'id' => $model->id]);
+            }
+
+            if ($model->saveCategories(null, true)){
+                Yii::$app->session->setFlash('success', 'Успешно.');
+                return $this->redirect(['view', 'id' => $model->id]);
+            }
+            Yii::$app->session->setFlash('error', 'Что то пошло не так.');
+            return $this->redirect(['view', 'id' => $model->id]);
+        }
+
+        return $this->render('categories', [
             'model' => $model,
         ]);
     }
