@@ -1,8 +1,9 @@
 <?php
 
 /* @var $this yii\web\View */
-/* @var $models \common\models\City */
-/* @var $selectModel \common\models\City */
+///* @var $models \common\models\City */
+/* @var $models \common\models\Tour[] */
+///* @var $selectModel \common\models\City */
 /* @var $pageParams \common\models\TimetablePage */
 
 $this->title = $pageParams->meta_title;
@@ -35,8 +36,9 @@ $this->params['breadcrumbs'][] = $pageParams->title?$pageParams->title:'Расп
 <!--                        <li><a href="#tabs---><?//= $tour->id ?><!--">--><?//= $tour->title.' '.$tour->title_add ?><!--</a></li>-->
 <!--                    --><?//}?>
 <!--                </ul>-->
-                <? foreach ($selectModel->tours as $tour) {?>
+                <? foreach ($models as $tour) {?>
 <!--                    <div id="tabs---><?//= $tour->id ?><!--" class="program_tour">-->
+                    <?php if ($tour->categories) {?>
                         <div class = "raspisanie shedule mainTabs" style="width: 100% !important;">
                             <ul>
                                 <? foreach ($tour->months as $month) {?>
@@ -52,7 +54,11 @@ $this->params['breadcrumbs'][] = $pageParams->title?$pageParams->title:'Расп
                                     <? foreach ($month->stages as $stage) {?>
                                         <div class="raspisanie_day">
                                             <div class="day_in day_date">
-                                                <a href = "/tours/<?= $tour->alias ?>"><?= $tour->title ?></a>
+                                                <a href = "<?= \yii\helpers\Url::to([
+                                                    'tours/view',
+                                                    'category' => $tour->categories[0]->alias,
+                                                    'alias' => $tour->alias]
+                                                ) ?>"><?= $tour->title ?></a>
                                             </div>
                                             <div class="day_in day_date">
                                                 <?= Yii::$app->formatter->asDate($stage->start_date, 'php:d.m') ?>-<?= Yii::$app->formatter->asDate($stage->end_date, 'php:d.m') ?>
@@ -76,6 +82,7 @@ $this->params['breadcrumbs'][] = $pageParams->title?$pageParams->title:'Расп
                                 </div>
                             <?}?>
                         </div>
+                    <?}?>
 <!--                    </div>-->
                 <?}?>
             </div>

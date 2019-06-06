@@ -152,63 +152,84 @@ class SiteController extends Controller
     public function actionTimetable() /*$id = null old params*/
     {
 
-        $modelsAll = City::find()
-            ->with('tours')
+//        $modelsAll = City::find()
+//            ->with('tours')
+//            ->orderBy(['rank' => SORT_ASC])
+//            ->all();
+//
+//        $modelsId = [];
+//
+//        foreach ($modelsAll as $item){
+//            if ($item->tours){
+//                $modelsId[] = $item->id;
+//            }
+//        }
+//
+//        $models = City::findAll(['id' => $modelsId]);
+//
+//        if ($models){
+//            $selectModelQuery = City::find();
+////            if ($id){
+////                $selectModelQuery->where(['id' => $id]);
+////            }else{
+////                $selectModelQuery->where(['id' => $models[0]->id]);
+////            }
+//            $selectModel = $selectModelQuery
+//                ->with([
+//                    'tours' => function (\yii\db\ActiveQuery $query) {
+//                        $query
+//                            ->andWhere(['publish' => 1, 'deleted' => 0])
+//                            ->with([
+//                                'months' => function (\yii\db\ActiveQuery $query) {
+//                                    $query
+//                                        ->where(['publish' => 1])
+//                                        ->andWhere(['>', 'title', strtotime('first day of this month 00:00:00')-100])
+//                                        ->with(['stages' => function (\yii\db\ActiveQuery $query) {
+//                                            $query
+//                                                ->andWhere(['publish' => 1])
+//                                                ->andWhere(['>', 'start_date', strtotime('today')-100])
+//                                                ->orderBy(['start_date' => SORT_ASC]);
+//                                        }])
+//                                        ->orderBy(['title' => SORT_ASC]);
+//                                },
+//                            ])
+//                            ->orderBy(['rank' => SORT_ASC]);
+//                    },
+//                ])
+//                ->one();
+//        }else{
+//            return $this->redirect('/');
+//        }
+
+//        VarDumper::dump($selectModel,20,true);die;
+
+        $models = Tour::find()
+            ->active()
+            ->with([
+                'months' => function (\yii\db\ActiveQuery $query) {
+                    $query
+                        ->where(['publish' => 1])
+                        ->andWhere(['>', 'title', strtotime('first day of this month 00:00:00')-100])
+                        ->with(['stages' => function (\yii\db\ActiveQuery $query) {
+                            $query
+                                ->andWhere(['publish' => 1])
+                                ->andWhere(['>', 'start_date', strtotime('today')-100])
+                                ->orderBy(['start_date' => SORT_ASC]);
+                        }])
+                        ->orderBy(['title' => SORT_ASC]);
+                },
+            ])
+            ->withCategories()
             ->orderBy(['rank' => SORT_ASC])
             ->all();
 
-        $modelsId = [];
-
-        foreach ($modelsAll as $item){
-            if ($item->tours){
-                $modelsId[] = $item->id;
-            }
-        }
-
-        $models = City::findAll(['id' => $modelsId]);
-
-        if ($models){
-            $selectModelQuery = City::find();
-//            if ($id){
-//                $selectModelQuery->where(['id' => $id]);
-//            }else{
-//                $selectModelQuery->where(['id' => $models[0]->id]);
-//            }
-            $selectModel = $selectModelQuery
-                ->with([
-                    'tours' => function (\yii\db\ActiveQuery $query) {
-                        $query
-                            ->andWhere(['publish' => 1, 'deleted' => 0])
-                            ->with([
-                                'months' => function (\yii\db\ActiveQuery $query) {
-                                    $query
-                                        ->where(['publish' => 1])
-                                        ->andWhere(['>', 'title', strtotime('first day of this month 00:00:00')-100])
-                                        ->with(['stages' => function (\yii\db\ActiveQuery $query) {
-                                            $query
-                                                ->andWhere(['publish' => 1])
-                                                ->andWhere(['>', 'start_date', strtotime('today')-100])
-                                                ->orderBy(['start_date' => SORT_ASC]);
-                                        }])
-                                        ->orderBy(['title' => SORT_ASC]);
-                                },
-                            ])
-                            ->orderBy(['rank' => SORT_ASC]);
-                    },
-                ])
-                ->one();
-        }else{
-            return $this->redirect('/');
-        }
-
-//        VarDumper::dump($selectModel,20,true);die;
 
         $pageParams = new TimetablePage();
         $pageParams->load(Yii::$app->params);
 
         return $this->render('timetable', [
             'models' => $models,
-            'selectModel' => $selectModel,
+//            'selectModel' => $selectModel,
             'pageParams' => $pageParams,
         ]);
     }

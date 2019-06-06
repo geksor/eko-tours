@@ -1,7 +1,7 @@
 <?
 
 /* @var $items \frontend\widgets\MenuWidget */
-/* @var $models \common\models\Tour */
+/* @var $models \common\models\Tour[] */
 
 ?>
 
@@ -10,44 +10,45 @@
     <div class="tours">
         <? if ($models) {?>
         <div class="geksor__tourFoHome">
-            <? foreach ($models as $model) {/* @var $model \common\models\Tour */
-                $images = $model->getBehavior('galleryBehavior')->getImages();
-            ?>
-                <div class="geksor__tourItem">
-                    <section class="item tour">
-                        <div class="thumbs" style="padding-top: 97.5%">
-                            <? if ($images) {?>
-                                <img src="<?= $images[0]->getUrl('medium') ?>" alt="<?= $model->title ?>"
-                                     style="
-                                        position: absolute;
-                                        z-index: -1;
-                                        height: 100%;
-                                        width: 100%;
-                                        top: 0;
-                                        left: 0;
-                                        object-fit: cover"
-                                >
-                            <?}?>
-                            <div class="fire">
-                                <? if ($model->hot) {?>
-                                    <div class="fire_tour">Горящий тур</div>
+            <? foreach ($models as $model) {
+                if ($model->categories){
+                    $images = $model->getBehavior('galleryBehavior')->getImages();?>
+                    <div class="geksor__tourItem">
+                        <section class="item tour">
+                            <div class="thumbs" style="padding-top: 97.5%">
+                                <? if ($images) {?>
+                                    <img src="<?= $images[0]->getUrl('medium') ?>" alt="<?= $model->title ?>"
+                                         style="
+                                            position: absolute;
+                                            z-index: -1;
+                                            height: 100%;
+                                            width: 100%;
+                                            top: 0;
+                                            left: 0;
+                                            object-fit: cover"
+                                    >
                                 <?}?>
-                                <? if ($model->free_field) {?>
-                                    <div class="fire_tour"><?= $model->free_field ?></div>
-                                <?}?>
-                                <? if ($model->places_count) {?>
-                                    <div class="fire_all">Мест осталось: <?= $model->places_count ?></div>
-                                <?}?>
+                                <div class="fire">
+                                    <? if ($model->hot) {?>
+                                        <div class="fire_tour">Горящий тур</div>
+                                    <?}?>
+                                    <? if ($model->free_field) {?>
+                                        <div class="fire_tour"><?= $model->free_field ?></div>
+                                    <?}?>
+                                    <? if ($model->places_count) {?>
+                                        <div class="fire_all">Мест осталось: <?= $model->places_count ?></div>
+                                    <?}?>
+                                </div>
+                                <h3 class = "aa tour_h3"><?= $model->title ?> <?= $model->title_add ?><br>от <?= Yii::$app->formatter->asInteger($model->min_price) ?> руб./чел.</h3>
+                                <div class="caption">
+                                    <p class="title tour_h3"><?= $model->title ?> <?= $model->title_add ?><br>от <?= Yii::$app->formatter->asInteger($model->min_price) ?> руб./чел.</p>
+                                    <p class="title_1"><a href="<?= \yii\helpers\Url::to(['/tours/view', 'category' => $model->categories[0]->alias, 'alias' => $model->alias]) ?>" class="info_read">Подробнее</a></p>
+                                    <p class="title_2"><a data-modal="modal-tour" data-tour_id="<?= $model->id ?>" class="md-trigger info_bron tour_booking">Забронировать</a></p>
+                                </div>
                             </div>
-                            <h3 class = "aa tour_h3"><?= $model->title ?> <?= $model->title_add ?><br>от <?= Yii::$app->formatter->asInteger($model->min_price) ?> руб./чел.</h3>
-                            <div class="caption">
-                                <p class="title tour_h3"><?= $model->title ?> <?= $model->title_add ?><br>от <?= Yii::$app->formatter->asInteger($model->min_price) ?> руб./чел.</p>
-                                <p class="title_1"><a href="<?= \yii\helpers\Url::to(['/tours/view', 'alias' => $model->alias]) ?>" class="info_read">Подробнее</a></p>
-                                <p class="title_2"><a data-modal="modal-tour" data-tour_id="<?= $model->id ?>" class="md-trigger info_bron tour_booking">Забронировать</a></p>
-                            </div>
-                        </div>
-                    </section>
-                </div>
+                        </section>
+                    </div>
+                <?}?>
             <?}?>
         </div>
     <?}?>

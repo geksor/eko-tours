@@ -125,7 +125,7 @@ class ToursController extends Controller
      * @param $alias
      * @return string
      */
-    public function actionView($category, $alias)
+    public function actionView($category = null, $alias = null)
     {
         $category = Category::find()->whereAlias($category)->one();
         $this->tourId = Tour::findOne(['alias' => $alias])->id;

@@ -13,6 +13,14 @@ class TourQuery extends \yii\db\ActiveQuery
     {
         return $this->andWhere(['publish' => 1, 'deleted' => 0]);
     }
+    public function withCategories()
+    {
+        return $this->with([
+            'categories' => function (\yii\db\ActiveQuery $query) {
+                $query->active();
+            }
+        ]);
+    }
 
     /**
      * {@inheritdoc}
