@@ -5,6 +5,7 @@ use common\models\AboutPage;
 use common\models\Accom;
 use common\models\Attr;
 use common\models\Booking;
+use common\models\Category;
 use common\models\City;
 use common\models\Contact;
 use common\models\HomePage;
@@ -82,42 +83,52 @@ class ToursController extends Controller
     /**
      * Displays homepage.
      *
+     * @param $category
      * @return mixed
      */
-    public function actionIndex($city_id = null, $attr_id = null)
+    public function actionIndex($category = null)/* $city_id = null, $attr_id = null (old variable) */
     {
-        $query = Tour::find()->where(['publish' => 1, 'deleted' => 0])->orderBy(['rank' => SORT_ASC]);
-        if ($city_id){
-            $models = $query->andWhere(['city_id' => $city_id])->all();
-        }elseif ($attr_id){
-            $models = Attr::findOne($attr_id)->toursPublish;
-        }else{
+        $query = Tour::find()->active()->orderBy(['rank' => SORT_ASC]);
+        if ($category){
             $models = $query->all();
+            $categoryModel = Category::find()->whereAlias($category)->one();
+        }else{
+            $this->redirect('/');
         }
+//        if ($city_id){
+//            $models = $query->andWhere(['city_id' => $city_id])->all();
+//        }elseif ($attr_id){
+//            $models = Attr::findOne($attr_id)->toursPublish;
+//        }else{
+//            $models = $query->all();
+//        }
 
-        $cityModels = City::find()->orderBy(['rank' => SORT_ASC])->with('tours')->all();
-        $attrModels = Attr::find()->orderBy(['rank' => SORT_ASC])->with('tours')->all();
+//        $cityModels = City::find()->orderBy(['rank' => SORT_ASC])->with('tours')->all();
+//        $attrModels = Attr::find()->orderBy(['rank' => SORT_ASC])->with('tours')->all();
 
-        $pageParams = new ToursPage();
-        $pageParams->load(Yii::$app->params);
+//        $pageParams = new ToursPage();
+//        $pageParams->load(Yii::$app->params);
 
 
         return $this->render('index', [
             'models' => $models,
-            'pageParams' => $pageParams,
-            'cityModels' => $cityModels,
-            'attrModels' => $attrModels,
-            'city_id' => (integer)$city_id,
-            'attr_id' => (integer)$attr_id,
+            'category' => $categoryModel,
+//            'pageParams' => $pageParams,
+//            'cityModels' => $cityModels,
+//            'attrModels' => $attrModels,
+//            'city_id' => (integer)$city_id,
+//            'attr_id' => (integer)$attr_id,
         ]);
     }
 
     /**
-     * @param $id
+     * @param $category
+     * @param $alias
      * @return string
      */
-    public function actionView($alias)
+    public function actionView($category, $alias)
     {
+        $category = Category::find()->whereAlias($category)->one();
         $this->tourId = Tour::findOne(['alias' => $alias])->id;
         $model = Tour::find()
             ->where(['alias' => $alias, 'publish' => 1, 'deleted' => 0])
@@ -174,12 +185,13 @@ class ToursController extends Controller
             ])
             ->one();
 
-        $pageParamsTours = new ToursPage();
-        $pageParamsTours->load(Yii::$app->params);
+//        $pageParamsTours = new ToursPage();
+//        $pageParamsTours->load(Yii::$app->params);
 
         return $this->render('view', [
             'model' => $model,
-            'pageParamsTours' => $pageParamsTours,
+            'category' => $category,
+//            'pageParamsTours' => $pageParamsTours,
         ]);
     }
 

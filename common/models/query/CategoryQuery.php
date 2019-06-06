@@ -9,10 +9,15 @@ namespace common\models\query;
  */
 class CategoryQuery extends \yii\db\ActiveQuery
 {
-    /*public function active()
+    public function active()
     {
-        return $this->andWhere('[[status]]=1');
-    }*/
+        return $this->andWhere(['publish' => 1]);
+    }
+
+    public function whereAlias($alias)
+    {
+        return $this->andWhere(['alias' => $alias]);
+    }
 
     /**
      * {@inheritdoc}

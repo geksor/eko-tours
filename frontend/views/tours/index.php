@@ -2,47 +2,48 @@
 
 /* @var $this yii\web\View */
 /* @var $models \common\models\Tour */
-/* @var $pageParams \common\models\ToursPage */
-/* @var $cityModels \common\models\City */
-/* @var $attrModels \common\models\Attr */
-/* @var $city_id */
-/* @var $attr_id */
+/* @var $category \common\models\Category */
+///* @var $pageParams \common\models\ToursPage */
+///* @var $cityModels \common\models\City */
+///* @var $attrModels \common\models\Attr */
+///* @var $city_id */
+///* @var $attr_id */
 
 
-$this->title = $pageParams->meta_title;
+$this->title = $category->meta_title;
 $this->registerMetaTag([
     'name' => 'description',
-    'content' => $pageParams->meta_description,
+    'content' => $category->meta_description,
 ]);
-$this->params['breadcrumbs'][] = $pageParams->title?$pageParams->title:'Туры';
+$this->params['breadcrumbs'][] = $category->title;
 
 ?>
 
 <div class="pages">
-    <h1 class = "h3"><?= $pageParams->title?$pageParams->title:'Туры' ?></h1>
+    <h1 class = "h3"><?= $category->title ?></h1>
 
-    <div class="head_nap">
-        <ul>
-            <? foreach ($cityModels as $key => $city) {/* @var $city \common\models\City */?>
-                <? if ($city->tours) {?>
-                    <li>
-                        <a href="<?= \yii\helpers\Url::to(['/tours', 'city_id' => $city->id]) ?>" class="<?= $city->id===$city_id?'active':'' ?>"><?= $city->title ?></a>
-                    </li>
-                <?}?>
-            <?}?>
-        </ul>
-    </div>
-    <div class="head_nap">
-        <ul>
-            <? foreach ($attrModels as $key => $attr) {/* @var $attr \common\models\Attr */?>
-                <? if ($attr->tours) {?>
-                    <li>
-                        <a href="<?= \yii\helpers\Url::to(['/tours', 'attr_id' => $attr->id]) ?>" class="<?= $attr->id===$attr_id?'active':'' ?>"><?= $attr->title ?></a>
-                    </li>
-                <?}?>
-            <?}?>
-        </ul>
-    </div>
+<!--    <div class="head_nap">-->
+<!--        <ul>-->
+<!--            --><?// foreach ($cityModels as $key => $city) {/* @var $city \common\models\City */?>
+<!--                --><?// if ($city->tours) {?>
+<!--                    <li>-->
+<!--                        <a href="--><?//= \yii\helpers\Url::to(['/tours', 'city_id' => $city->id]) ?><!--" class="--><?//= $city->id===$city_id?'active':'' ?><!--">--><?//= $city->title ?><!--</a>-->
+<!--                    </li>-->
+<!--                --><?//}?>
+<!--            --><?//}?>
+<!--        </ul>-->
+<!--    </div>-->
+<!--    <div class="head_nap">-->
+<!--        <ul>-->
+<!--            --><?// foreach ($attrModels as $key => $attr) {/* @var $attr \common\models\Attr */?>
+<!--                --><?// if ($attr->tours) {?>
+<!--                    <li>-->
+<!--                        <a href="--><?//= \yii\helpers\Url::to(['/tours', 'attr_id' => $attr->id]) ?><!--" class="--><?//= $attr->id===$attr_id?'active':'' ?><!--">--><?//= $attr->title ?><!--</a>-->
+<!--                    </li>-->
+<!--                --><?//}?>
+<!--            --><?//}?>
+<!--        </ul>-->
+<!--    </div>-->
 
     <div class="pages_cont">
         <? if ($models) {?>
@@ -78,7 +79,7 @@ $this->params['breadcrumbs'][] = $pageParams->title?$pageParams->title:'Туры
                             <h3 class = "aa tour_h3"><?= $model->title ?> <?= $model->title_add ?><br>от <?= Yii::$app->formatter->asInteger($model->min_price) ?> руб./чел.</h3>
                             <div class="caption">
                                 <p class="title tour_h3"><?= $model->title ?> <?= $model->title_add ?><br>от <?= Yii::$app->formatter->asInteger($model->min_price) ?> руб./чел.</p>
-                                <p class="title_1"><a href="<?= \yii\helpers\Url::to(['view', 'alias' => $model->alias]) ?>" class="info_read">Подробнее</a></p>
+                                <p class="title_1"><a href="<?= \yii\helpers\Url::to(['view', 'category' => $category->alias, 'alias' => $model->alias]) ?>" class="info_read">Подробнее</a></p>
                                 <p class="title_2"><a data-modal="modal-tour" data-tour_id="<?= $model->id ?>" class="md-trigger info_bron tour_booking">Забронировать</a></p>
                             </div>
                         </div>

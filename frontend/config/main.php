@@ -49,7 +49,8 @@ return [
                 '/kontakty' => 'site/about',
 
                 '/tours/booking' => 'tours/booking',
-                '/tours/<alias>' => 'tours/view',
+                '/tours/<category>' => 'tours/index',
+                '/tours/<category>/<alias>' => 'tours/view',
                 '<controller:tours>' => 'tours/index',
                 '<controller:accom>' => 'accom/index',
 

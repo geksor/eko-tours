@@ -149,7 +149,7 @@ class SiteController extends Controller
         ]);
     }
 
-    public function actionTimetable($id = null)
+    public function actionTimetable() /*$id = null old params*/
     {
 
         $modelsAll = City::find()
@@ -169,11 +169,11 @@ class SiteController extends Controller
 
         if ($models){
             $selectModelQuery = City::find();
-            if ($id){
-                $selectModelQuery->where(['id' => $id]);
-            }else{
-                $selectModelQuery->where(['id' => $models[0]->id]);
-            }
+//            if ($id){
+//                $selectModelQuery->where(['id' => $id]);
+//            }else{
+//                $selectModelQuery->where(['id' => $models[0]->id]);
+//            }
             $selectModel = $selectModelQuery
                 ->with([
                     'tours' => function (\yii\db\ActiveQuery $query) {

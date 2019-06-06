@@ -9,10 +9,10 @@ namespace common\models\query;
  */
 class TourQuery extends \yii\db\ActiveQuery
 {
-    /*public function active()
+    public function active()
     {
-        return $this->andWhere('[[status]]=1');
-    }*/
+        return $this->andWhere(['publish' => 1, 'deleted' => 0]);
+    }
 
     /**
      * {@inheritdoc}

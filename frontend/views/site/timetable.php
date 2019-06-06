@@ -16,17 +16,17 @@ $this->params['breadcrumbs'][] = $pageParams->title?$pageParams->title:'Расп
 <div class="pages">
     <h1 class = "h3"><?= $pageParams->title?$pageParams->title:'Расписание' ?></h1>
     <? if ($models) {?>
-    <div class="head_nap">
-            <ul>
-                <? foreach ($models as $key => $city) {/* @var $city \common\models\City */?>
-                    <? if ($city->tours) {?>
-                        <li>
-                            <a href="<?= \yii\helpers\Url::to(['timetable', 'id' => $city->id]) ?>" class="<?= $city->id===$selectModel->id?'active':'' ?>"><?= $city->title ?></a>
-                        </li>
-                    <?}?>
-                <?}?>
-            </ul>
-    </div>
+<!--    <div class="head_nap">-->
+<!--            <ul>-->
+<!--                --><?// foreach ($models as $key => $city) {/* @var $city \common\models\City */?>
+<!--                    --><?// if ($city->tours) {?>
+<!--                        <li>-->
+<!--                            <a href="--><?//= \yii\helpers\Url::to(['timetable', 'id' => $city->id]) ?><!--" class="--><?//= $city->id===$selectModel->id?'active':'' ?><!--">--><?//= $city->title ?><!--</a>-->
+<!--                        </li>-->
+<!--                    --><?//}?>
+<!--                --><?//}?>
+<!--            </ul>-->
+<!--    </div>-->
     <div class="pages_cont">
         <div class="tour_in">
             <div class = "raspisanie shedule mainTabs" style="width: 100% !important;">
