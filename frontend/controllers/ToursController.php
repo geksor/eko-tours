@@ -88,10 +88,9 @@ class ToursController extends Controller
      */
     public function actionIndex($category = null)/* $city_id = null, $attr_id = null (old variable) */
     {
-        $query = Tour::find()->active()->orderBy(['rank' => SORT_ASC]);
         if ($category){
-            $models = $query->all();
-            $categoryModel = Category::find()->whereAlias($category)->one();
+            $categoryModel = Category::find()->whereAlias($category)->withTours()->one();
+            $models = $categoryModel->tours;
         }else{
             $this->redirect('/');
         }

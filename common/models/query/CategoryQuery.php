@@ -18,6 +18,14 @@ class CategoryQuery extends \yii\db\ActiveQuery
     {
         return $this->andWhere(['alias' => $alias]);
     }
+    public function withTours()
+    {
+        return $this->with([
+            'tours' => function (\yii\db\ActiveQuery $query) {
+                $query->active()->orderBy(['rank' => SORT_ASC]);
+            },
+        ]);
+    }
 
     /**
      * {@inheritdoc}
