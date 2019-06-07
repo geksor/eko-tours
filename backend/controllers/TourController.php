@@ -300,7 +300,7 @@ class TourController extends Controller
     public function actionCategories($id)
     {
         if (!$category = Category::find()->active()->all()){
-            throw new NotFoundHttpException('Нет ни одной категории. Необходимо создать хотябы одну категорию.');
+            throw new NotFoundHttpException('Нет ни одного раздела. Необходимо создать хотябы один раздел.');
         }
         $model = $this->findModel($id);
 

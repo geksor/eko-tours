@@ -33,7 +33,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?= Html::a('Раздел цены', ['price', 'id' => $model->id], ['class' => 'btn btn-default']) ?>
                 <?= Html::a('Раздел важно знать', ['knows', 'id' => $model->id], ['class' => 'btn btn-default']) ?>
                 <?= Html::a('Раздел Размещение', ['accoms', 'id' => $model->id], ['class' => 'btn btn-default']) ?>
-                <?= Html::a('Выбор атрибутов', ['attrs', 'id' => $model->id], ['class' => 'btn btn-default']) ?>
+<!--                --><?//= Html::a('Выбор атрибутов', ['attrs', 'id' => $model->id], ['class' => 'btn btn-default']) ?>
                 <?= Html::a('Выбор разделов', ['categories', 'id' => $model->id], ['class' => 'btn btn-default']) ?>
 
             </p>
