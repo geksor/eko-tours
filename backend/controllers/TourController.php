@@ -2,6 +2,7 @@
 
 namespace backend\controllers;
 
+use common\models\Category;
 use common\models\PriceSection;
 use Yii;
 use common\models\Tour;
@@ -298,6 +299,9 @@ class TourController extends Controller
      */
     public function actionCategories($id)
     {
+        if (!Category::find()->active()->all()){
+            throw new NotFoundHttpException('Нет ни одной категории. Необходимо создать хотябы одну категорию.');
+        }
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post())) {
