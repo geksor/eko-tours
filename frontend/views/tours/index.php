@@ -87,7 +87,7 @@ $this->params['breadcrumbs'][] = $category->title;
                 <?}?>
             </div>
         <?}?>
-        <div class="page_description">
+        <div class="pages_desc" style="margin-top: 15px">
             <?= $category->description ?>
         </div>
     </div>
