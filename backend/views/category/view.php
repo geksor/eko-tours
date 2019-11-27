@@ -35,7 +35,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     'id',
                     'title',
                     'alias',
-//                    'description:ntext',
+                    'description:ntext',
                     'meta_title',
                     'meta_description:ntext',
                     'rank',

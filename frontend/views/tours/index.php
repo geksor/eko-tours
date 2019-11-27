@@ -87,6 +87,9 @@ $this->params['breadcrumbs'][] = $category->title;
                 <?}?>
             </div>
         <?}?>
+        <div class="page_description">
+            <?= $category->description ?>
+        </div>
     </div>
 
 
