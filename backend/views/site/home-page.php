@@ -23,6 +23,14 @@ $this->params['breadcrumbs'][] = $this->title;
             <?= $form->field($model, 'title') ?>
             <?= $form->field($model, 'meta_title') ?>
             <?= $form->field($model, 'meta_description') ?>
+            <?= $form->field($model, 'seo_text')->widget(CKEditor::className(),[
+                'editorOptions' => [
+                    'preset' => 'standard', //разработанны стандартные настройки basic, standard, full данную возможность не обязательно использовать
+                    'inline' => false, //по умолчанию false
+                    'height' => 300,
+                    'resize_enabled' => true,
+                ],
+            ]) ?>
 
             <h2>Шапка страницы</h2>
 

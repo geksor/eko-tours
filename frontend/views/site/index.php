@@ -52,6 +52,11 @@ $this->registerMetaTag([
 <div class = "cont zabron">
     <h2 class = "h2">Забронировать тур в один клик</h2>
     <a class="md-trigger zabron_read" data-modal="modal-tour">Поехали!</a>
+    <?php if ($model->seo_text) {?>
+        <div class="pages_cont" style="margin-top: 30px">
+            <?= $model->seo_text ?>
+        </div>
+    <?}?>
 </div>
 <!--
 <div id="map" class="map">

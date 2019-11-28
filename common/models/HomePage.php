@@ -23,6 +23,7 @@ use yii\helpers\ArrayHelper;
  * @property int $gallery_id
  * @property string $rightBlock_title
  * @property string $rightBlock_text
+ * @property string $seo_text
  *
  * @property string $instagramm
  *
@@ -42,6 +43,7 @@ class HomePage extends Model
     public $gallery_id;
     public $rightBlock_title;
     public $rightBlock_text;
+    public $seo_text;
 
     public $instagram;
 
@@ -65,6 +67,7 @@ class HomePage extends Model
                     'gallery_id',
                     'rightBlock_title',
                     'rightBlock_text',
+                    'seo_text',
 
                     'instagram',
                 ],
@@ -92,6 +95,7 @@ class HomePage extends Model
             'gallery_id' => 'Галерея в раздел о нас',
             'rightBlock_title' => 'Заголовок правого блока о нас',
             'rightBlock_text' => 'Содержание правого блока о нас',
+            'seo_text' => 'SEO текст внизу главной',
 
             'instagram' => 'Аккаунт инстаграма для виджета',
         ];
