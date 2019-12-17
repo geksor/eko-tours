@@ -9,6 +9,8 @@ use common\models\Category;
 use common\models\City;
 use common\models\Contact;
 use common\models\HomePage;
+use common\models\Stage;
+use common\models\StagePrice;
 use common\models\Tour;
 use common\models\ToursPage;
 use Yii;
@@ -184,12 +186,18 @@ class ToursController extends Controller
             ])
             ->one();
 
+        $monthsIdArr = ArrayHelper::getColumn($model->months, 'id');
+        $stageModels = Stage::getModelsByMonthIds($monthsIdArr);
+
 //        $pageParamsTours = new ToursPage();
 //        $pageParamsTours->load(Yii::$app->params);
 
         return $this->render('view', [
             'model' => $model,
             'category' => $category,
+            'stageModels' => $stageModels['models'],
+            'stageAccoms' => $stageModels['accoms'],
+            'stagePrices' => $stageModels['prices'],
 //            'pageParamsTours' => $pageParamsTours,
         ]);
     }

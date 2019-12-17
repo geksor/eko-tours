@@ -13,68 +13,95 @@
 
 ( function( window ) {
 
-'use strict';
+  'use strict';
 
 // class helper functions from bonzo https://github.com/ded/bonzo
 
-function classReg( className ) {
-  return new RegExp("(^|\\s+)" + className + "(\\s+|$)");
-}
+  function classReg( className ) {
+    return new RegExp("(^|\\s+)" + className + "(\\s+|$)");
+  }
 
 // classList support for class management
 // altho to be fair, the api sucks because it won't accept multiple classes at once
-var hasClass, addClass, removeClass;
+  var hasClass, addClass, removeClass;
 
-if ( 'classList' in document.documentElement ) {
-  hasClass = function( elem, c ) {
-    return elem.classList.contains( c );
-  };
-  addClass = function( elem, c ) {
-    elem.classList.add( c );
-  };
-  removeClass = function( elem, c ) {
-    elem.classList.remove( c );
-  };
-}
-else {
-  hasClass = function( elem, c ) {
-    return classReg( c ).test( elem.className );
-  };
-  addClass = function( elem, c ) {
-    if ( !hasClass( elem, c ) ) {
-      elem.className = elem.className + ' ' + c;
-    }
-  };
-  removeClass = function( elem, c ) {
-    elem.className = elem.className.replace( classReg( c ), ' ' );
-  };
-}
+  if ( 'classList' in document.documentElement ) {
+    hasClass = function( elem, c ) {
+      return elem.classList.contains( c );
+    };
+    addClass = function( elem, c ) {
+      elem.classList.add( c );
+    };
+    removeClass = function( elem, c ) {
+      elem.classList.remove( c );
+    };
+  }
+  else {
+    hasClass = function( elem, c ) {
+      return classReg( c ).test( elem.className );
+    };
+    addClass = function( elem, c ) {
+      if ( !hasClass( elem, c ) ) {
+        elem.className = elem.className + ' ' + c;
+      }
+    };
+    removeClass = function( elem, c ) {
+      elem.className = elem.className.replace( classReg( c ), ' ' );
+    };
+  }
 
-function toggleClass( elem, c ) {
-  var fn = hasClass( elem, c ) ? removeClass : addClass;
-  fn( elem, c );
-}
+  function toggleClass( elem, c ) {
+    var fn = hasClass( elem, c ) ? removeClass : addClass;
+    fn( elem, c );
+  }
 
-var classie = {
-  // full names
-  hasClass: hasClass,
-  addClass: addClass,
-  removeClass: removeClass,
-  toggleClass: toggleClass,
-  // short names
-  has: hasClass,
-  add: addClass,
-  remove: removeClass,
-  toggle: toggleClass
-};
+  var classie = {
+    // full names
+    hasClass: hasClass,
+    addClass: addClass,
+    removeClass: removeClass,
+    toggleClass: toggleClass,
+    // short names
+    has: hasClass,
+    add: addClass,
+    remove: removeClass,
+    toggle: toggleClass
+  };
 
 // transport
-if ( typeof define === 'function' && define.amd ) {
-  // AMD
-  define( classie );
-} else {
-  // browser global
-  window.classie = classie;
-}
+  if ( typeof define === 'function' && define.amd ) {
+    // AMD
+    define( classie );
+  } else {
+    // browser global
+    window.classie = classie;
+  }
+
+
+
+  (function ($) {
+    $(function () {
+
+      $('ul.tabs__caption').on('click', 'li:not(.active)', function () {
+        $(this)
+            .addClass('active').siblings().removeClass('active')
+            .closest('div.tabs').find('div.tabs__content').removeClass('active').eq($(this).index()).addClass('active');
+      });
+
+    });
+  })(jQuery);
+
+  window.onclick = function (event) {
+    if (!event.target.matches('.dropbtn')) {
+      var dropdowns = document.getElementsByClassName("dropdown-content");
+      var i;
+      for (i = 0; i < dropdowns.length; i++) {
+        var openDropdown = dropdowns[i];
+        if (openDropdown.classList.contains('show')) {
+          openDropdown.classList.remove('show');
+        }
+      }
+    }
+  };
 
 })( window );

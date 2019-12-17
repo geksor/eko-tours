@@ -2,19 +2,23 @@
 
 namespace backend\controllers;
 
+use backend\actions\Publish;
+use backend\actions\Rank;
+use backend\actions\SetImage;
 use common\models\Month;
-use Yii;
 use common\models\Stage;
-use common\models\StageSearch;
+use Yii;
+use common\models\StagePrice;
+use common\models\StagePriceSearch;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * StageController implements the CRUD actions for Stage model.
+ * StagePriceController implements the CRUD actions for StagePrice model.
  */
-class StageController extends Controller
+class StagePriceController extends Controller
 {
     /**
      * {@inheritdoc}
@@ -30,14 +34,6 @@ class StageController extends Controller
                         'allow' => true,
                     ],
                     [
-                        'actions' => [
-                            'index',
-                            'view',
-                            'create',
-                            'update',
-                            'delete',
-                            'publish',
-                        ],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -53,19 +49,43 @@ class StageController extends Controller
     }
 
     /**
-     * Lists all Stage models.
-     * @param $month_id
+     * @return array
+     */
+    public function actions()
+    {
+        return [
+            'publish' => [
+                'class' => Publish::className()
+            ],
+            'rank' => [
+                'class' => Rank::className()
+            ],
+            'set-image' => [
+                'class' => SetImage::className(),
+                'folder' => 'stage_price_image',
+                'propImage' => 'image',
+                'title' => 'Изображение цены',
+                'width' => 200,
+                'height' => 400,
+            ],
+        ];
+    }
+
+    /**
+     * Lists all StagePrice models.
+     * @param $stage_id
      * @return mixed
      * @throws \yii\base\InvalidConfigException
      */
-    public function actionIndex($month_id)
+    public function actionIndex($stage_id)
     {
-        $searchModel = new StageSearch();
-        $searchModel->month_id = $month_id;
+        $searchModel = new StagePriceSearch();
+        $searchModel->stage_id = $stage_id;
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-        $monthModel = Month::findOne($month_id);
-        $title = $monthModel?Yii::$app->formatter->asDate($monthModel->title, 'php:F Y'):'';
-        $title = 'Потоки ' . $title;
+        $stageModel = Stage::findOne($stage_id);
+        $startDate = $stageModel?Yii::$app->formatter->asDate($stageModel->start_date, 'php:d.m.Y'):'';
+        $endDate = $stageModel?Yii::$app->formatter->asDate($stageModel->end_date, 'php:d.m.Y'):'';
+        $title = 'Цены потока с ' . $startDate . ' по ' . $endDate;
 
 
         return $this->render('index', [
@@ -76,7 +96,7 @@ class StageController extends Controller
     }
 
     /**
-     * Displays a single Stage model.
+     * Displays a single StagePrice model.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -89,15 +109,15 @@ class StageController extends Controller
     }
 
     /**
-     * Creates a new Stage model.
+     * Creates a new StagePrice model.
      * If creation is successful, the browser will be redirected to the 'view' page.
+     * @param $stage_id
      * @return mixed
      */
-    public function actionCreate($month_id)
+    public function actionCreate($stage_id)
     {
-        $model = new Stage();
-        $model->month_id = $month_id;
-        $model->places = Month::findOne($month_id)->maxCount;
+        $model = new StagePrice();
+        $model->stage_id = $stage_id;
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -109,22 +129,15 @@ class StageController extends Controller
     }
 
     /**
-     * Updates an existing Stage model.
+     * Updates an existing StagePrice model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
-     * @throws \yii\base\InvalidConfigException
      */
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-        if ($model->start_date){
-            $model->start_date = Yii::$app->formatter->asDate((integer)$model->start_date, 'php:d.m.Y');
-        }
-        if ($model->end_date){
-            $model->end_date = Yii::$app->formatter->asDate((integer)$model->end_date, 'php:d.m.Y');
-        }
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -136,7 +149,7 @@ class StageController extends Controller
     }
 
     /**
-     * Deletes an existing Stage model.
+     * Deletes an existing StagePrice model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -147,51 +160,25 @@ class StageController extends Controller
     public function actionDelete($id)
     {
         $model = $this->findModel($id);
-        $redirect_id = $model->month_id;
-        if ($model->bookings){
-            $model->deleted = 1;
-            $model->save(false);
-        }else{
-            $model->delete();
-        }
-        return $this->redirect(['index', 'month_id' => $redirect_id]);
+        $redirect_id = $model->stage_id;
+        $model->delete();
+
+        return $this->redirect(['index', 'stage_id' => $redirect_id]);
     }
 
     /**
-     * Finds the Stage model based on its primary key value.
+     * Finds the StagePrice model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Stage the loaded model
+     * @return StagePrice the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($id)
+    public function findModel($id)
     {
-        if (($model = Stage::findOne($id)) !== null) {
+        if (($model = StagePrice::findOne($id)) !== null) {
             return $model;
         }
 
-        throw new NotFoundHttpException(Yii::t('app', 'The requested page does not exist.'));
+        throw new NotFoundHttpException('Запрпашиваемая страница не найдена.');
     }
-
-    /**
-     * @param $id
-     * @param $publish
-     * @return \yii\web\Response
-     * @throws NotFoundHttpException
-     */
-    public function actionPublish($id, $publish)
-    {
-        if (Yii::$app->request->isAjax){
-
-            $model = $this->findModel($id);
-
-            $model->publish = (integer) $publish;
-
-            if ($model->save()){
-                return $this->redirect(Yii::$app->request->referrer);
-            }
-        }
-        return $this->redirect(Yii::$app->request->referrer);
-    }
-
 }

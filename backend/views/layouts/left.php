@@ -58,7 +58,8 @@
                                     || Yii::$app->controller->id === 'month'
                                     || Yii::$app->controller->id === 'stage'
                                     || Yii::$app->controller->id === 'timetable-day'
-                                    || Yii::$app->controller->id === 'timetable-item',
+                                    || Yii::$app->controller->id === 'timetable-item'
+                                    || Yii::$app->controller->id === 'stage-price',
                             ],
                             [
                                 'label' => 'Направления',
