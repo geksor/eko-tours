@@ -98,8 +98,9 @@ $this->params['breadcrumbs'][] = $model->title;
                                 <?= Yii::$app->formatter->asDate($stage->end_date, 'php:d.m.y') ?></h2>
                             <ul class="price_tour">
                                 <?foreach ($stagePrices[$stage->id][$accom->id] as $stagePrice) {?>
-                                    <li class="bg-active indicator" style="background-image: url(<?= $stagePrice->getThumbImage() ?>)">
+                                    <li class="bg-active" style="background-image: url(<?= $stagePrice->getThumbImage() ?>)">
                                         <p><?= $stagePrice->title ?></p>
+                                        <span class="indicator"><?= $stagePrice->place_count ?></span>
                                         &nbsp;- <strong><?= $stagePrice->price ?></strong>
                                     </li>
                                 <?}?>

@@ -209,6 +209,12 @@
     .apart_in .owl-nav {
         top: -33px !important;
     }
+    .h4 {
+        font: 14px/18px 'merriweatherbold';
+        height: auto;
+        overflow: scroll;
+        padding: 20px 0;
+    }
 }
 @media (min-width: 1px) and (max-width: 450px) {
     .head_name h1 {
