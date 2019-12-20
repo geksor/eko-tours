@@ -68,51 +68,53 @@ $this->params['breadcrumbs'][] = $model->title;
         </div>
     </div>
     <div id="tabs-2">
-        <div class="tabs">
-            <div class="dropdown">
-                <button id="clickDropDown" class="dropbtn">Выбрать период
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" width="20" height="12"
-                         viewBox="0 0 20 12">
-                        <defs />
-                        <path fill="#3C3C3C"
-                              d="M1.721.79L10 9.07 18.277.787a1.009 1.009 0 111.428 1.43l-8.992 8.993a1.008 1.008 0 01-1.426 0L.295 2.217A1.008 1.008 0 111.721.79z" />
-                    </svg>
-                </button>
-                <div id="myDropdown" class="dropdown-content">
-                    <ul class="tabs__caption">
-                        <?php foreach ($stageModels as $key=>$stage) {?>
-                            <li class="<?= $key !== 0?:'active' ?>">
-                                <?= Yii::$app->formatter->asDate($stage->start_date, 'php:d.m.y') ?> - <?= Yii::$app->formatter->asDate($stage->end_date, 'php:d.m.y') ?>
-                                (<?= ($stage->end_date - $stage->start_date)/(60*60*24) ?> дней)</li>
+        <?php if (1 === 2){?>
+            <div class="tabs">
+                <div class="dropdown">
+                    <button id="clickDropDown" class="dropbtn">Выбрать период
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" width="20" height="12"
+                             viewBox="0 0 20 12">
+                            <defs />
+                            <path fill="#3C3C3C"
+                                  d="M1.721.79L10 9.07 18.277.787a1.009 1.009 0 111.428 1.43l-8.992 8.993a1.008 1.008 0 01-1.426 0L.295 2.217A1.008 1.008 0 111.721.79z" />
+                        </svg>
+                    </button>
+                    <div id="myDropdown" class="dropdown-content">
+                        <ul class="tabs__caption">
+                            <?php foreach ($stageModels as $key=>$stage) {?>
+                                <li class="<?= $key !== 0?:'active' ?>">
+                                    <?= Yii::$app->formatter->asDate($stage->start_date, 'php:d.m.y') ?> - <?= Yii::$app->formatter->asDate($stage->end_date, 'php:d.m.y') ?>
+                                    (<?= ($stage->end_date - $stage->start_date)/(60*60*24) ?> дней)</li>
+                            <?}?>
+                        </ul>
+                    </div>
+                </div>
+
+                <?php foreach ($stageModels as $key=>$stage) {?>
+                    <div class="tabs__content <?= $key !== 0?:'active' ?>">
+                        <?php foreach ($stageAccoms[$stage->id] as $accom) {?>
+                            <div class="tour_in tour_know">
+                                <h2 class="h4">Стоимость тура при размещении в гостевом доме «<?= $accom->title ?>» с <?= Yii::$app->formatter->asDate($stage->start_date, 'php:d.m.y') ?>
+                                    по
+                                    <?= Yii::$app->formatter->asDate($stage->end_date, 'php:d.m.y') ?></h2>
+                                <ul class="price_tour">
+                                    <?foreach ($stagePrices[$stage->id][$accom->id] as $stagePrice) {?>
+                                        <li class="bg-active" style="background-image: url(<?= $stagePrice->getThumbImage() ?>)">
+                                            <p><?= $stagePrice->title ?></p>
+                                            <span class="indicator"><?= $stagePrice->place_count ?></span>
+                                            &nbsp;- <strong><?= $stagePrice->price ?></strong>
+                                        </li>
+                                    <?}?>
+                                </ul>
+                            </div>
                         <?}?>
-                    </ul>
-                </div>
+                    </div>
+                <?}?>
+
             </div>
+        <?}?>
 
-            <?php foreach ($stageModels as $key=>$stage) {?>
-                <div class="tabs__content <?= $key !== 0?:'active' ?>">
-                    <?php foreach ($stageAccoms[$stage->id] as $accom) {?>
-                        <div class="tour_in tour_know">
-                            <h2 class="h4">Стоимость тура при размещении в гостевом доме «<?= $accom->title ?>» с <?= Yii::$app->formatter->asDate($stage->start_date, 'php:d.m.y') ?>
-                                по
-                                <?= Yii::$app->formatter->asDate($stage->end_date, 'php:d.m.y') ?></h2>
-                            <ul class="price_tour">
-                                <?foreach ($stagePrices[$stage->id][$accom->id] as $stagePrice) {?>
-                                    <li class="bg-active" style="background-image: url(<?= $stagePrice->getThumbImage() ?>)">
-                                        <p><?= $stagePrice->title ?></p>
-                                        <span class="indicator"><?= $stagePrice->place_count ?></span>
-                                        &nbsp;- <strong><?= $stagePrice->price ?></strong>
-                                    </li>
-                                <?}?>
-                            </ul>
-                        </div>
-                    <?}?>
-                </div>
-            <?}?>
-
-        </div>
-
-        <? if ($model->priceSections && 1 === 2) {?>
+        <? if ($model->priceSections) {?>
             <? foreach ($model->priceSections as $priceSection) {/* @var $priceSection \common\models\PriceSection */?>
                 <div class="tour_in tour_know">
                     <h2 class="h4"><?= $priceSection->title ?></h2>
