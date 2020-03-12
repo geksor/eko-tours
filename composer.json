@@ -30,7 +30,8 @@
         "akiraz2/yii2-stat": "dev-master",
         "nox-it/yii2-nox-user-agent-parser": "*",
         "sonko-dmitry/yii2-telegram-bot-api": "*",
-        "kartik-v/yii2-widgets": "dev-master"
+        "kartik-v/yii2-widgets": "dev-master",
+        "voskobovich/yii2-linker-behavior": "^4.0"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",

@@ -35,6 +35,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?= Html::a('Раздел Размещение', ['accoms', 'id' => $model->id], ['class' => 'btn btn-default']) ?>
 <!--                --><?//= Html::a('Выбор атрибутов', ['attrs', 'id' => $model->id], ['class' => 'btn btn-default']) ?>
                 <?= Html::a('Выбор разделов', ['categories', 'id' => $model->id], ['class' => 'btn btn-default']) ?>
+                <?= Html::a('Периоды и цены', ['tour-periods/index', 'tour_id' => $model->id], ['class' => 'btn btn-default']) ?>
 
             </p>
 

@@ -180,6 +180,36 @@ $(window).scroll(function () {
     }
 });
 
+$('.showRooms').click(function () {
+    var id = $('#rooms-date-form input[name="id"]').val();
+    var dateFrom = $('#rooms-date-form input[name="dateFrom"]').val();
+    var dateTo = $('#rooms-date-form input[name="dateTo"]').val();
+    
+    $(".rooms-content").html("<div class='loading'>Загрузка...</div>");
+    $.ajax({
+        url: '/api/rooms',
+        type: 'POST',
+        data: {
+            id: id,
+            dateFrom: dateFrom,
+            dateTo: dateTo
+        },
+        success: function(res){
+            data=JSON.parse(res);
+            if(data.error){
+                alert('data.error');
+                return false;
+            }
+            
+            $(".rooms-content").html(data.response);
+        },
+        error: function(){
+            alert('Ошибка!');
+        }
+    });
+    return false;
+});
+
 $('#buttonUp').click(function () {
     $('body,html').animate({
         scrollTop: 0

@@ -28,9 +28,8 @@ $this->params['breadcrumbs'][] = $this->title;
                     ],
                 ]) ?>
                 <?= Html::a('Выбрать основную картинку', ['set-image', 'id' => $model->id], ['class' => 'btn btn-default']) ?>
-                <? if (!$model->is_gallery) {?>
-                    <?= Html::a('Номера', ['room/index', 'accom_id' => $model->id], ['class' => 'btn btn-default']) ?>
-                <?}?>
+                <?= Html::a('Гостевые номера', ['room/index', 'accom_id' => $model->id], ['class' => 'btn btn-default']) ?>
+
             </p>
 
             <?= DetailView::widget([

@@ -22,10 +22,16 @@ use yii\helpers\ArrayHelper;
  * @property int $viewed
  * @property int $agree
  * @property string $lastName
+ * @property int $tour_period_room_id
+ * @property int $room_id
+ * @property int $period_id
  *
  * @property Month $month
+ * @property TourPeriodRooms $tourPeriodRoom
  * @property Stage $stage
  * @property Tour $tour
+ * @property Room $room
+ * @property TourPeriod $period
  */
 class Booking extends \yii\db\ActiveRecord
 {
@@ -45,7 +51,7 @@ class Booking extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['tour_id', 'month_id', 'stage_id', 'user_places_count', 'total_price', 'confirm', 'created_at', 'done_at', 'viewed'], 'integer'],
+            [['tour_id', 'month_id', 'stage_id', 'tour_period_room_id', 'room_id', 'period_id', 'user_places_count', 'total_price', 'confirm', 'created_at', 'done_at', 'viewed'], 'integer'],
             [['customer_name', 'customer_phone'], 'required'],
             [['customer_name', 'customer_phone', 'lastName'], 'string', 'max' => 255],
             ['agree', 'compare', 'compareValue' => 1, 'message' => 'Для бронирования тура необходимо согласиться с обработкой персональных данных.'],
@@ -62,6 +68,9 @@ class Booking extends \yii\db\ActiveRecord
             'tour_id' => 'Тур',
             'month_id' => 'Месяц',
             'stage_id' => 'Заезд',
+            'tour_period_room_id' => 'Заезд в номера',
+            'room_id' => 'Номер',
+            'period_id' => 'Период',
             'user_places_count' => 'Кол-во мест',
             'total_price' => 'Стоимость',
             'customer_name' => 'Имя Клиента',
@@ -88,6 +97,30 @@ class Booking extends \yii\db\ActiveRecord
     public function getStage()
     {
         return $this->hasOne(Stage::className(), ['id' => 'stage_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getTourPeriodRoom()
+    {
+        return $this->hasOne(TourPeriodRooms::className(), ['id' => 'tour_period_room_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getRoom()
+    {
+        return $this->hasOne(Room::className(), ['id' => 'room_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getPeriod()
+    {
+        return $this->hasOne(TourPeriod::className(), ['id' => 'period_id']);
     }
 
     /**

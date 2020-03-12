@@ -18,6 +18,7 @@ class AppAsset extends AssetBundle
         'public/css/mobile.css',
         'public/css/jquery.fancybox.min.css',
         'public/css/owl.carousel.min.css',
+        'public/js/air-datepicker/css/datepicker.min.css',
     ];
     public $js = [
         'public/js/slideout.js',
@@ -26,6 +27,7 @@ class AppAsset extends AssetBundle
         'public/js/modernizr.custom.js',
         'public/js/classie.js',
         'public/js/modalEffects.js',
+        'public/js/air-datepicker/js/datepicker.min.js'
     ];
     public $depends = [
         'yii\web\YiiAsset',

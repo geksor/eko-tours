@@ -77,6 +77,22 @@ $this->params['breadcrumbs'][] = $this->title;
                             return null;
                         }
                     ],
+                    [
+                        'attribute' => 'tour_period_room_id',
+                        'filterInputOptions' => ['prompt' => 'Все', 'class' => 'form-control form-control-sm'],
+                        'value' => function ($data){
+                            /* @var $data \common\models\Booking */
+                            if ($data->tourPeriodRoom){
+                                return 'c '.Yii::$app->formatter->asDate($data->tourPeriodRoom->period->start).' по '.Yii::$app->formatter->asDate($data->tourPeriodRoom->period->end).'<br>'.htmlspecialchars($data->tourPeriodRoom->room->accom->title).'<br>'.htmlspecialchars($data->tourPeriodRoom->room->title).'<br> Цена: '.htmlspecialchars($data->tourPeriodRoom->price.' руб. (текущая)');
+                            }
+
+                            if($data->room){
+                                return 'c '.Yii::$app->formatter->asDate($data->period->start).' по '.Yii::$app->formatter->asDate($data->period->end).'<br>'.htmlspecialchars($data->room->accom->title).'<br>'.htmlspecialchars($data->room->title).'<br> Цена: '.htmlspecialchars("Цена не задана");
+                            }
+                            return null;
+                        },
+                        'format' => 'raw'
+                    ],
 //                    'user_places_count',
                     //'total_price',
                     'created_at:datetime',

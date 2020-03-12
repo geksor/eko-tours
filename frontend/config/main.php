@@ -49,8 +49,11 @@ return [
                 '/kontakty' => 'site/about',
 
                 '/tours/booking' => 'tours/booking',
+                '/api/rooms' => 'tours/rooms',
                 '/tours/<category>' => 'tours/index',
                 '/tours/<category>/<alias>' => 'tours/view',
+                '/tours/<category>/<alias>/<id>_<period_id>_<date_from>_<date_to>' => 'tours/room',
+
                 '<controller:tours>' => 'tours/index',
                 '<controller:accom>' => 'accom/index',
 

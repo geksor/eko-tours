@@ -16,6 +16,7 @@ use zxbodya\yii2\galleryManager\GalleryBehavior;
  * @property int $rank
  * @property int $publish
  * @property array $attrs
+ * @property string $description
  *
  * @property Accom $accom
  * @property RoomAttribute[] $roomAttributes
@@ -49,6 +50,7 @@ class Room extends \yii\db\ActiveRecord
             [['attrs'], 'safe'],
             [['accom_id', 'rank', 'publish'], 'integer'],
             [['title'], 'string', 'max' => 255],
+            [['description'], 'string'],
             [['accom_id'], 'exist', 'skipOnError' => true, 'targetClass' => Accom::className(), 'targetAttribute' => ['accom_id' => 'id']],
             [['rank'], 'default', 'value' => 100],
         ];
@@ -63,6 +65,7 @@ class Room extends \yii\db\ActiveRecord
             'id' => 'ID',
             'accom_id' => 'Раздел размещения',
             'title' => 'Название',
+            'description' => 'Описание',
             'rank' => 'Порядок вывода',
             'publish' => 'Публикация',
         ];

@@ -42,6 +42,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         }
                     ],
                     'title:html',
+                    'description:html',
                     'rank',
                     [
                         'attribute' => 'publish',
